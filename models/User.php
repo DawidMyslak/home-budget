@@ -30,7 +30,8 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return [
             [['username', 'password', 'auth_key', 'access_token'], 'required'],
-            [['username', 'password', 'auth_key', 'access_token'], 'string', 'max' => 128],
+            [['username', 'auth_key', 'access_token'], 'string', 'max' => 128],
+            [['password'], 'string', 'max' => 256],
         ];
     }
 
@@ -108,5 +109,37 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function validatePassword($password)
     {
         return $this->password === $password;
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategories()
+    {
+        return $this->hasMany(Category::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getKeywords()
+    {
+        return $this->hasMany(Keyword::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSubcategories()
+    {
+        return $this->hasMany(Subcategory::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTransactions()
+    {
+        return $this->hasMany(Transaction::className(), ['user_id' => 'id']);
     }
 }
