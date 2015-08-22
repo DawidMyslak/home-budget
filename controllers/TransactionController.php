@@ -6,6 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use app\models\Transaction;
 use app\models\TransactionSearch;
+use app\models\TransactionImport;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -127,5 +128,16 @@ class TransactionController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+    
+    /**
+     * Imports CSV file with Transcation models.
+     * @return mixed
+     */
+    public function actionImport()
+    {
+        $transactions = TransactionImport::import('../samples/bank-of-ireland.csv', TransactionImport::BANK_OF_IRELAND);
+        
+        return $this->redirect(['index']);
     }
 }
