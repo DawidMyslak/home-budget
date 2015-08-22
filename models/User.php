@@ -53,11 +53,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public static function findIdentity($id)
     {
-        if (($model = self::findOne($id)) !== null) {
-            return new static($model);
-        }
-        
-        return null;
+        return static::findOne($id);
     }
 
     /**
@@ -65,11 +61,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        if (($model = self::findOne(['access_token' => $token])) !== null) {
-            return new static($model);
-        }
-        
-        return null;
+        return static::findOne(['access_token' => $token]);
     }
 
     /**
@@ -80,11 +72,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
      */
     public static function findByUsername($username)
     {
-        if (($model = self::findOne(['username' => $username])) !== null) {
-            return new static($model);
-        }
-        
-        return null;
+        return static::findOne(['username' => $username]);
     }
 
     /**
