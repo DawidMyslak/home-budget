@@ -112,6 +112,17 @@ class UserController extends Controller
 
         return $this->redirect(['index']);
     }
+    
+    /**
+     * Displays currently logged in User model.
+     * @return mixed
+     */
+    public function actionProfile()
+    {
+        return $this->render('view', [
+            'model' => Yii::$app->user->identity,
+        ]);
+    }
 
     /**
      * Finds the User model based on its primary key value.
