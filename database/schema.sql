@@ -1,0 +1,9 @@
+CREATE TABLE user
+(
+	id INT NOT NULL AUTO_INCREMENT,
+	username VARCHAR(128) NOT NULL,
+	password VARCHAR(128) NOT NULL,
+	auth_key VARCHAR(128) NOT NULL,
+	access_token VARCHAR(128) NOT NULL,
+	PRIMARY KEY(id)
+);
