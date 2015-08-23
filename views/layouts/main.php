@@ -20,7 +20,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400" rel="stylesheet" type="text/css">
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -46,9 +46,7 @@ AppAsset::register($this);
     }
     else {
         $items = [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'Statistics', 'url' => ['/statistic']],
             ['label' => 'Categories', 'url' => ['/category/structure']],
             ['label' => 'Keywords', 'url' => ['/keyword']],
             ['label' => 'Transactions', 'url' => ['/transaction']],
