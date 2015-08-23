@@ -42,6 +42,8 @@ class KeywordSearch extends Keyword
     public function search($params)
     {
         $query = Keyword::find();
+        
+        $query->joinWith(['category', 'subcategory']);
 
         // add conditions that should always apply here
 
@@ -60,7 +62,7 @@ class KeywordSearch extends Keyword
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'user_id' => $this->user_id,
+            'keyword.user_id' => Yii::$app->user->identity->id,
             'category_id' => $this->category_id,
             'subcategory_id' => $this->subcategory_id,
         ]);

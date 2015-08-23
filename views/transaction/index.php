@@ -25,11 +25,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'date',
             'description',
             'money_in',
             'money_out',
+            [
+                'attribute' => 'category',
+                'value' => 'category.name',
+            ],
+            [
+                'attribute' => 'subcategory',
+                'value' => 'subcategory.name',
+            ],
             // 'balance',
             // 'hash',
             // 'user_id',

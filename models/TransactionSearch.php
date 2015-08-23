@@ -43,6 +43,8 @@ class TransactionSearch extends Transaction
     public function search($params)
     {
         $query = Transaction::find();
+        
+        $query->joinWith(['category', 'subcategory']);
 
         // add conditions that should always apply here
 

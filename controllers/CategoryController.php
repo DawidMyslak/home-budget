@@ -62,6 +62,21 @@ class CategoryController extends Controller
             'model' => $this->findModel($id),
         ]);
     }
+    
+    /**
+     * Displays a structure of all Category and Subcategory models.
+     * @return mixed
+     */
+    public function actionStructure()
+    {
+        $categories = Category::find()
+            ->with('subcategories')
+            ->all();
+
+        return $this->render('structure', [
+            'categories' => $categories,
+        ]);
+    }
 
     /**
      * Creates a new Category model.
