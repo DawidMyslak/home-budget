@@ -119,8 +119,26 @@ class UserController extends Controller
      */
     public function actionProfile()
     {
-        return $this->render('view', [
+        return $this->render('profile', [
             'model' => Yii::$app->user->identity,
+        ]);
+    }
+    
+    public function actionPassword()
+    {
+        $model = Yii::$app->user->identity;
+        $model->password = '';
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->password = Yii::$app->getSecurity()->generatePasswordHash($model->password);
+            
+            if ($model->save()) {
+                return $this->redirect(['profile']);
+            }
+        }
+        
+        return $this->render('password', [
+            'model' => $model,
         ]);
     }
 
