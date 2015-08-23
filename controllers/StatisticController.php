@@ -5,8 +5,7 @@ namespace app\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+use app\models\Statistic;
 
 class StatisticController extends Controller
 {
@@ -27,38 +26,28 @@ class StatisticController extends Controller
 
     public function actionIndex()
     {
-        // money with categories
-        $sql = 'SELECT c.id AS id, IFNULL(c.name, "Uncategorized") AS name, SUM(money_out) AS sum FROM category c
-                RIGHT JOIN transaction t ON c.id=t.category_id
-                WHERE t.user_id=:user_id
-                GROUP BY c.id';
-                
-        $moneyWithCategories = Yii::$app->db->createCommand($sql)
-            ->bindValue(':user_id', Yii::$app->user->identity->id)
-            ->queryAll();
-        
-        // money in
-        $sql = 'SELECT SUM(money_in) FROM transaction WHERE user_id=:user_id';
-        
-        $moneyIn = Yii::$app->db->createCommand($sql)
-            ->bindValue(':user_id', Yii::$app->user->identity->id)
-            ->queryScalar();
-        
-        // money out
-        $sql = 'SELECT SUM(money_out) FROM transaction WHERE user_id=:user_id';
-        
-        $moneyOut = Yii::$app->db->createCommand($sql)
-            ->bindValue(':user_id', Yii::$app->user->identity->id)
-            ->queryScalar();
-            
-        // balance    
+        $moneyWithMonths = Statistic::getMoneyWithMonths(Yii::$app->user->identity->id);
+        $moneyWithCategories = Statistic::getMoneyWithCategories(Yii::$app->user->identity->id);
+        $moneyIn = Statistic::getMoneyIn(Yii::$app->user->identity->id);
+        $moneyOut = Statistic::getMoneyOut(Yii::$app->user->identity->id);   
         $balance = $moneyIn - $moneyOut;
+        
+        $status = '';
+        if ($balance > 0) {
+            $status = '+';
+        }
+        else if ($balance < 0) {
+            $status = '-';
+        }
+        $balance = abs($balance);
 
         return $this->render('index', [
             'moneyIn' => $moneyIn,
             'moneyOut' => $moneyOut,
+            'status' => $status,
             'balance' => $balance,
             'moneyWithCategories' => $moneyWithCategories,
+            'moneyWithMonths' => $moneyWithMonths,
         ]);
     }
 }

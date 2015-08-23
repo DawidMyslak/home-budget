@@ -5,11 +5,11 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $categories app\models\Category */
 
-$this->title = 'Structure';
-$this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['index']];
+$this->title = 'Categories';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-structure">
+    <h1><?= Html::encode($this->title) ?></h1>
 
     <ul class="list-group">
     <?php foreach ($categories as $category): ?>
