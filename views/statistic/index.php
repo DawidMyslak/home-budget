@@ -56,16 +56,6 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- temporary code, needs to be moved -->
     
     <style>
-        .ct-series-a .ct-line,
-        .ct-series-a .ct-point {
-            stroke: blue;
-        }
-        
-        .ct-series-b .ct-line,
-        .ct-series-b .ct-point {
-            stroke: green;
-        }
-        
         .ct-label {
             font-size: 14px;
         }
