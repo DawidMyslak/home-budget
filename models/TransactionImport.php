@@ -38,31 +38,52 @@ class TransactionImport extends Transaction
     
     public static function import($path, $type)
     {
+        // all existing transactions for currently logged in user
+        $transactions = Transaction::findAll(['user_id' => Yii::$app->user->identity->id]);
+        
+        // build an array containing transcation hashes
+        $hashes = [];
+        foreach ($transactions as $transcation) {
+            $hashes[] = $transcation->hash;
+        }
+        
+        // categorise helper object
         $categoriseHelper = new CategoriseHelper();
         $categoriseHelper->prepareKeywords();
         
-        $type = TransactionImport::types()[$type];
+        // get config for current file type
+        $type = self::types()[$type];
+        
+        // skip first line in the file
         $skipHeader = true;
         
-        if (($handle = fopen($path, 'r')) !== false) {
-            while (($data = fgetcsv($handle, 1024, ',')) !== false) {
+        if (($handle = fopen($path, 'r')) !== false) { // open file
+            while (($data = fgetcsv($handle, 1024, ',')) !== false) { // read line
                 if (!$skipHeader) {
+                    // create an empty transaction object
                     $transcation = new Transaction();
                     
+                    // populate object fields using config order
                     $fields = $type['fields'];
                     for ($i = 0; $i < count($fields); $i++) {
                         $transcation[$fields[$i]] = $data[$i];
                     }
                     
-                    $keyword = $categoriseHelper->search($transcation->description);
-                    if ($keyword !== null) {
-                        $transcation->category_id = $keyword->category_id;
-                        $transcation->subcategory_id = $keyword->subcategory_id;
-                        $transcation->keyword_id = $keyword->id;
-                    }
-                    
+                    // format date using config format
                     $transcation->date = \DateTime::createFromFormat($type['dateFormat'], $transcation->date)->format('Y-m-d');
-                    $transcation->save();
+                    
+                    // prepare transcation hash and check if already exists in hash array, if does then do nothing
+                    if (!in_array(Transaction::prepareHash($transcation->date, $transcation->description, $transcation->money_in, $transcation->money_out, $transcation->balance), $hashes)) {               
+                        // find keyword for description
+                        $keyword = $categoriseHelper->search($transcation->description);
+                        if ($keyword !== null) {
+                            $transcation->category_id = $keyword->category_id;
+                            $transcation->subcategory_id = $keyword->subcategory_id;
+                            $transcation->keyword_id = $keyword->id;
+                        }
+                        
+                        $transcation->save();
+                    }
                 }
                 $skipHeader = false;
             }
