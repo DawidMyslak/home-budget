@@ -72,6 +72,15 @@ class Transaction extends \yii\db\ActiveRecord
             'keyword_id' => 'Keyword ID',
         ];
     }
+    
+    /**
+     * @inheritdoc
+     */
+    public function beforeSave($insert) {
+        $this->hash = md5($this->date . $this->description . $this->money_in . $this->money_out . $this->balance);
+        $this->user_id = Yii::$app->user->identity->id;
+        return parent::beforeSave($insert);
+    }
 
     /**
      * @return \yii\db\ActiveQuery

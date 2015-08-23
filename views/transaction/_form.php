@@ -22,15 +22,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'balance')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'hash')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'user_id')->textInput() ?>
-
     <?= $form->field($model, 'category_id')->textInput() ?>
 
     <?= $form->field($model, 'subcategory_id')->textInput() ?>
-
-    <?= $form->field($model, 'keyword_id')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

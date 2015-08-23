@@ -35,10 +35,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'money_out',
             'balance',
             'hash',
-            'user_id',
+            //'user_id',
             'category_id',
             'subcategory_id',
-            'keyword_id',
+            //'keyword_id',
         ],
     ]) ?>
 

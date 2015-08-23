@@ -56,6 +56,15 @@ class Keyword extends \yii\db\ActiveRecord
             'subcategory_id' => 'Subcategory ID',
         ];
     }
+    
+    /**
+     * @inheritdoc
+     */
+    public function beforeSave($insert) {
+        $this->name = strtolower($this->name);
+        $this->user_id = Yii::$app->user->identity->id;
+        return parent::beforeSave($insert);
+    }
 
     /**
      * @return \yii\db\ActiveQuery

@@ -67,7 +67,7 @@ class TransactionSearch extends Transaction
             'money_in' => $this->money_in,
             'money_out' => $this->money_out,
             'balance' => $this->balance,
-            'user_id' => $this->user_id,
+            'transaction.user_id' => Yii::$app->user->identity->id,
             'category_id' => $this->category_id,
             'subcategory_id' => $this->subcategory_id,
             'keyword_id' => $this->keyword_id,
