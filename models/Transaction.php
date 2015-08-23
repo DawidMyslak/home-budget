@@ -77,9 +77,13 @@ class Transaction extends \yii\db\ActiveRecord
      * @inheritdoc
      */
     public function beforeSave($insert) {
-        $this->hash = md5($this->date . $this->description . $this->money_in . $this->money_out . $this->balance);
+        $this->hash = self::prepareHash($this->date, $this->description, $this->money_in, $this->money_out, $this->balance);
         $this->user_id = Yii::$app->user->identity->id;
         return parent::beforeSave($insert);
+    }
+    
+    public static function prepareHash($date, $description, $moneyIn, $moneyOut, $balance) {
+        return md5($date . $description . $moneyIn . $moneyOut . $balance);
     }
 
     /**
