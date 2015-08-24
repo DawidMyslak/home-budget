@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'money_in',
             'money_out',
             'balance',
-            'hash',
+            //'hash',
             //'user_id',
             'category_id',
             'subcategory_id',

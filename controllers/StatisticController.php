@@ -26,10 +26,14 @@ class StatisticController extends Controller
 
     public function actionIndex()
     {
-        $moneyWithMonths = Statistic::getMoneyWithMonths(Yii::$app->user->identity->id);
-        $moneyWithCategories = Statistic::getMoneyWithCategories(Yii::$app->user->identity->id);
-        $moneyIn = Statistic::getMoneyIn(Yii::$app->user->identity->id);
-        $moneyOut = Statistic::getMoneyOut(Yii::$app->user->identity->id);   
+        $userId = Yii::$app->user->identity->id;
+        $year = Yii::$app->request->get('year', 2015);
+        
+        $moneyWithMonths = Statistic::getMoneyWithMonths($userId, $year);
+        $moneyWithCategories = Statistic::getMoneyWithCategories($userId, $year);
+        $moneyWithSubcategories = Statistic::getMoneyWithSubcategories($userId, $year);
+        $moneyIn = Statistic::getMoneyIn($userId, $year);
+        $moneyOut = Statistic::getMoneyOut($userId, $year);   
         $balance = $moneyIn - $moneyOut;
         
         $status = '';
@@ -42,11 +46,13 @@ class StatisticController extends Controller
         $balance = abs($balance);
 
         return $this->render('index', [
+            'year' => $year,
             'moneyIn' => $moneyIn,
             'moneyOut' => $moneyOut,
             'status' => $status,
             'balance' => $balance,
             'moneyWithCategories' => $moneyWithCategories,
+            'moneyWithSubcategories' => $moneyWithSubcategories,
             'moneyWithMonths' => $moneyWithMonths,
         ]);
     }

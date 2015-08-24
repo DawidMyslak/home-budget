@@ -10,18 +10,27 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="statistic-index">
     
+    <h1>Statistics (<?= $year ?>)</h1>
+    
+    <p>
+        <?= Html::a(2014, ['index', 'year' => 2014]) ?>,
+        <?= Html::a(2015, ['index', 'year' => 2015]) ?>
+    </p>
+    
+    <hr>
+    
     <div class="row">
         <div class="col-md-4">
             Money In
-            <h1>&euro;<?= $moneyIn ?></h1>    
+            <h2>&euro;<?= $moneyIn ?></h2>    
         </div>
         <div class="col-md-4">
             Money Out
-            <h1>&euro;<?= $moneyOut ?></h1>    
+            <h2>&euro;<?= $moneyOut ?></h2>    
         </div>
         <div class="col-md-4">
             Balance
-            <h1><?= $status ?> &euro;<?= $balance ?></h1>    
+            <h2><?= $status ?> &euro;<?= $balance ?></h2>    
         </div>
     </div>
     
@@ -133,5 +142,29 @@ $this->params['breadcrumbs'][] = $this->title;
         
         new Chartist.Line('.ct-chart-b', data, options);
     </script>
+    
+    <!-- end of temporary -->
+    
+    <hr>
+    <h3>Expenses in subcategories</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Subcategory</th>
+                <th>Expenses</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($moneyWithSubcategories as $item): ?>
+            <tr>
+                <td><?= $item['cname'] ?></td>
+                <td><?= $item['sname'] ?></td>
+                <td>&euro;<?= $item['sum'] ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 
 </div>

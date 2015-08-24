@@ -136,7 +136,7 @@ class TransactionController extends Controller
      */
     public function actionImport()
     {
-        $transactions = TransactionImport::import('../samples/bank-of-ireland-2.csv', TransactionImport::BANK_OF_IRELAND);
+        $transactions = TransactionImport::import('../samples/bank-of-ireland.csv', TransactionImport::BANK_OF_IRELAND);
         
         return $this->redirect(['index']);
     }

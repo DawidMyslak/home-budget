@@ -77,12 +77,15 @@ class TransactionImport extends Transaction
                     if (!in_array($hash, $hashes)) {
                         $transcation->hash = $hash;
                         
-                        // find keyword for description
-                        $keyword = $categoriseHelper->search($transcation->description);
-                        if ($keyword !== null) {
-                            $transcation->category_id = $keyword->category_id;
-                            $transcation->subcategory_id = $keyword->subcategory_id;
-                            $transcation->keyword_id = $keyword->id;
+                        // categorise only expenses
+                        if (!empty($transcation->money_out)) {
+                            // find keyword for description
+                            $keyword = $categoriseHelper->search($transcation->description);
+                            if ($keyword !== null) {
+                                $transcation->category_id = $keyword->category_id;
+                                $transcation->subcategory_id = $keyword->subcategory_id;
+                                $transcation->keyword_id = $keyword->id;
+                            }
                         }
                         
                         $transcation->save();
