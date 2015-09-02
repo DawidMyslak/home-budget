@@ -81,8 +81,8 @@ class Transaction extends \yii\db\ActiveRecord
         return parent::beforeSave($insert);
     }
     
-    public static function prepareHash($date, $description, $moneyIn, $moneyOut, $balance) {
-        return md5($date . $description . $moneyIn . $moneyOut . $balance);
+    public static function prepareHash($date, $description, $moneyIn, $moneyOut) {
+        return md5($date . $description . $moneyIn . $moneyOut);
     }
 
     /**

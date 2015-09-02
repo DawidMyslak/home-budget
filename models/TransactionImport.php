@@ -73,7 +73,7 @@ class TransactionImport extends Transaction
                     $transcation->date = \DateTime::createFromFormat($type['dateFormat'], $transcation->date)->format('Y-m-d');
                     
                     // prepare transcation hash and check if already exists in hash array, if does then do not save this transaction
-                    $hash = Transaction::prepareHash($transcation->date, $transcation->description, $transcation->money_in, $transcation->money_out, $transcation->balance);
+                    $hash = Transaction::prepareHash($transcation->date, $transcation->description, $transcation->money_in, $transcation->money_out);
                     if (!in_array($hash, $hashes)) {
                         $transcation->hash = $hash;
                         
