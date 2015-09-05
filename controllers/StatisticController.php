@@ -33,7 +33,9 @@ class StatisticController extends Controller
         $moneyWithCategories = Statistic::getMoneyWithCategories($userId, $year);
         $moneyWithSubcategories = Statistic::getMoneyWithSubcategories($userId, $year);
         $moneyIn = Statistic::getMoneyIn($userId, $year);
-        $moneyOut = Statistic::getMoneyOut($userId, $year);   
+        $moneyIn = $moneyIn ? $moneyIn : 0;
+        $moneyOut = Statistic::getMoneyOut($userId, $year);
+        $moneyOut = $moneyOut ? $moneyOut : 0;
         $balance = $moneyIn - $moneyOut;
         
         $status = '';

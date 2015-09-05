@@ -12,6 +12,14 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="keyword-index">
 
+    <h1>Keywords Suggestions</h1>
+
+    <ul class="list-group">
+    <?php foreach ($possibleKeywords as $keyword): ?>
+        <li class="list-group-item"><?= Html::encode($keyword['name']) ?> (in <strong><?= Html::encode($keyword['count']) ?></strong> transactions)</li>
+    <?php endforeach; ?>
+    </ul>
+
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 

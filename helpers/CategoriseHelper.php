@@ -19,8 +19,12 @@ class CategoriseHelper
     }
     
     private static function match($description, $name) {
+        // remove all white spaces and make it lowercase
+        $description = strtolower(preg_replace('/\s+/', '', $description));
+        $name = strtolower(preg_replace('/\s+/', '', $name));
+        
         // check if description contains name
-        if (strpos(strtolower($description), $name) !== false) {
+        if (strpos($description, $name) !== false) {
             return true;
         }
         

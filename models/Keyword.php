@@ -61,7 +61,6 @@ class Keyword extends \yii\db\ActiveRecord
      * @inheritdoc
      */
     public function beforeSave($insert) {
-        $this->name = strtolower($this->name);
         $this->user_id = Yii::$app->user->identity->id;
         return parent::beforeSave($insert);
     }
