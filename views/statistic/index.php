@@ -157,13 +157,13 @@ $this->params['breadcrumbs'][] = $this->title;
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($moneyWithSubcategories as $item): ?>
+            <?php $previousCategory = ''; foreach ($moneyWithSubcategories as $item): ?>
             <tr>
-                <td><?= $item['cname'] ?></td>
+                <td><?= $previousCategory != $item['cname'] ? $item['cname'] : '' ?></td>
                 <td><?= $item['sname'] ?></td>
                 <td>&euro;<?= $item['sum'] ?></td>
             </tr>
-            <?php endforeach; ?>
+            <?php $previousCategory = $item['cname']; endforeach; ?>
         </tbody>
     </table>
 
