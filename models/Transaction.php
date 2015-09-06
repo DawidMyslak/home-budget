@@ -145,4 +145,9 @@ class Transaction extends \yii\db\ActiveRecord
             $transaction->save();
         }
     }
+    
+    public static function findById($id)
+    {
+        return static::findOne(['id' => $id, 'user_id' => Yii::$app->user->identity->id]);
+    }
 }

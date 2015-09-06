@@ -123,7 +123,7 @@ class TransactionController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Transaction::findOne(['id' => $id, 'user_id' => Yii::$app->user->identity->id])) !== null) {
+        if (($model = Transaction::findById($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

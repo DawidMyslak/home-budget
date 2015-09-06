@@ -97,6 +97,11 @@ class Keyword extends \yii\db\ActiveRecord
         return $this->hasMany(Transaction::className(), ['keyword_id' => 'id']);
     }
     
+    public static function findById($id)
+    {
+        return static::findOne(['id' => $id, 'user_id' => Yii::$app->user->identity->id]);
+    }
+    
     public static function getPossibleKeywords()
     {
         $sql = 'SELECT description AS name, COUNT(description) AS count FROM transaction

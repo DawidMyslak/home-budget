@@ -125,7 +125,7 @@ class KeywordController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Keyword::findOne(['id' => $id, 'user_id' => Yii::$app->user->identity->id])) !== null) {
+        if (($model = Keyword::findById($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
