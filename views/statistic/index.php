@@ -74,7 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
         }
     </style>
     
-    <script>
+    <script>        
         <?php
             $labels = '[';
             $series = '[';
