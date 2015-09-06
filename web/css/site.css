@@ -98,9 +98,9 @@ a.desc:after {
 }
 
 .ct-label {
-    font-size: 14px;
+    font-size: 14px !important;
 }
 
 .ct-perfect-fourth:before {
-    padding: 0;
+    padding: 0 !important;
 }
