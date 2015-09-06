@@ -13,9 +13,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <ul class="list-group">
     <?php foreach ($categories as $category): ?>
-        <li class="list-group-item list-group-item-success"><?= Html::encode($category->name) ?></li>
+        <li class="list-group-item list-group-item-success"><?= $category->id . '. ' . Html::encode($category->name) ?></li>
         <?php foreach ($category->subcategories as $subcategory): ?>
-            <li class="list-group-item"><?= Html::encode($subcategory->name) ?></li>
+            <li class="list-group-item"><?= $category->id . '.' . $subcategory->id . '. ' . Html::encode($subcategory->name) ?></li>
         <?php endforeach; ?>
     <?php endforeach; ?>
     </ul>

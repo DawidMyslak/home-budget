@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use app\models\Keyword;
+use app\helpers\CategoriseHelper;
 
 /**
  * This is the model class for table "transaction".
@@ -115,5 +117,32 @@ class Transaction extends \yii\db\ActiveRecord
     public function getKeyword()
     {
         return $this->hasOne(Keyword::className(), ['id' => 'keyword_id']);
+    }
+    
+    public static function categorise()
+    {
+        // all not categorized transactions for currently logged in user
+        $transactions = self::findAll([
+            'user_id' => Yii::$app->user->identity->id,
+            'category_id' => null,
+            'subcategory_id' => null,
+            'money_in' => null,
+        ]);
+        
+        // categorise helper object
+        $categoriseHelper = new CategoriseHelper();
+        $categoriseHelper->prepareKeywords();
+        
+        foreach ($transactions as $transaction) {
+            // find keyword for description
+            $keyword = $categoriseHelper->search($transaction->description);
+            if ($keyword !== null) {
+                $transaction->category_id = $keyword->category_id;
+                $transaction->subcategory_id = $keyword->subcategory_id;
+                $transaction->keyword_id = $keyword->id;
+            }
+        
+            $transaction->save();
+        }
     }
 }

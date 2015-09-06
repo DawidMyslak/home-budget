@@ -43,8 +43,8 @@ class TransactionImport extends Transaction
         
         // build an array containing transcation hashes
         $hashes = [];
-        foreach ($transactions as $transcation) {
-            $hashes[] = $transcation->hash;
+        foreach ($transactions as $transaction) {
+            $hashes[] = $transaction->hash;
         }
         
         // categorise helper object
@@ -61,34 +61,35 @@ class TransactionImport extends Transaction
             while (($data = fgetcsv($handle, 1024, ',')) !== false) { // read line
                 if (!$skipHeader) {
                     // create an empty transaction object
-                    $transcation = new Transaction();
+                    $transaction = new Transaction();
                     
                     // populate object fields using config order
                     $fields = $type['fields'];
                     for ($i = 0; $i < count($fields); $i++) {
-                        $transcation[$fields[$i]] = $data[$i];
+                        $transaction[$fields[$i]] = $data[$i];
                     }
                     
                     // format date using config format
-                    $transcation->date = \DateTime::createFromFormat($type['dateFormat'], $transcation->date)->format('Y-m-d');
+                    $transaction->date = \DateTime::createFromFormat($type['dateFormat'], $transaction->date)->format('Y-m-d');
                     
                     // prepare transcation hash and check if already exists in hash array, if does then do not save this transaction
-                    $hash = Transaction::prepareHash($transcation->date, $transcation->description, $transcation->money_in, $transcation->money_out);
+                    $hash = Transaction::prepareHash($transaction->date, $transaction->description, $transaction->money_in, $transaction->money_out);
                     if (!in_array($hash, $hashes)) {
-                        $transcation->hash = $hash;
+                        $hashes[] = $hash;
+                        $transaction->hash = $hash;
                         
                         // categorise only expenses
-                        if (!empty($transcation->money_out)) {
+                        if (!empty($transaction->money_out)) {
                             // find keyword for description
-                            $keyword = $categoriseHelper->search($transcation->description);
+                            $keyword = $categoriseHelper->search($transaction->description);
                             if ($keyword !== null) {
-                                $transcation->category_id = $keyword->category_id;
-                                $transcation->subcategory_id = $keyword->subcategory_id;
-                                $transcation->keyword_id = $keyword->id;
+                                $transaction->category_id = $keyword->category_id;
+                                $transaction->subcategory_id = $keyword->subcategory_id;
+                                $transaction->keyword_id = $keyword->id;
                             }
                         }
                         
-                        $transcation->save();
+                        $transaction->save();
                     }
                 }
                 $skipHeader = false;

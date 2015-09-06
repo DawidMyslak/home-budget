@@ -131,12 +131,23 @@ class TransactionController extends Controller
     }
     
     /**
+     * Categorise Transcation models.
+     * @return mixed
+     */
+    public function actionCategorise()
+    {
+        Transaction::categorise();
+        
+        return $this->redirect(['index']);
+    }
+    
+    /**
      * Imports CSV file with Transcation models.
      * @return mixed
      */
     public function actionImport()
     {
-        $transactions = TransactionImport::import('../samples/bank-of-ireland.csv', TransactionImport::BANK_OF_IRELAND);
+        TransactionImport::import('../samples/bank-of-ireland.csv', TransactionImport::BANK_OF_IRELAND);
         
         return $this->redirect(['index']);
     }
