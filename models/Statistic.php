@@ -17,7 +17,7 @@ class Statistic extends \yii\base\Object
     private $balance;
     private $status;
     
-    public function prepareData($year) {
+    public function prepareResults($year) {
         $this->userId = Yii::$app->user->identity->id;
         $this->year = $year;
         

@@ -90,3 +90,17 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
+
+/* charts */
+
+.chart-area {
+    height: 300px;
+}
+
+.ct-label {
+    font-size: 14px;
+}
+
+.ct-perfect-fourth:before {
+    padding: 0;
+}

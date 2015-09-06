@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </ul>
         </div>
         <div class="col-md-6">
-            <div style="height: 300px;">
+            <div class="chart-area">
                 <div class="ct-chart ct-chart-a ct-perfect-fourth"></div>
             </div>
         </div>
@@ -58,92 +58,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <hr>
     <h3>Expenses in months</h3>
     
-    <div style="height: 300px;">
+    <div class="chart-area">
         <div class="ct-chart ct-chart-b ct-perfect-fourth"></div>
     </div>
-    
-    <!-- temporary code, needs to be moved -->
-    
-    <style>
-        .ct-label {
-            font-size: 14px;
-        }
-        
-        .ct-perfect-fourth:before {
-            padding: 0;
-        }
-    </style>
-    
-    <script>        
-        <?php
-            $labels = '[';
-            $series = '[';
-            
-            foreach ($statistic->moneyWithCategories as $item) {
-                $labels .= '"' . $item['name'] . '", ';
-                $series .= $item['sum'] . ', ';
-            }
-            
-            $labels = substr($labels, 0, -2) . ']';
-            $series = substr($series, 0, -2) . ']';
-        ?>
-        
-        var data = {
-            labels: <?= $labels; ?>,
-            series: <?= $series; ?>
-        };
-        
-        var options = {
-            fullWidth: true,
-            height: 300,
-            labelOffset: 40,
-            labelInterpolationFnc: function(value) {
-                return value[0];
-            }
-        };
-        
-        new Chartist.Pie('.ct-chart-a', data, options);
-        
-        <?php
-            $labels = '[';
-            $series1 = '[';
-            $series2 = '[';
-            
-            foreach ($statistic->moneyWithMonths as $item) {
-                $labels .= '"' . $item['date'] . '", ';
-                $series1 .= $item['sum_out'] . ', ';
-                $series2 .= $item['sum_in'] . ', ';
-            }
-            
-            $labels .= '""]';
-            $series1 = substr($series1, 0, -2) . ']';
-            $series2 = substr($series2, 0, -2) . ']';
-        ?>
-        
-        var data = {
-            labels: <?= $labels; ?>,
-            series: [
-                <?= $series1; ?>,
-                <?= $series2; ?>
-            ]
-        };
-        
-        var options = {
-            fullWidth: true,
-            chartPadding: {
-                right: 40
-            },
-            height: 300,
-            low: 0,
-            lineSmooth: Chartist.Interpolation.cardinal({
-                tension: 0
-            })
-        };
-        
-        new Chartist.Line('.ct-chart-b', data, options);
-    </script>
-    
-    <!-- end of temporary -->
     
     <hr>
     <h3>Expenses in subcategories</h3>
@@ -168,3 +85,45 @@ $this->params['breadcrumbs'][] = $this->title;
     </table>
 
 </div>
+
+<!-- charts -->
+
+<script>        
+    var data = {
+        labels: <?= $chart->moneyWithCategoriesChart->labels; ?>,
+        series: <?= $chart->moneyWithCategoriesChart->series; ?>
+    };
+    
+    var options = {
+        fullWidth: true,
+        height: 300,
+        labelOffset: 40,
+        labelInterpolationFnc: function(value) {
+            return value[0];
+        }
+    };
+    
+    new Chartist.Pie('.ct-chart-a', data, options);
+    
+    var data = {
+        labels: <?= $chart->moneyWithMonthsChart->labels; ?>,
+        series: [
+            <?= $chart->moneyWithMonthsChart->series1; ?>,
+            <?= $chart->moneyWithMonthsChart->series2; ?>
+        ]
+    };
+    
+    var options = {
+        fullWidth: true,
+        chartPadding: {
+            right: 40
+        },
+        height: 300,
+        low: 0,
+        lineSmooth: Chartist.Interpolation.cardinal({
+            tension: 0
+        })
+    };
+    
+    new Chartist.Line('.ct-chart-b', data, options);
+</script>
