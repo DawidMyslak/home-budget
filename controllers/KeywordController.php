@@ -6,7 +6,6 @@ use Yii;
 use yii\filters\AccessControl;
 use app\models\Keyword;
 use app\models\KeywordSearch;
-use app\models\Statistic;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -47,7 +46,7 @@ class KeywordController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         $userId = Yii::$app->user->identity->id;
-        $possibleKeywords = Statistic::getPossibleKeywords($userId);
+        $possibleKeywords = Keyword::getPossibleKeywords($userId);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
