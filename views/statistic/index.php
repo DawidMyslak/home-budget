@@ -10,7 +10,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="statistic-index">
     
-    <h1>Statistics (<?= $year ?>)</h1>
+    <h1>Statistics (<?= $statistic->year ?>)</h1>
     
     <p>
         <?= Html::a(2014, ['index', 'year' => 2014]) ?>,
@@ -22,15 +22,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-md-4">
             Money In
-            <h2>&euro;<?= $moneyIn ?></h2>    
+            <h2>&euro;<?= $statistic->moneyIn ?></h2>    
         </div>
         <div class="col-md-4">
             Money Out
-            <h2>&euro;<?= $moneyOut ?></h2>    
+            <h2>&euro;<?= $statistic->moneyOut ?></h2>    
         </div>
         <div class="col-md-4">
             Balance
-            <h2><?= $status ?> &euro;<?= $balance ?></h2>    
+            <h2><?= $statistic->status ?> &euro;<?= $statistic->balance ?></h2>    
         </div>
     </div>
     
@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-md-6">
             <ul class="list-group">
-            <?php foreach ($moneyWithCategories as $item): ?>
+            <?php foreach ($statistic->moneyWithCategories as $item): ?>
                 <li class="list-group-item">
                     <?= $item['name'] ?>
                     <span class="badge">&euro;<?= $item['sum'] ?></span>
@@ -79,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
             $labels = '[';
             $series = '[';
             
-            foreach ($moneyWithCategories as $item) {
+            foreach ($statistic->moneyWithCategories as $item) {
                 $labels .= '"' . $item['name'] . '", ';
                 $series .= $item['sum'] . ', ';
             }
@@ -109,7 +109,7 @@ $this->params['breadcrumbs'][] = $this->title;
             $series1 = '[';
             $series2 = '[';
             
-            foreach ($moneyWithMonths as $item) {
+            foreach ($statistic->moneyWithMonths as $item) {
                 $labels .= '"' . $item['date'] . '", ';
                 $series1 .= $item['sum_out'] . ', ';
                 $series2 .= $item['sum_in'] . ', ';
@@ -157,7 +157,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </tr>
         </thead>
         <tbody>
-            <?php $previousCategory = ''; foreach ($moneyWithSubcategories as $item): ?>
+            <?php $previousCategory = ''; foreach ($statistic->moneyWithSubcategories as $item): ?>
             <tr>
                 <td><?= $previousCategory != $item['cname'] ? $item['cname'] : '' ?></td>
                 <td><?= $item['sname'] ?></td>

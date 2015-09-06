@@ -45,8 +45,7 @@ class KeywordController extends Controller
         $searchModel = new KeywordSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        $userId = Yii::$app->user->identity->id;
-        $possibleKeywords = Keyword::getPossibleKeywords($userId);
+        $possibleKeywords = Keyword::getPossibleKeywords();
 
         return $this->render('index', [
             'searchModel' => $searchModel,

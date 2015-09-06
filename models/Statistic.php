@@ -6,7 +6,74 @@ use Yii;
 
 class Statistic extends \yii\base\Object
 {
-    public static function getMoneyWithMonths($userId, $year)
+    private $userId;
+    private $year;
+    
+    private $moneyWithMonths;
+    private $moneyWithCategories;
+    private $moneyWithSubcategories;
+    private $moneyIn;
+    private $moneyOut;
+    private $balance;
+    private $status;
+    
+    public function prepareData($year) {
+        $this->userId = Yii::$app->user->identity->id;
+        $this->year = $year;
+        
+        $this->moneyWithMonths = $this->prepareMoneyWithMonths();
+        $this->moneyWithCategories = $this->prepareMoneyWithCategories();
+        $this->moneyWithSubcategories = $this->prepareMoneyWithSubcategories();
+        $this->moneyIn = $this->prepareMoneyIn();
+        $this->moneyOut = $this->prepareMoneyOut();
+        
+        $this->moneyIn = $this->moneyIn ? $this->moneyIn : 0;
+        $this->moneyOut = $this->moneyOut ? $this->moneyOut : 0;
+        
+        $this->balance = $this->moneyIn - $this->moneyOut;
+        $this->status = '';
+        if ($this->balance > 0) {
+            $this->status = '+';
+        }
+        else if ($this->balance < 0) {
+            $this->status = '-';
+        }
+        $this->balance = abs($this->balance);
+    }
+    
+    public function getYear() {
+        return $this->year;
+    }
+    
+    public function getMoneyWithMonths() {
+        return $this->moneyWithMonths;
+    }
+    
+    public function getMoneyWithCategories() {
+        return $this->moneyWithCategories;
+    }
+    
+    public function getMoneyWithSubcategories() {
+        return $this->moneyWithSubcategories;
+    }
+    
+    public function getMoneyIn() {
+        return $this->moneyIn;
+    }
+    
+    public function getMoneyOut() {
+        return $this->moneyOut;
+    }
+    
+    public function getBalance() {
+        return $this->balance;
+    }
+    
+    public function getStatus() {
+        return $this->status;
+    }
+    
+    private function prepareMoneyWithMonths()
     {
         $sql = 'SELECT DATE_FORMAT(date, "%Y-%m") AS date, SUM(money_out) AS sum_out, SUM(money_in) AS sum_in
                 FROM transaction
@@ -15,12 +82,12 @@ class Statistic extends \yii\base\Object
                 ORDER BY date';
                 
         return Yii::$app->db->createCommand($sql)
-            ->bindValue(':user_id', $userId)
-            ->bindValue(':year', $year)
+            ->bindValue(':user_id', $this->userId)
+            ->bindValue(':year', $this->year)
             ->queryAll();
     }
     
-    public static function getMoneyWithCategories($userId, $year)
+    private function prepareMoneyWithCategories()
     {
         $sql = 'SELECT c.id AS id, IFNULL(c.name, "Uncategorized") AS name, SUM(t.money_out) AS sum
                 FROM category c
@@ -30,12 +97,12 @@ class Statistic extends \yii\base\Object
                 ORDER BY c.id';
                 
         return Yii::$app->db->createCommand($sql)
-            ->bindValue(':user_id', $userId)
-            ->bindValue(':year', $year)
+            ->bindValue(':user_id', $this->userId)
+            ->bindValue(':year', $this->year)
             ->queryAll();
     }
     
-    public static function getMoneyWithSubcategories($userId, $year)
+    private function prepareMoneyWithSubcategories()
     {
         $sql = 'SELECT c.id AS cid, s.id AS sid, IFNULL(c.name, "Uncategorized") AS cname, IFNULL(s.name, "Uncategorized") AS sname, SUM(t.money_out) AS sum
                 FROM subcategory s
@@ -46,28 +113,28 @@ class Statistic extends \yii\base\Object
                 ORDER BY c.id, s.id;';
                 
         return Yii::$app->db->createCommand($sql)
-            ->bindValue(':user_id', $userId)
-            ->bindValue(':year', $year)
+            ->bindValue(':user_id', $this->userId)
+            ->bindValue(':year', $this->year)
             ->queryAll();
     }
     
-    public static function getMoneyIn($userId, $year)
+    private function prepareMoneyIn()
     {
         $sql = 'SELECT SUM(money_in) FROM transaction WHERE user_id=:user_id AND YEAR(date)=:year';
         
         return Yii::$app->db->createCommand($sql)
-            ->bindValue(':user_id', $userId)
-            ->bindValue(':year', $year)
+            ->bindValue(':user_id', $this->userId)
+            ->bindValue(':year', $this->year)
             ->queryScalar();
     }
     
-    public static function getMoneyOut($userId, $year)
+    private function prepareMoneyOut()
     {
         $sql = 'SELECT SUM(money_out) FROM transaction WHERE user_id=:user_id AND YEAR(date)=:year';
         
         return Yii::$app->db->createCommand($sql)
-            ->bindValue(':user_id', $userId)
-            ->bindValue(':year', $year)
+            ->bindValue(':user_id', $this->userId)
+            ->bindValue(':year', $this->year)
             ->queryScalar();
     }
 }

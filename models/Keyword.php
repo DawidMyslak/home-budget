@@ -97,7 +97,7 @@ class Keyword extends \yii\db\ActiveRecord
         return $this->hasMany(Transaction::className(), ['keyword_id' => 'id']);
     }
     
-    public static function getPossibleKeywords($userId)
+    public static function getPossibleKeywords()
     {
         $sql = 'SELECT description AS name, COUNT(description) AS count FROM transaction
                 WHERE user_id=:user_id AND category_id IS NULL AND subcategory_id IS NULL
@@ -106,7 +106,7 @@ class Keyword extends \yii\db\ActiveRecord
                 ORDER BY count DESC';
                 
         return Yii::$app->db->createCommand($sql)
-            ->bindValue(':user_id', $userId)
+            ->bindValue(':user_id', Yii::$app->user->identity->id)
             ->queryAll();
     }
 }
