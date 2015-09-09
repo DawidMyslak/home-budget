@@ -136,7 +136,10 @@ class TransactionController extends Controller
      */
     public function actionCategorise()
     {
-        Transaction::categorise();
+        $model = new Transaction();
+        $model->categorise();
+        
+        Yii::$app->getSession()->setFlash('result', $model->getResult());
         
         return $this->redirect(['index']);
     }
@@ -147,7 +150,10 @@ class TransactionController extends Controller
      */
     public function actionImport()
     {
-        TransactionImport::import('../samples/bank-of-ireland.csv', TransactionImport::BANK_OF_IRELAND);
+        $model = new TransactionImport();
+        $model->import('../samples/bank-of-ireland.csv', TransactionImport::BANK_OF_IRELAND);
+        
+        Yii::$app->getSession()->setFlash('result', $model->getResult());
         
         return $this->redirect(['index']);
     }

@@ -13,6 +13,9 @@ class TransactionImport extends Transaction
     const BANK_OF_IRELAND = 'bankOfIreland';
     const PERMANENT_TSB = 'permanentTsb';
     
+    private $importedCounter;
+    private $categorizedCounter;
+    
     /**
      * @inheritdoc
      */
@@ -36,8 +39,11 @@ class TransactionImport extends Transaction
         ];
     }
     
-    public static function import($path, $type)
+    public function import($path, $type)
     {
+        $this->importedCounter = 0;
+        $this->categorizedCounter = 0;        
+        
         // all existing transactions for currently logged in user
         $transactions = Transaction::findAll(['user_id' => Yii::$app->user->identity->id]);
         
@@ -86,9 +92,12 @@ class TransactionImport extends Transaction
                                 $transaction->category_id = $keyword->category_id;
                                 $transaction->subcategory_id = $keyword->subcategory_id;
                                 $transaction->keyword_id = $keyword->id;
+                                
+                                $this->categorizedCounter++; 
                             }
                         }
                         
+                        $this->importedCounter++;
                         $transaction->save();
                     }
                 }
@@ -96,5 +105,10 @@ class TransactionImport extends Transaction
             }
             fclose($handle);
         }
+    }
+    
+    public function getResult() {
+        return $this->importedCounter . ' transaction(s) has been imported.<br>'
+        . $this->categorizedCounter . ' transaction(s) has been categorized.';
     }
 }

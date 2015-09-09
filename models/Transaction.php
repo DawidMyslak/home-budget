@@ -28,6 +28,8 @@ use app\helpers\CategoriseHelper;
  */
 class Transaction extends \yii\db\ActiveRecord
 {
+    private $categorizedCounter; // number of categorized transactions
+    
     /**
      * @inheritdoc
      */
@@ -119,8 +121,10 @@ class Transaction extends \yii\db\ActiveRecord
         return $this->hasOne(Keyword::className(), ['id' => 'keyword_id']);
     }
     
-    public static function categorise()
+    public function categorise()
     {
+        $this->categorizedCounter = 0;
+        
         // all not categorized transactions for currently logged in user
         $transactions = self::findAll([
             'user_id' => Yii::$app->user->identity->id,
@@ -140,14 +144,19 @@ class Transaction extends \yii\db\ActiveRecord
                 $transaction->category_id = $keyword->category_id;
                 $transaction->subcategory_id = $keyword->subcategory_id;
                 $transaction->keyword_id = $keyword->id;
+                
+                $this->categorizedCounter++;
+                $transaction->save();
             }
-        
-            $transaction->save();
         }
     }
     
     public static function findById($id)
     {
         return static::findOne(['id' => $id, 'user_id' => Yii::$app->user->identity->id]);
+    }
+    
+    public function getResult() {
+        return $this->categorizedCounter . ' transaction(s) has been categorized.';
     }
 }

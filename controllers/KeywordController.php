@@ -74,6 +74,7 @@ class KeywordController extends Controller
     public function actionCreate()
     {
         $model = new Keyword();
+        $model->name = Yii::$app->request->get('name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
