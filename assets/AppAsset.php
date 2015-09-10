@@ -19,8 +19,11 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        'http://fonts.googleapis.com/css?family=Roboto:400',
+        'http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css'
     ];
     public $js = [
+        'http://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

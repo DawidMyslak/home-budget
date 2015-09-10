@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     
     <hr>
-    <h3>Expenses in categories</h3>
+    <h3>Money in categories</h3>
     
     <div class="row">
         <div class="col-md-6">
@@ -52,21 +52,21 @@ $this->params['breadcrumbs'][] = $this->title;
             </ul>
         </div>
         <div class="col-md-6">
-            <div class="chart-area">
+            <div class="ct-chart-area">
                 <div class="ct-chart ct-chart-a ct-perfect-fourth"></div>
             </div>
         </div>
     </div>
     
     <hr>
-    <h3>Expenses in months</h3>
+    <h3>Money in months</h3>
     
-    <div class="chart-area">
+    <div class="ct-chart-area">
         <div class="ct-chart ct-chart-b ct-perfect-fourth"></div>
     </div>
     
     <hr>
-    <h3>Expenses in subcategories</h3>
+    <h3>Money in subcategories</h3>
 
     <table class="table">
         <thead>
@@ -100,8 +100,14 @@ $this->params['breadcrumbs'][] = $this->title;
     var dataB = {
         labels: <?= $chart->moneyWithMonthsChart->labels; ?>,
         series: [
-            <?= $chart->moneyWithMonthsChart->series1; ?>,
-            <?= $chart->moneyWithMonthsChart->series2; ?>
+            {
+                name: 'Money Out',
+                data: <?= $chart->moneyWithMonthsChart->series1; ?>
+            },
+            {
+                name: 'Money In',
+                data: <?= $chart->moneyWithMonthsChart->series2; ?>
+            }
         ]
     };
 </script>

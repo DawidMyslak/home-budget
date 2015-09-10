@@ -17,6 +17,6 @@ class StatisticAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
-        'yii\web\JqueryAsset',
+        'app\assets\AppAsset',
     ];
 }

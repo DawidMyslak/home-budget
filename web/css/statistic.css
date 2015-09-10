@@ -1,4 +1,5 @@
-.chart-area {
+.ct-chart-area {
+    width: 100%;
     height: 300px;
 }
 
@@ -6,6 +7,35 @@
     font-size: 14px !important;
 }
 
+.ct-point {
+    stroke-width: 14px;
+}
+
 .ct-perfect-fourth:before {
     padding: 0 !important;
+}
+
+.ct-tooltip {
+    position: absolute;
+    display: inline-block;
+    min-width: 5em;
+    padding: .5em;
+    background: #F4C63D;
+    color: #453D3F;
+    font-weight: 700;
+    text-align: center;
+    pointer-events: none;
+    z-index: 999999;
+}
+
+.ct-tooltip:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-left: -15px;
+    border: 15px solid transparent;
+    border-top-color: #F4C63D;
 }
