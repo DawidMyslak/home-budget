@@ -1,6 +1,9 @@
 <?php
 
 use yii\helpers\Html;
+use app\assets\StatisticAsset;
+
+StatisticAsset::register($this);
 
 /* @var $this yii\web\View */
 /* @var $categories app\models\Category */
@@ -86,44 +89,19 @@ $this->params['breadcrumbs'][] = $this->title;
 
 </div>
 
-<!-- charts -->
+<!-- charts data -->
 
 <script>        
-    var data = {
+    var dataA = {
         labels: <?= $chart->moneyWithCategoriesChart->labels; ?>,
         series: <?= $chart->moneyWithCategoriesChart->series; ?>
     };
     
-    var options = {
-        fullWidth: true,
-        height: 300,
-        labelOffset: 40,
-        labelInterpolationFnc: function(value) {
-            return value[0];
-        }
-    };
-    
-    new Chartist.Pie('.ct-chart-a', data, options);
-    
-    var data = {
+    var dataB = {
         labels: <?= $chart->moneyWithMonthsChart->labels; ?>,
         series: [
             <?= $chart->moneyWithMonthsChart->series1; ?>,
             <?= $chart->moneyWithMonthsChart->series2; ?>
         ]
     };
-    
-    var options = {
-        fullWidth: true,
-        chartPadding: {
-            right: 40
-        },
-        height: 300,
-        low: 0,
-        lineSmooth: Chartist.Interpolation.cardinal({
-            tension: 0
-        })
-    };
-    
-    new Chartist.Line('.ct-chart-b', data, options);
 </script>

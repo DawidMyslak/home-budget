@@ -1,0 +1,11 @@
+.chart-area {
+    height: 300px;
+}
+
+.ct-label {
+    font-size: 14px !important;
+}
+
+.ct-perfect-fourth:before {
+    padding: 0 !important;
+}
