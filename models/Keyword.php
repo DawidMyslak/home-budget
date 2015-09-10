@@ -102,7 +102,7 @@ class Keyword extends \yii\db\ActiveRecord
         return static::findOne(['id' => $id, 'user_id' => Yii::$app->user->identity->id]);
     }
     
-    public static function getPossibleKeywords()
+    public function getPossibleKeywords()
     {
         $sql = 'SELECT description AS name, COUNT(description) AS count FROM transaction
                 WHERE user_id=:user_id AND category_id IS NULL AND subcategory_id IS NULL

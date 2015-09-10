@@ -10,19 +10,24 @@ class MoneyWithCategoriesChart {
     public $series;
     
     public function prepareData($statistic) {
-        $labels = '[';
-        $series = '[';
+        $this->labels = 'null';
+        $this->series = 'null';
         
-        foreach ($statistic->moneyWithCategories as $item) {
-            $labels .= '"' . $item['name'] . '", ';
-            $series .= $item['sum'] . ', ';
+        if ($statistic->moneyWithCategories) {
+            $labels = '[';
+            $series = '[';
+            
+            foreach ($statistic->moneyWithCategories as $item) {
+                $labels .= '"' . $item['name'] . '", ';
+                $series .= $item['sum'] . ', ';
+            }
+            
+            $labels = substr($labels, 0, -2) . ']';
+            $series = substr($series, 0, -2) . ']';
+            
+            $this->labels = $labels;
+            $this->series = $series;
         }
-        
-        $labels = substr($labels, 0, -2) . ']';
-        $series = substr($series, 0, -2) . ']';
-        
-        $this->labels = $labels;
-        $this->series = $series;
     }
 }
 
@@ -33,23 +38,29 @@ class MoneyWithMonthsChart
     public $series2;
     
     public function prepareData($statistic) {
-        $labels = '[';
-        $series1 = '[';
-        $series2 = '[';
+        $this->labels = 'null';
+        $this->series1 = 'null';
+        $this->series2 = 'null';
         
-        foreach ($statistic->moneyWithMonths as $item) {
-            $labels .= '"' . $item['date'] . '", ';
-            $series1 .= $item['sum_out'] . ', ';
-            $series2 .= $item['sum_in'] . ', ';
+        if ($statistic->moneyWithMonths) {
+            $labels = '[';
+            $series1 = '[';
+            $series2 = '[';
+            
+            foreach ($statistic->moneyWithMonths as $item) {
+                $labels .= '"' . $item['date'] . '", ';
+                $series1 .= $item['sum_out'] . ', ';
+                $series2 .= $item['sum_in'] . ', ';
+            }
+            
+            $labels .= '""]';
+            $series1 = substr($series1, 0, -2) . ']';
+            $series2 = substr($series2, 0, -2) . ']';
+            
+            $this->labels = $labels;
+            $this->series1 = $series1;
+            $this->series2 = $series2;
         }
-        
-        $labels .= '""]';
-        $series1 = substr($series1, 0, -2) . ']';
-        $series2 = substr($series2, 0, -2) . ']';
-        
-        $this->labels = $labels;
-        $this->series1 = $series1;
-        $this->series2 = $series2;
     }
 }
 

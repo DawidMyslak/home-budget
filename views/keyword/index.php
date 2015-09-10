@@ -12,11 +12,11 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="keyword-index">
 
-<?php if ($possibleKeywords): ?>
+<?php if ($searchModel->possibleKeywords): ?>
     <h1>Keywords Suggestions</h1>
 
     <ul class="list-group">
-    <?php foreach ($possibleKeywords as $keyword): ?>
+    <?php foreach ($searchModel->possibleKeywords as $keyword): ?>
         <li class="list-group-item"><?= Html::a($keyword['name'], ['create', 'name' => $keyword['name']]) ?> (in <strong><?= Html::encode($keyword['count']) ?></strong> transactions)</li>
     <?php endforeach; ?>
     </ul>
