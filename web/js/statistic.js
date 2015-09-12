@@ -19,10 +19,11 @@ var chartB = new Chartist.Line('.ct-chart-b', dataB, {
 	lineSmooth: Chartist.Interpolation.cardinal({
 		tension: 0
 	})
-})
-.on('draw', function(data) {
+});
+
+chartB.on('draw', function(data) {
 	if (data.type === 'grid' && data.index === 0) {
-		data.element.addClass('ct-0-axis');
+		data.element.addClass('ct-axis-0');
 	}
 });
 
@@ -32,37 +33,74 @@ var chartC = new Chartist.Bar('.ct-chart-c', dataC, {
 		right: 40
 	},
 	height: 300
-})
-.on('draw', function(data) {
+});
+
+chartC.on('draw', function(data) {
 	if (data.type === 'grid' && data.index === data.axis.ticks.indexOf(0)) {
-		data.element.addClass('ct-0-axis');
+		data.element.addClass('ct-axis-0');
+	}
+	else if (data.type === 'bar' && data.value.y < 0) {
+		data.element.addClass('ct-bar-negative');
 	}
 });
 
 
-// tooltip
+// tooltips
 
-var chart = $('.ct-chart-b');
+var chartB = $('.ct-chart-b');
 
-var tooltip = chart
-	.append('<div class="ct-tooltip"></div>')
-	.find('.ct-tooltip')
+var tooltipB = chartB
+	.append('<div class="ct-tooltip ct-tooltip-b"></div>')
+	.find('.ct-tooltip-b')
 	.hide();
 
-chart.on('mouseenter', '.ct-point', function() {
+chartB.on('mouseenter', '.ct-point', function() {
 	var point = $(this),
 		value = point.attr('ct:value'),
 		seriesName = point.parent().attr('ct:series-name');
-	tooltip.html(seriesName + '<br>&euro;' + value).show();
+	tooltipB.html(seriesName + '<br>&euro;' + value).show();
 });
 
-chart.on('mouseleave', '.ct-point', function() {
-	tooltip.hide();
+chartB.on('mouseleave', '.ct-point', function() {
+	tooltipB.hide();
 });
 
-chart.on('mousemove', function(event) {
-	tooltip.css({
-		left: (event.offsetX || event.originalEvent.layerX) - tooltip.width() / 2 - 10,
-		top: (event.offsetY || event.originalEvent.layerY) - tooltip.height() - 40
+chartB.on('mousemove', function(event) {
+	tooltipB.css({
+		left: (event.offsetX || event.originalEvent.layerX) - tooltipB.width() / 2 - 10,
+		top: (event.offsetY || event.originalEvent.layerY) - tooltipB.height() - 40
+	});
+});
+
+var chartC = $('.ct-chart-c');
+
+var tooltipC = chartC
+	.append('<div class="ct-tooltip ct-tooltip-c"></div>')
+	.find('.ct-tooltip-c')
+	.hide();
+
+chartC.on('mouseenter', '.ct-bar', function() {
+	var bar = $(this),
+		value = bar.attr('ct:value')
+		status = '';
+		
+	if (value > 0) {
+		status = '+';
+	} else if (value < 0) {
+		status = '-';
+	}
+	value = Math.abs(value);
+	
+	tooltipC.html(status + ' &euro;' + value).show();
+});
+
+chartC.on('mouseleave', '.ct-bar', function() {
+	tooltipC.hide();
+});
+
+chartC.on('mousemove', function(event) {
+	tooltipC.css({
+		left: (event.offsetX || event.originalEvent.layerX) - tooltipC.width() / 2 - 10,
+		top: (event.offsetY || event.originalEvent.layerY) - tooltipC.height() - 40
 	});
 });

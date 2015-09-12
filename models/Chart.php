@@ -36,8 +36,8 @@ class MoneyInMonthsChart
         if ($statistic->moneyInMonths) {
             foreach ($statistic->moneyInMonths as $item) {
                 $this->labels[] = $item['date'];
-                $this->series1[] = $item['sum_out'];
-                $this->series2[] = $item['sum_in'];
+                $this->series1[] = $item['sum_in'];
+                $this->series2[] = $item['sum_out'];
             }
             
             $this->labels[] = '';

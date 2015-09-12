@@ -44,9 +44,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-md-6">
             <ul class="list-group">
-            <?php foreach ($statistic->moneyInCategories as $item): ?>
+            <?php foreach ($statistic->moneyInCategories as $index => $item): ?>
                 <li class="list-group-item">
-                    <?= $item['name'] ?>
+                    <span class="ct-desc ct-color-<?= $index ?>"></span><?= $item['name'] ?>
                     <span class="badge">&euro;<?= $item['sum'] ?></span>
                 </li>
             <?php endforeach; ?>
@@ -61,15 +61,17 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <hr>
     <h3>Money in months</h3>
+    <span class="ct-desc ct-color-0"></span>Money In &nbsp;&nbsp;&nbsp; <span class="ct-desc ct-color-1"></span>Money Out
     
-    <div class="ct-chart-area">
+    <div class="ct-chart-area ct-chart-line-area">
         <div class="ct-chart ct-chart-b ct-perfect-fourth"></div>
     </div>
     
     <hr>
     <h3>Balance in months</h3>
+    <span class="ct-desc ct-color-0"></span>Plus &nbsp;&nbsp;&nbsp; <span class="ct-desc ct-color-1"></span>Minus
     
-    <div class="ct-chart-area">
+    <div class="ct-chart-area ct-chart-bar-area">
         <div class="ct-chart ct-chart-c ct-perfect-fourth"></div>
     </div>
     
@@ -109,11 +111,11 @@ $this->params['breadcrumbs'][] = $this->title;
         labels: <?= Json::encode($chart->moneyInMonthsChart->labels) ?>,
         series: [
             {
-                name: 'Money Out',
+                name: 'Money In',
                 data: <?= Json::encode($chart->moneyInMonthsChart->series1) ?>
             },
             {
-                name: 'Money In',
+                name: 'Money Out',
                 data: <?= Json::encode($chart->moneyInMonthsChart->series2) ?>
             }
         ]

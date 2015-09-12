@@ -3,6 +3,10 @@
     height: 300px;
 }
 
+.ct-chart-line-area, .ct-chart-bar-area  {
+    margin-top: 10px;
+}
+
 .ct-label {
     font-size: 14px !important;
 }
@@ -19,9 +23,18 @@
     stroke-width: 40px;
 }
 
-.ct-0-axis {
+.ct-axis-0 {
     stroke: rgba(0,0,0,.2);
     stroke-dasharray: none;
+}
+
+.ct-desc {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 6px;
+    border-radius: 5px;
+    background: #ccc;
 }
 
 .ct-tooltip {
@@ -34,7 +47,7 @@
     font-weight: 700;
     text-align: center;
     pointer-events: none;
-    z-index: 999999;
+    z-index: 1;
 }
 
 .ct-tooltip:after {
@@ -47,4 +60,36 @@
     margin-left: -15px;
     border: 15px solid transparent;
     border-top-color: #F4C63D;
+}
+
+.ct-color-0 {
+    background: #d70206;
+}
+
+.ct-series-a .ct-line,
+.ct-series-a .ct-point,
+.ct-series-a .ct-bar {
+  stroke: #d70206;
+}
+
+.ct-series-a .ct-slice-pie {
+  fill: #d70206;
+}
+
+.ct-color-1 {
+    background: #f05b4f;
+}
+
+.ct-bar-negative {
+    stroke: #f05b4f !important;
+}
+
+.ct-series-b .ct-line,
+.ct-series-b .ct-point,
+.ct-series-b .ct-bar, {
+  stroke: #f05b4f;
+}
+
+.ct-series-b .ct-slice-pie {
+  fill: #f05b4f;
 }
