@@ -45,10 +45,30 @@ class MoneyWithMonthsChart
     }
 }
 
+class BalanceWithMonthsChart
+{
+    public $labels;
+    public $series1;
+    
+    public function prepareData($statistic) {
+        $this->labels = [];
+        $this->series1 = [];
+        $this->series2 = [];
+        
+        if ($statistic->balanceWithMonths) {
+            foreach ($statistic->balanceWithMonths as $item) {
+                $this->labels[] = $item['date'];
+                $this->series[] = $item['balance'];
+            }
+        }
+    }
+}
+
 class Chart extends \yii\base\Object
 {
     public $moneyWithCategoriesChart;
     public $moneyWithMonthsChart;
+    public $balanceWithMonthsChart;
     
     public function prepareData($statistic) {
         $this->moneyWithCategoriesChart = new MoneyWithCategoriesChart();
@@ -56,5 +76,8 @@ class Chart extends \yii\base\Object
         
         $this->moneyWithMonthsChart = new MoneyWithMonthsChart();
         $this->moneyWithMonthsChart->prepareData($statistic);
+        
+        $this->balanceWithMonthsChart = new BalanceWithMonthsChart();
+        $this->balanceWithMonthsChart->prepareData($statistic);
     }
 }

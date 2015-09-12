@@ -67,6 +67,13 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     
     <hr>
+    <h3>Balance in months</h3>
+    
+    <div class="ct-chart-area">
+        <div class="ct-chart ct-chart-c ct-perfect-fourth"></div>
+    </div>
+    
+    <hr>
     <h3>Money in subcategories</h3>
 
     <table class="table">
@@ -110,5 +117,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 data: <?= Json::encode($chart->moneyWithMonthsChart->series2) ?>
             }
         ]
+    };
+    
+    var dataC = {
+        labels: <?= Json::encode($chart->balanceWithMonthsChart->labels) ?>,
+        series: [<?= Json::encode($chart->balanceWithMonthsChart->series) ?>]
     };
 </script>

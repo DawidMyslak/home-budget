@@ -1,17 +1,15 @@
 // charts
 
-var options = {
+var chartA = new Chartist.Pie('.ct-chart-a', dataA, {
 	fullWidth: true,
 	height: 300,
 	labelOffset: 40,
 	labelInterpolationFnc: function(value) {
 		return value[0];
 	}
-};
+});
 
-new Chartist.Pie('.ct-chart-a', dataA, options);
-
-var options = {
+var chartB = new Chartist.Line('.ct-chart-b', dataB, {
 	fullWidth: true,
 	chartPadding: {
 		right: 40
@@ -21,9 +19,25 @@ var options = {
 	lineSmooth: Chartist.Interpolation.cardinal({
 		tension: 0
 	})
-};
+})
+.on('draw', function(data) {
+	if (data.type === 'grid' && data.index === 0) {
+		data.element.addClass('ct-0-axis');
+	}
+});
 
-new Chartist.Line('.ct-chart-b', dataB, options);
+var chartC = new Chartist.Bar('.ct-chart-c', dataC, {
+	fullWidth: true,
+	chartPadding: {
+		right: 40
+	},
+	height: 300
+})
+.on('draw', function(data) {
+	if (data.type === 'grid' && data.index === data.axis.ticks.indexOf(0)) {
+		data.element.addClass('ct-0-axis');
+	}
+});
 
 
 // tooltip
@@ -37,8 +51,8 @@ var tooltip = chart
 
 chart.on('mouseenter', '.ct-point', function() {
 	var point = $(this),
-	value = point.attr('ct:value'),
-	seriesName = point.parent().attr('ct:series-name');
+		value = point.attr('ct:value'),
+		seriesName = point.parent().attr('ct:series-name');
 	tooltip.html(seriesName + '<br>&euro;' + value).show();
 });
 

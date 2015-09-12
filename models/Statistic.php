@@ -10,6 +10,7 @@ class Statistic extends \yii\base\Object
     private $year;
     
     private $moneyWithMonths;
+    private $balanceWithMonths;
     private $moneyWithCategories;
     private $moneyWithSubcategories;
     private $moneyIn;
@@ -22,6 +23,7 @@ class Statistic extends \yii\base\Object
         $this->year = $year;
         
         $this->moneyWithMonths = $this->prepareMoneyWithMonths();
+        $this->balanceWithMonths = $this->prepareBalanceWithMonths();
         $this->moneyWithCategories = $this->prepareMoneyWithCategories();
         $this->moneyWithSubcategories = $this->prepareMoneyWithSubcategories();
         $this->moneyIn = $this->prepareMoneyIn();
@@ -47,6 +49,10 @@ class Statistic extends \yii\base\Object
     
     public function getMoneyWithMonths() {
         return $this->moneyWithMonths;
+    }
+    
+    public function getBalanceWithMonths() {
+        return $this->balanceWithMonths;
     }
     
     public function getMoneyWithCategories() {
@@ -76,6 +82,20 @@ class Statistic extends \yii\base\Object
     private function prepareMoneyWithMonths()
     {
         $sql = 'SELECT DATE_FORMAT(date, "%Y-%m") AS date, SUM(money_out) AS sum_out, SUM(money_in) AS sum_in
+                FROM transaction
+                WHERE user_id=:user_id AND YEAR(date)=:year
+                GROUP BY DATE_FORMAT(date, "%Y-%m")
+                ORDER BY date';
+                
+        return Yii::$app->db->createCommand($sql)
+            ->bindValue(':user_id', $this->userId)
+            ->bindValue(':year', $this->year)
+            ->queryAll();
+    }
+    
+    private function prepareBalanceWithMonths()
+    {
+        $sql = 'SELECT DATE_FORMAT(date, "%Y-%m") AS date, SUM(money_in) - SUM(money_out) AS balance
                 FROM transaction
                 WHERE user_id=:user_id AND YEAR(date)=:year
                 GROUP BY DATE_FORMAT(date, "%Y-%m")
