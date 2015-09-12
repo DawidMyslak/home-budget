@@ -157,6 +157,6 @@ class Transaction extends \yii\db\ActiveRecord
     }
     
     public function getResult() {
-        return $this->categorizedCounter . ' transaction(s) has been categorized.';
+        return $this->categorizedCounter . ' transactions categorized.';
     }
 }

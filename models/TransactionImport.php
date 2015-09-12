@@ -108,7 +108,6 @@ class TransactionImport extends Transaction
     }
     
     public function getResult() {
-        return $this->importedCounter . ' transaction(s) has been imported.<br>'
-        . $this->categorizedCounter . ' transaction(s) has been categorized.';
+        return $this->importedCounter . ' transactions imported and ' . $this->categorizedCounter . ' categorized.';
     }
 }
