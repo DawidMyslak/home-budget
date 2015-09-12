@@ -33,7 +33,7 @@ class TransactionImport extends Transaction
                 'fields' => ['date', 'description', 'money_out', 'money_in', 'balance']
             ],
             'permanentTsb' => [
-                'dateFormat' => 'dd/mm/yyyy',
+                'dateFormat' => 'd-M-y',
                 'fields' => ['date', 'description', 'money_in', 'money_out', 'balance']
             ]
         ];
