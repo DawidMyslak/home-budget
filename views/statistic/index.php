@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Json;
 use app\assets\StatisticAsset;
 
 StatisticAsset::register($this);
@@ -93,20 +94,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <script>        
     var dataA = {
-        labels: <?= $chart->moneyWithCategoriesChart->labels; ?>,
-        series: <?= $chart->moneyWithCategoriesChart->series; ?>
+        labels: <?= Json::encode($chart->moneyWithCategoriesChart->labels) ?>,
+        series: <?= Json::encode($chart->moneyWithCategoriesChart->series) ?>
     };
     
     var dataB = {
-        labels: <?= $chart->moneyWithMonthsChart->labels; ?>,
+        labels: <?= Json::encode($chart->moneyWithMonthsChart->labels) ?>,
         series: [
             {
                 name: 'Money Out',
-                data: <?= $chart->moneyWithMonthsChart->series1; ?>
+                data: <?= Json::encode($chart->moneyWithMonthsChart->series1) ?>
             },
             {
                 name: 'Money In',
-                data: <?= $chart->moneyWithMonthsChart->series2; ?>
+                data: <?= Json::encode($chart->moneyWithMonthsChart->series2) ?>
             }
         ]
     };
