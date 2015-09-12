@@ -54,6 +54,8 @@ class Keyword extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
             'category_id' => 'Category ID',
             'subcategory_id' => 'Subcategory ID',
+            'category.name' => 'Category',
+            'subcategory.name' => 'Subcategory',
         ];
     }
     
@@ -105,7 +107,7 @@ class Keyword extends \yii\db\ActiveRecord
     public function getPossibleKeywords()
     {
         $sql = 'SELECT description AS name, COUNT(description) AS count FROM transaction
-                WHERE user_id=:user_id AND category_id IS NULL AND subcategory_id IS NULL
+                WHERE user_id=:user_id AND category_id IS NULL AND subcategory_id IS NULL AND money_in IS NULL
                 GROUP BY description
                 HAVING count >= 3
                 ORDER BY count DESC';

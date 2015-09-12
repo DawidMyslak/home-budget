@@ -39,14 +39,8 @@ $this->params['breadcrumbs'][] = $this->title;
             //'id',
             'name',
             //'user_id',
-            [
-                'attribute' => 'category',
-                'value' => 'category.name',
-            ],
-            [
-                'attribute' => 'subcategory',
-                'value' => 'subcategory.name',
-            ],
+            'category.name',
+            'subcategory.name',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -74,6 +74,8 @@ class Transaction extends \yii\db\ActiveRecord
             'category_id' => 'Category ID',
             'subcategory_id' => 'Subcategory ID',
             'keyword_id' => 'Keyword ID',
+            'category.name' => 'Category',
+            'subcategory.name' => 'Subcategory',
         ];
     }
     

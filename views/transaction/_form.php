@@ -20,8 +20,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'money_out')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'balance')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'category_id')->textInput() ?>
 
     <?= $form->field($model, 'subcategory_id')->textInput() ?>

@@ -45,6 +45,7 @@ AppAsset::register($this);
     }
     else {
         $items = [
+            ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Statistics', 'url' => ['/statistic']],
             ['label' => 'Categories', 'url' => ['/category/structure']],
             ['label' => 'Keywords', 'url' => ['/keyword']],
@@ -75,9 +76,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-left">&copy; Home Budget <?= date('Y') ?></p>
     </div>
 </footer>
 

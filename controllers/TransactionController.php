@@ -151,8 +151,8 @@ class TransactionController extends Controller
     public function actionImport()
     {
         $model = new TransactionImport();
-        // $model->import('../samples/bank-of-ireland.csv', TransactionImport::BANK_OF_IRELAND);
-        $model->import('../samples/permanent-tsb.csv', TransactionImport::PERMANENT_TSB);
+        $model->import('../samples/bank-of-ireland.csv', TransactionImport::BANK_OF_IRELAND);
+        // $model->import('../samples/permanent-tsb.csv', TransactionImport::PERMANENT_TSB);
         
         Yii::$app->getSession()->setFlash('result', $model->getResult());
         
