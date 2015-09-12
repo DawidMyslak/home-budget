@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row">
         <div class="col-md-6">
             <ul class="list-group">
-            <?php foreach ($statistic->moneyWithCategories as $item): ?>
+            <?php foreach ($statistic->moneyInCategories as $item): ?>
                 <li class="list-group-item">
                     <?= $item['name'] ?>
                     <span class="badge">&euro;<?= $item['sum'] ?></span>
@@ -85,7 +85,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </tr>
         </thead>
         <tbody>
-            <?php $previousCategory = ''; foreach ($statistic->moneyWithSubcategories as $item): ?>
+            <?php $previousCategory = ''; foreach ($statistic->moneyInSubcategories as $item): ?>
             <tr>
                 <td><?= $previousCategory != $item['cname'] ? $item['cname'] : '' ?></td>
                 <td><?= $item['sname'] ?></td>
@@ -101,26 +101,26 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <script>        
     var dataA = {
-        labels: <?= Json::encode($chart->moneyWithCategoriesChart->labels) ?>,
-        series: <?= Json::encode($chart->moneyWithCategoriesChart->series) ?>
+        labels: <?= Json::encode($chart->moneyInCategoriesChart->labels) ?>,
+        series: <?= Json::encode($chart->moneyInCategoriesChart->series) ?>
     };
     
     var dataB = {
-        labels: <?= Json::encode($chart->moneyWithMonthsChart->labels) ?>,
+        labels: <?= Json::encode($chart->moneyInMonthsChart->labels) ?>,
         series: [
             {
                 name: 'Money Out',
-                data: <?= Json::encode($chart->moneyWithMonthsChart->series1) ?>
+                data: <?= Json::encode($chart->moneyInMonthsChart->series1) ?>
             },
             {
                 name: 'Money In',
-                data: <?= Json::encode($chart->moneyWithMonthsChart->series2) ?>
+                data: <?= Json::encode($chart->moneyInMonthsChart->series2) ?>
             }
         ]
     };
     
     var dataC = {
-        labels: <?= Json::encode($chart->balanceWithMonthsChart->labels) ?>,
-        series: [<?= Json::encode($chart->balanceWithMonthsChart->series) ?>]
+        labels: <?= Json::encode($chart->balanceInMonthsChart->labels) ?>,
+        series: [<?= Json::encode($chart->balanceInMonthsChart->series) ?>]
     };
 </script>

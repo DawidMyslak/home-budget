@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 use app\models\Statistic;
 
-class MoneyWithCategoriesChart {
+class MoneyInCategoriesChart {
     public $labels;
     public $series;
     
@@ -13,8 +13,8 @@ class MoneyWithCategoriesChart {
         $this->labels = [];
         $this->series = [];
         
-        if ($statistic->moneyWithCategories) {            
-            foreach ($statistic->moneyWithCategories as $item) {
+        if ($statistic->moneyInCategories) {            
+            foreach ($statistic->moneyInCategories as $item) {
                 $this->labels[] = $item['name'];
                 $this->series[] = $item['sum'];
             }
@@ -22,7 +22,7 @@ class MoneyWithCategoriesChart {
     }
 }
 
-class MoneyWithMonthsChart
+class MoneyInMonthsChart
 {
     public $labels;
     public $series1;
@@ -33,8 +33,8 @@ class MoneyWithMonthsChart
         $this->series1 = [];
         $this->series2 = [];
         
-        if ($statistic->moneyWithMonths) {
-            foreach ($statistic->moneyWithMonths as $item) {
+        if ($statistic->moneyInMonths) {
+            foreach ($statistic->moneyInMonths as $item) {
                 $this->labels[] = $item['date'];
                 $this->series1[] = $item['sum_out'];
                 $this->series2[] = $item['sum_in'];
@@ -45,7 +45,7 @@ class MoneyWithMonthsChart
     }
 }
 
-class BalanceWithMonthsChart
+class BalanceInMonthsChart
 {
     public $labels;
     public $series1;
@@ -55,8 +55,8 @@ class BalanceWithMonthsChart
         $this->series1 = [];
         $this->series2 = [];
         
-        if ($statistic->balanceWithMonths) {
-            foreach ($statistic->balanceWithMonths as $item) {
+        if ($statistic->balanceInMonths) {
+            foreach ($statistic->balanceInMonths as $item) {
                 $this->labels[] = $item['date'];
                 $this->series[] = $item['balance'];
             }
@@ -66,18 +66,18 @@ class BalanceWithMonthsChart
 
 class Chart extends \yii\base\Object
 {
-    public $moneyWithCategoriesChart;
-    public $moneyWithMonthsChart;
-    public $balanceWithMonthsChart;
+    public $moneyInCategoriesChart;
+    public $moneyInMonthsChart;
+    public $balanceInMonthsChart;
     
     public function prepareData($statistic) {
-        $this->moneyWithCategoriesChart = new MoneyWithCategoriesChart();
-        $this->moneyWithCategoriesChart->prepareData($statistic);
+        $this->moneyInCategoriesChart = new MoneyInCategoriesChart();
+        $this->moneyInCategoriesChart->prepareData($statistic);
         
-        $this->moneyWithMonthsChart = new MoneyWithMonthsChart();
-        $this->moneyWithMonthsChart->prepareData($statistic);
+        $this->moneyInMonthsChart = new MoneyInMonthsChart();
+        $this->moneyInMonthsChart->prepareData($statistic);
         
-        $this->balanceWithMonthsChart = new BalanceWithMonthsChart();
-        $this->balanceWithMonthsChart->prepareData($statistic);
+        $this->balanceInMonthsChart = new BalanceInMonthsChart();
+        $this->balanceInMonthsChart->prepareData($statistic);
     }
 }

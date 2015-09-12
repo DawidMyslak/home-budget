@@ -9,10 +9,10 @@ class Statistic extends \yii\base\Object
     private $userId;
     private $year;
     
-    private $moneyWithMonths;
-    private $balanceWithMonths;
-    private $moneyWithCategories;
-    private $moneyWithSubcategories;
+    private $moneyInMonths;
+    private $balanceInMonths;
+    private $moneyInCategories;
+    private $moneyInSubcategories;
     private $moneyIn;
     private $moneyOut;
     private $balance;
@@ -22,10 +22,10 @@ class Statistic extends \yii\base\Object
         $this->userId = Yii::$app->user->identity->id;
         $this->year = $year;
         
-        $this->moneyWithMonths = $this->prepareMoneyWithMonths();
-        $this->balanceWithMonths = $this->prepareBalanceWithMonths();
-        $this->moneyWithCategories = $this->prepareMoneyWithCategories();
-        $this->moneyWithSubcategories = $this->prepareMoneyWithSubcategories();
+        $this->moneyInMonths = $this->prepareMoneyInMonths();
+        $this->balanceInMonths = $this->prepareBalanceInMonths();
+        $this->moneyInCategories = $this->prepareMoneyInCategories();
+        $this->moneyInSubcategories = $this->prepareMoneyInSubcategories();
         $this->moneyIn = $this->prepareMoneyIn();
         $this->moneyOut = $this->prepareMoneyOut();
         
@@ -47,20 +47,20 @@ class Statistic extends \yii\base\Object
         return $this->year;
     }
     
-    public function getMoneyWithMonths() {
-        return $this->moneyWithMonths;
+    public function getMoneyInMonths() {
+        return $this->moneyInMonths;
     }
     
-    public function getBalanceWithMonths() {
-        return $this->balanceWithMonths;
+    public function getBalanceInMonths() {
+        return $this->balanceInMonths;
     }
     
-    public function getMoneyWithCategories() {
-        return $this->moneyWithCategories;
+    public function getMoneyInCategories() {
+        return $this->moneyInCategories;
     }
     
-    public function getMoneyWithSubcategories() {
-        return $this->moneyWithSubcategories;
+    public function getMoneyInSubcategories() {
+        return $this->moneyInSubcategories;
     }
     
     public function getMoneyIn() {
@@ -79,7 +79,7 @@ class Statistic extends \yii\base\Object
         return $this->status;
     }
     
-    private function prepareMoneyWithMonths()
+    private function prepareMoneyInMonths()
     {
         $sql = 'SELECT DATE_FORMAT(date, "%Y-%m") AS date, SUM(money_out) AS sum_out, SUM(money_in) AS sum_in
                 FROM transaction
@@ -93,7 +93,7 @@ class Statistic extends \yii\base\Object
             ->queryAll();
     }
     
-    private function prepareBalanceWithMonths()
+    private function prepareBalanceInMonths()
     {
         $sql = 'SELECT DATE_FORMAT(date, "%Y-%m") AS date, SUM(money_in) - SUM(money_out) AS balance
                 FROM transaction
@@ -107,7 +107,7 @@ class Statistic extends \yii\base\Object
             ->queryAll();
     }
     
-    private function prepareMoneyWithCategories()
+    private function prepareMoneyInCategories()
     {
         $sql = 'SELECT c.id AS id, IFNULL(c.name, "Uncategorized") AS name, SUM(t.money_out) AS sum
                 FROM category c
@@ -122,7 +122,7 @@ class Statistic extends \yii\base\Object
             ->queryAll();
     }
     
-    private function prepareMoneyWithSubcategories()
+    private function prepareMoneyInSubcategories()
     {
         $sql = 'SELECT c.id AS cid, s.id AS sid, IFNULL(c.name, "Uncategorized") AS cname, IFNULL(s.name, "Uncategorized") AS sname, SUM(t.money_out) AS sum
                 FROM subcategory s
