@@ -12,7 +12,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="transaction-index">
 
-    <?= Yii::$app->session->getFlash('result') ?>
+    <?php if (Yii::$app->session->hasFlash('result')): ?>
+        <div class="alert alert-success" role="alert"><?= Yii::$app->session->getFlash('result') ?></div>
+    <?php endif; ?>
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
