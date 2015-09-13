@@ -83,7 +83,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <tr>
                 <th>Category</th>
                 <th>Subcategory</th>
-                <th>Expenses</th>
+                <th>Money</th>
             </tr>
         </thead>
         <tbody>

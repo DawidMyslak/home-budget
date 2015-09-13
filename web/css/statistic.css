@@ -36,7 +36,6 @@
     height: 10px;
     margin-right: 6px;
     border-radius: 5px;
-    background: #ccc;
 }
 
 .ct-tooltip {
@@ -44,8 +43,7 @@
     display: inline-block;
     min-width: 5em;
     padding: .5em;
-    background: #F4C63D;
-    color: #453D3F;
+    background: #ddd;
     font-weight: 700;
     text-align: center;
     pointer-events: none;
@@ -61,7 +59,7 @@
     height: 0;
     margin-left: -15px;
     border: 15px solid transparent;
-    border-top-color: #F4C63D;
+    border-top-color: #ddd;
 }
 
 /*
