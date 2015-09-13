@@ -1,7 +1,9 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\grid\GridView;
+use app\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\KeywordSearch */
@@ -35,13 +37,16 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            //'id',
+            
             'name',
-            //'user_id',
-            'category.name',
+            [
+                'attribute' => 'category_id',
+                'value' => 'category.name',
+                'label' => 'Category',
+                'filter' => ArrayHelper::map(Category::getAll(), 'id', 'name'), 
+            ],
             'subcategory.name',
-
+            
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

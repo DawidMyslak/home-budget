@@ -62,19 +62,15 @@ class TransactionSearch extends Transaction
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'date' => $this->date,
-            'money_in' => $this->money_in,
-            'money_out' => $this->money_out,
-            'balance' => $this->balance,
+            'transaction.date' => $this->date,
+            'transaction.money_in' => $this->money_in,
+            'transaction.money_out' => $this->money_out,
             'transaction.user_id' => Yii::$app->user->identity->id,
-            'category_id' => $this->category_id,
-            'subcategory_id' => $this->subcategory_id,
-            'keyword_id' => $this->keyword_id,
+            'transaction.category_id' => $this->category_id,
+            'transaction.subcategory_id' => $this->subcategory_id,
         ]);
 
-        $query->andFilterWhere(['like', 'description', $this->description])
-            ->andFilterWhere(['like', 'hash', $this->hash]);
+        $query->andFilterWhere(['like', 'transaction.description', $this->description]);
 
         return $dataProvider;
     }

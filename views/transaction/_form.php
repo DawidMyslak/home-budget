@@ -28,14 +28,14 @@ CategoryAsset::register($this);
     <?= $form->field($model, 'money_out')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'category_id')->dropDownList(
-        ArrayHelper::map(Category::find()->all(), 'id', 'name'),
+        ArrayHelper::map(Category::getAll(), 'id', 'name'),
         ['prompt' => '']
-    ) ?>
+    )->label('Category') ?>
 
     <?= $form->field($model, 'subcategory_id')->dropDownList(
-        ArrayHelper::map(Subcategory::find()->all(), 'id', 'name'),
+        ArrayHelper::map(Subcategory::getAll(), 'id', 'name'),
         ['prompt' => '']
-    ) ?>
+    )->label('Subcategory') ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
@@ -46,5 +46,6 @@ CategoryAsset::register($this);
 </div>
 
 <script>
+    var model = 'transaction';
     var categories = <?= Json::encode(Category::getStructure()) ?>;
 </script>

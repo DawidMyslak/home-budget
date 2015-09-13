@@ -14,7 +14,7 @@ CREATE TABLE category
 	name VARCHAR(64) NOT NULL,
 	user_id INT,
 	PRIMARY KEY(id),
-	FOREIGN KEY(user_id) REFERENCES user(id)
+	FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 CREATE TABLE subcategory
@@ -24,8 +24,8 @@ CREATE TABLE subcategory
 	user_id INT,
 	category_id INT,
 	PRIMARY KEY(id),
-	FOREIGN KEY(user_id) REFERENCES user(id),
-	FOREIGN KEY(category_id) REFERENCES category(id)
+	FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE SET NULL ON UPDATE CASCADE,
+	FOREIGN KEY(category_id) REFERENCES category(id) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 CREATE TABLE keyword
@@ -36,9 +36,9 @@ CREATE TABLE keyword
 	category_id INT,
 	subcategory_id INT,
 	PRIMARY KEY(id),
-	FOREIGN KEY(user_id) REFERENCES user(id),
-	FOREIGN KEY(category_id) REFERENCES category(id),
-	FOREIGN KEY(subcategory_id) REFERENCES subcategory(id)
+	FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE SET NULL ON UPDATE CASCADE,
+	FOREIGN KEY(category_id) REFERENCES category(id) ON DELETE SET NULL ON UPDATE CASCADE,
+	FOREIGN KEY(subcategory_id) REFERENCES subcategory(id) ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 CREATE TABLE transaction
@@ -55,8 +55,8 @@ CREATE TABLE transaction
 	subcategory_id INT,
 	keyword_id INT,
 	PRIMARY KEY(id),
-	FOREIGN KEY(user_id) REFERENCES user(id),
-	FOREIGN KEY(category_id) REFERENCES category(id),
-	FOREIGN KEY(subcategory_id) REFERENCES subcategory(id),
-	FOREIGN KEY(keyword_id) REFERENCES keyword(id)
+	FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE SET NULL ON UPDATE CASCADE,
+	FOREIGN KEY(category_id) REFERENCES category(id) ON DELETE SET NULL ON UPDATE CASCADE,
+	FOREIGN KEY(subcategory_id) REFERENCES subcategory(id) ON DELETE SET NULL ON UPDATE CASCADE,
+	FOREIGN KEY(keyword_id) REFERENCES keyword(id) ON DELETE SET NULL ON UPDATE CASCADE
 );

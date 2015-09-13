@@ -85,4 +85,8 @@ class Subcategory extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Transaction::className(), ['subcategory_id' => 'id']);
     }
+    
+    public static function getAll() {
+        return self::find()->all();
+    }
 }

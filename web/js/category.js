@@ -1,10 +1,11 @@
 /**
  * @property $
  * @property categories
+ * @property model
  */
 
 (function() {
-	function prepareSubcategories(model) {
+	function prepareSubcategories() {
 		var categoryId = $('#' + model + '-category_id').val();
 		var subcategoryId = $('#' + model + '-subcategory_id').val();
 		
@@ -24,15 +25,14 @@
 	}
 	
 	$(document).ready(function() {
-		prepareSubcategories('keyword');
-		prepareSubcategories('transaction');
+		prepareSubcategories();
 	});
 	
 	$('#keyword-category_id').change(function() {
-		prepareSubcategories('keyword');
+		prepareSubcategories();
 	});
 	
 	$('#transaction-category_id').change(function() {
-		prepareSubcategories('transaction');
+		prepareSubcategories();
 	});
 }());

@@ -1,7 +1,9 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\grid\GridView;
+use app\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TransactionSearch */
@@ -30,21 +32,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            //'id',
+            
             'date',
             'description',
             'money_in',
             'money_out',
-            'category.name',
+            [
+                'attribute' => 'category_id',
+                'value' => 'category.name',
+                'label' => 'Category',
+                'filter' => ArrayHelper::map(Category::getAll(), 'id', 'name'), 
+            ],
             'subcategory.name',
-            // 'balance',
-            // 'hash',
-            // 'user_id',
-            // 'category_id',
-            // 'subcategory_id',
-            // 'keyword_id',
-
+            
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
