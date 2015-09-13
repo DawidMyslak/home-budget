@@ -2,9 +2,13 @@
 
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 use yii\widgets\ActiveForm;
 use app\models\Category;
 use app\models\Subcategory;
+use app\assets\CategoryAsset;
+
+CategoryAsset::register($this);
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Transaction */
@@ -40,3 +44,7 @@ use app\models\Subcategory;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<script>
+    var categories = <?= Json::encode(Category::getStructure()) ?>;
+</script>

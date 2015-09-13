@@ -40,5 +40,5 @@ CategoryAsset::register($this);
 </div>
 
 <script>
-    var categories = <?= Json::encode($categories) ?>;
+    var categories = <?= Json::encode(Category::getStructure()) ?>;
 </script>
