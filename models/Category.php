@@ -82,4 +82,11 @@ class Category extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Transaction::className(), ['category_id' => 'id']);
     }
+    
+    public static function getStructure() {
+        return self::find()
+            ->with('subcategories')
+            ->asArray()
+            ->all();
+    }
 }

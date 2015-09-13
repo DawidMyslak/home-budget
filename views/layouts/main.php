@@ -47,7 +47,6 @@ AppAsset::register($this);
         $items = [
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Statistics', 'url' => ['/statistic']],
-            ['label' => 'Categories', 'url' => ['/category/structure']],
             ['label' => 'Keywords', 'url' => ['/keyword']],
             ['label' => 'Transactions', 'url' => ['/transaction']],
             ['label' => 'Profile', 'url' => ['/user/profile']],
