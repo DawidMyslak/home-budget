@@ -19,8 +19,10 @@
     padding: 0 !important;
 }
 
-.ct-bar {
-    stroke-width: 40px;
+@media (min-width: 768px) {
+  .ct-bar {
+      stroke-width: 40px;
+  }
 }
 
 .ct-axis-0 {
@@ -62,34 +64,147 @@
     border-top-color: #F4C63D;
 }
 
+/*
+
+#60BD68 (green)
+#5DA5DA (blue)
+#F15854 (red)
+#DECF3F (yellow)
+#F17CB0 (pink)
+#B276B2 (purple)
+#666666 (gray)
+#B2912F (brown)
+
+*/
+
+/* color 0/a */
+
 .ct-color-0 {
-    background: #d70206;
+    background: #60BD68;
 }
 
 .ct-series-a .ct-line,
 .ct-series-a .ct-point,
 .ct-series-a .ct-bar {
-  stroke: #d70206;
+  stroke: #60BD68;
 }
 
 .ct-series-a .ct-slice-pie {
-  fill: #d70206;
+  fill: #60BD68;
 }
 
+/* color 1/b */
+
 .ct-color-1 {
-    background: #f05b4f;
+    background: #5DA5DA;
 }
 
 .ct-bar-negative {
-    stroke: #f05b4f !important;
+    stroke: #5DA5DA !important;
 }
 
 .ct-series-b .ct-line,
 .ct-series-b .ct-point,
-.ct-series-b .ct-bar, {
-  stroke: #f05b4f;
+.ct-series-b .ct-bar {
+  stroke: #5DA5DA;
 }
 
 .ct-series-b .ct-slice-pie {
-  fill: #f05b4f;
+  fill: #5DA5DA;
+}
+
+/* color 2/c */
+
+.ct-color-2 {
+    background: #F15854;
+}
+
+.ct-series-c .ct-line,
+.ct-series-c .ct-point,
+.ct-series-c .ct-bar {
+  stroke: #F15854;
+}
+
+.ct-series-c .ct-slice-pie {
+  fill: #F15854;
+}
+
+/* color 3/d */
+
+.ct-color-3 {
+    background: #DECF3F;
+}
+
+.ct-series-d .ct-line,
+.ct-series-d .ct-point,
+.ct-series-d .ct-bar {
+  stroke: #DECF3F;
+}
+
+.ct-series-d .ct-slice-pie {
+  fill: #DECF3F;
+}
+
+/* color 4/e */
+
+.ct-color-4 {
+    background: #F17CB0;
+}
+
+.ct-series-e .ct-line,
+.ct-series-e .ct-point,
+.ct-series-e .ct-bar {
+  stroke: #F17CB0;
+}
+
+.ct-series-e .ct-slice-pie {
+  fill: #F17CB0;
+}
+
+/* color 5/f */
+
+.ct-color-5 {
+    background: #B276B2;
+}
+
+.ct-series-f .ct-line,
+.ct-series-f .ct-point,
+.ct-series-f .ct-bar {
+  stroke: #B276B2;
+}
+
+.ct-series-f .ct-slice-pie {
+  fill: #B276B2;
+}
+
+/* color 6/g */
+
+.ct-color-6 {
+    background: #B2912F;
+}
+
+.ct-series-g .ct-line,
+.ct-series-g .ct-point,
+.ct-series-g .ct-bar {
+  stroke: #B2912F;
+}
+
+.ct-series-g .ct-slice-pie {
+  fill: #B2912F;
+}
+
+/* color 7/h */
+
+.ct-color-7 {
+    background: #666666;
+}
+
+.ct-series-h .ct-line,
+.ct-series-h .ct-point,
+.ct-series-h .ct-bar {
+  stroke: #666666;
+}
+
+.ct-series-h .ct-slice-pie {
+  fill: #666666;
 }

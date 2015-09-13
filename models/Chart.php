@@ -28,19 +28,26 @@ class MoneyInMonthsChart
     public $series1;
     public $series2;
     
-    public function prepareData($statistic) {
+    public function prepareData($statistic, $months) {
         $this->labels = [];
         $this->series1 = [];
         $this->series2 = [];
         
-        if ($statistic->moneyInMonths) {
+        foreach ($months as $month) {
+            $this->labels[] = $month;
+            $series1 = '';
+            $series2 = '';
+            
             foreach ($statistic->moneyInMonths as $item) {
-                $this->labels[] = $item['date'];
-                $this->series1[] = $item['sum_in'];
-                $this->series2[] = $item['sum_out'];
+                if ($month === $item['date']) {
+                    $series1 = $item['sum_in'];
+                    $series2 = $item['sum_out'];
+                    break;
+                }
             }
             
-            $this->labels[] = '';
+            $this->series1[] = $series1;
+            $this->series2[] = $series2;
         }
     }
 }
@@ -48,18 +55,24 @@ class MoneyInMonthsChart
 class BalanceInMonthsChart
 {
     public $labels;
-    public $series1;
+    public $series;
     
-    public function prepareData($statistic) {
+    public function prepareData($statistic, $months) {
         $this->labels = [];
-        $this->series1 = [];
-        $this->series2 = [];
+        $this->series = [];
         
-        if ($statistic->balanceInMonths) {
+        foreach ($months as $month) {
+            $this->labels[] = $month;
+            $series = '';
+            
             foreach ($statistic->balanceInMonths as $item) {
-                $this->labels[] = $item['date'];
-                $this->series[] = $item['balance'];
+                if ($month === $item['date']) {
+                    $series = $item['balance'];
+                    break;
+                }
             }
+            
+            $this->series[] = $series;
         }
     }
 }
@@ -70,14 +83,16 @@ class Chart extends \yii\base\Object
     public $moneyInMonthsChart;
     public $balanceInMonthsChart;
     
+    private $months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+    
     public function prepareData($statistic) {
         $this->moneyInCategoriesChart = new MoneyInCategoriesChart();
         $this->moneyInCategoriesChart->prepareData($statistic);
         
         $this->moneyInMonthsChart = new MoneyInMonthsChart();
-        $this->moneyInMonthsChart->prepareData($statistic);
+        $this->moneyInMonthsChart->prepareData($statistic, $this->months);
         
         $this->balanceInMonthsChart = new BalanceInMonthsChart();
-        $this->balanceInMonthsChart->prepareData($statistic);
+        $this->balanceInMonthsChart->prepareData($statistic, $this->months);
     }
 }

@@ -81,10 +81,10 @@ class Statistic extends \yii\base\Object
     
     private function prepareMoneyInMonths()
     {
-        $sql = 'SELECT DATE_FORMAT(date, "%Y-%m") AS date, SUM(money_out) AS sum_out, SUM(money_in) AS sum_in
+        $sql = 'SELECT DATE_FORMAT(date, "%m") AS date, SUM(money_out) AS sum_out, SUM(money_in) AS sum_in
                 FROM transaction
                 WHERE user_id=:user_id AND YEAR(date)=:year
-                GROUP BY DATE_FORMAT(date, "%Y-%m")
+                GROUP BY DATE_FORMAT(date, "%m")
                 ORDER BY date';
                 
         return Yii::$app->db->createCommand($sql)
@@ -95,10 +95,10 @@ class Statistic extends \yii\base\Object
     
     private function prepareBalanceInMonths()
     {
-        $sql = 'SELECT DATE_FORMAT(date, "%Y-%m") AS date, SUM(money_in) - SUM(money_out) AS balance
+        $sql = 'SELECT DATE_FORMAT(date, "%m") AS date, SUM(money_in) - SUM(money_out) AS balance
                 FROM transaction
                 WHERE user_id=:user_id AND YEAR(date)=:year
-                GROUP BY DATE_FORMAT(date, "%Y-%m")
+                GROUP BY DATE_FORMAT(date, "%m")
                 ORDER BY date';
                 
         return Yii::$app->db->createCommand($sql)
