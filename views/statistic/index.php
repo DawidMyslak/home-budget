@@ -69,7 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <hr>
     <h3>Balance in months</h3>
-    <span class="ct-desc ct-color-0"></span>Plus &nbsp;&nbsp;&nbsp; <span class="ct-desc ct-color-1"></span>Minus
+    <span class="ct-desc ct-color-0"></span>Positive &nbsp;&nbsp;&nbsp; <span class="ct-desc ct-color-1"></span>Negative
     
     <div class="ct-chart-area ct-chart-bar-area">
         <div class="ct-chart ct-chart-c ct-perfect-fourth"></div>
