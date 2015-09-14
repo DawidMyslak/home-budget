@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Category',
                 'filter' => ArrayHelper::map(Category::getAll(), 'id', 'name'), 
             ],
-            'subcategory.name',
+            //'subcategory.name',
             
             ['class' => 'yii\grid\ActionColumn'],
         ],
