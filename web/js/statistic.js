@@ -6,15 +6,28 @@
  * @property dataC
  */
 
-(function() {
+(function() {	
 	// charts
+	
+	var chartASliceIndex = 0;
+	$(window).resize(function() {
+		chartASliceIndex = 0;
+	});
 	
 	var chartA = new Chartist.Pie('.ct-chart-a', dataA, {
 		fullWidth: true,
 		height: 320,
-		labelOffset: 40,
 		labelInterpolationFnc: function(value) {
 			return;
+		}
+	});
+	
+	chartA.on('draw', function(data) {
+		if (data.type === 'slice') {
+			var cssClass = 'ct-slice-pie-' + chartASliceIndex;
+			data.element.addClass(cssClass);
+			$('.' + cssClass).attr('ct:label', dataA.labels[chartASliceIndex]);
+			chartASliceIndex++;
 		}
 	});
 	
@@ -55,6 +68,35 @@
 	
 	// tooltips
 	
+	function format(value) {
+		return ' &euro;' + Number(value).toFixed(2);
+	}
+	
+	var chartA = $('.ct-chart-a');
+	
+	var tooltipA = chartA
+		.append('<div class="ct-tooltip ct-tooltip-b"></div>')
+		.find('.ct-tooltip-b')
+		.hide();
+	
+	chartA.on('mouseenter', '.ct-slice-pie', function() {
+		var slicePie = $(this),
+			value = slicePie.attr('ct:value'),
+			label = slicePie.attr('ct:label');
+		tooltipA.html(label + '<br>' + format(value)).show();
+	});
+	
+	chartA.on('mouseleave', '.ct-slice-pie', function() {
+		tooltipA.hide();
+	});
+	
+	chartA.on('mousemove', function(event) {
+		tooltipA.css({
+			left: (event.offsetX || event.originalEvent.layerX) - tooltipA.width() / 2 - 10,
+			top: (event.offsetY || event.originalEvent.layerY) - tooltipA.height() - 40
+		});
+	});
+	
 	var chartB = $('.ct-chart-b');
 	
 	var tooltipB = chartB
@@ -66,7 +108,7 @@
 		var point = $(this),
 			value = point.attr('ct:value'),
 			seriesName = point.parent().attr('ct:series-name');
-		tooltipB.html(seriesName + '<br>&euro;' + value).show();
+		tooltipB.html(seriesName + '<br>' + format(value)).show();
 	});
 	
 	chartB.on('mouseleave', '.ct-point', function() {
@@ -99,7 +141,7 @@
 		}
 		value = Math.abs(value);
 		
-		tooltipC.html(status + ' &euro;' + value).show();
+		tooltipC.html(status + ' ' + format(value)).show();
 	});
 	
 	chartC.on('mouseleave', '.ct-bar', function() {
