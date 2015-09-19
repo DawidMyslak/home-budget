@@ -44,7 +44,7 @@ class TransactionSearch extends Transaction
     {
         $query = Transaction::find();
         
-        $query->joinWith(['category', 'subcategory']);
+        $query->joinWith(['category']);
 
         // add conditions that should always apply here
 
@@ -67,7 +67,6 @@ class TransactionSearch extends Transaction
             'transaction.money_out' => $this->money_out,
             'transaction.user_id' => Yii::$app->user->identity->id,
             'transaction.category_id' => $this->category_id,
-            'transaction.subcategory_id' => $this->subcategory_id,
         ]);
 
         $query->andFilterWhere(['like', 'transaction.description', $this->description]);
