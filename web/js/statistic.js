@@ -11,10 +11,10 @@
 	
 	var chartA = new Chartist.Pie('.ct-chart-a', dataA, {
 		fullWidth: true,
-		height: 300,
+		height: 320,
 		labelOffset: 40,
 		labelInterpolationFnc: function(value) {
-			return value[0];
+			return;
 		}
 	});
 	
@@ -23,7 +23,7 @@
 		chartPadding: {
 			right: 40
 		},
-		height: 300,
+		height: 320,
 		low: 0,
 		lineSmooth: Chartist.Interpolation.cardinal({
 			tension: 0
@@ -41,7 +41,7 @@
 		chartPadding: {
 			right: 40
 		},
-		height: 300
+		height: 320
 	});
 	
 	chartC.on('draw', function(data) {

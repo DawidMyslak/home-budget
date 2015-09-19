@@ -13,6 +13,7 @@ class Statistic extends \yii\base\Object
     private $balanceInMonths;
     private $moneyInCategories;
     private $moneyInSubcategories;
+    private $years;
     private $moneyIn;
     private $moneyOut;
     private $balance;
@@ -26,6 +27,7 @@ class Statistic extends \yii\base\Object
         $this->balanceInMonths = $this->prepareBalanceInMonths();
         $this->moneyInCategories = $this->prepareMoneyInCategories();
         $this->moneyInSubcategories = $this->prepareMoneyInSubcategories();
+        $this->years = $this->prepareYears();
         $this->moneyIn = $this->prepareMoneyIn();
         $this->moneyOut = $this->prepareMoneyOut();
         
@@ -61,6 +63,10 @@ class Statistic extends \yii\base\Object
     
     public function getMoneyInSubcategories() {
         return $this->moneyInSubcategories;
+    }
+    
+    public function getYears() {
+        return $this->years;
     }
     
     public function getMoneyIn() {
@@ -135,6 +141,15 @@ class Statistic extends \yii\base\Object
         return Yii::$app->db->createCommand($sql)
             ->bindValue(':user_id', $this->userId)
             ->bindValue(':year', $this->year)
+            ->queryAll();
+    }
+    
+    private function prepareYears()
+    {
+        $sql = 'SELECT DISTINCT YEAR(date) AS year FROM transaction WHERE user_id=:user_id ORDER BY year;';
+        
+        return Yii::$app->db->createCommand($sql)
+            ->bindValue(':user_id', $this->userId)
             ->queryAll();
     }
     

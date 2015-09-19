@@ -27,7 +27,7 @@ class StatisticController extends Controller
 
     public function actionIndex()
     {
-        $year = Yii::$app->request->get('year', 2015);
+        $year = Yii::$app->request->get('year', date('Y'));
         
         $statistic = new Statistic();
         $statistic->prepareResults($year);

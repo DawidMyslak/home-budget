@@ -77,6 +77,7 @@ class Transaction extends \yii\db\ActiveRecord
             'keyword_id' => 'Keyword ID',
             'category.name' => 'Category',
             'subcategory.name' => 'Subcategory',
+            'formattedDate' => 'Date',
         ];
     }
     
@@ -163,5 +164,9 @@ class Transaction extends \yii\db\ActiveRecord
     
     public function getResult() {
         return $this->result;
+    }
+    
+    public function getFormattedDate() {
+        return \DateTime::createFromFormat('Y-m-d H:i:s', $this->date)->format('Y-m-d');
     }
 }

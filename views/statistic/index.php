@@ -17,8 +17,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1>Statistics (<?= $statistic->year ?>)</h1>
     
     <p>
-        <?= Html::a(2014, ['index', 'year' => 2014]) ?>,
-        <?= Html::a(2015, ['index', 'year' => 2015]) ?>
+        <?php foreach ($statistic->years as $item): ?>
+            <?= Html::a($item['year'], ['index', 'year' => $item['year']]) ?>
+        <?php endforeach; ?>
     </p>
     
     <hr>

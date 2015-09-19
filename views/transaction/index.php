@@ -33,7 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             
-            'date',
+            [
+                'attribute' => 'date',
+                'value' => 'formattedDate',
+                'label' => 'Date',
+            ],
             'description',
             'money_in',
             'money_out',
