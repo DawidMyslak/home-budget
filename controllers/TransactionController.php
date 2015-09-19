@@ -10,6 +10,8 @@ use app\models\TransactionImport;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\forms\UploadForm;
+use yii\web\UploadedFile;
 
 /**
  * TransactionController implements the CRUD actions for Transaction model.
@@ -147,15 +149,26 @@ class TransactionController extends Controller
     /**
      * Imports CSV file with Transcation models.
      * @return mixed
-     */
+     */    
     public function actionImport()
     {
-        $model = new TransactionImport();
-        $model->import('../samples/bank-of-ireland.csv', TransactionImport::BANK_OF_IRELAND);
-        // $model->import('../samples/permanent-tsb.csv', TransactionImport::PERMANENT_TSB);
-        
-        Yii::$app->getSession()->setFlash('result', $model->getResult());
-        
-        return $this->redirect(['index']);
+        $model = new UploadForm();
+
+        if (Yii::$app->request->isPost) {
+            $model->load(Yii::$app->request->post());
+            $model->file = UploadedFile::getInstance($model, 'file');
+            
+            if ($model->upload()) {
+                $transaction = new TransactionImport();
+                $transaction->import($model->path, $model->type);
+                
+                Yii::$app->getSession()->setFlash('result', $transaction->getResult());
+                return $this->redirect(['index']);
+            }
+        }
+
+        return $this->render('import', [
+            'model' => $model,
+        ]);
     }
 }

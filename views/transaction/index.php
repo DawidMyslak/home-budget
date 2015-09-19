@@ -23,8 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Create Transaction', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Import Transactions', ['import'], ['class' => 'btn btn-info']) ?>
-        <?= Html::a('Categorise Transactions', ['categorise'], ['class' => 'btn btn-info']) ?>
+        <?= Html::a('Import Transactions', ['import'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Categorise Transactions', ['categorise'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -43,7 +43,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Category',
                 'filter' => ArrayHelper::map(Category::getAll(), 'id', 'name'), 
             ],
-            //'subcategory.name',
             
             ['class' => 'yii\grid\ActionColumn'],
         ],

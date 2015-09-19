@@ -28,5 +28,6 @@ phpunit.phar
 # database
 /database/data.sql
 
-# samples
+# samples and uploads
 /samples
+/uploads

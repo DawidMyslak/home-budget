@@ -29,6 +29,7 @@ use app\helpers\CategoriseHelper;
 class Transaction extends \yii\db\ActiveRecord
 {
     private $categorizedCounter; // number of categorized transactions
+    private $result;
     
     /**
      * @inheritdoc
@@ -151,6 +152,8 @@ class Transaction extends \yii\db\ActiveRecord
                 $transaction->save();
             }
         }
+        
+        $this->result = $this->categorizedCounter . ' transactions categorized.';
     }
     
     public static function findById($id)
@@ -159,6 +162,6 @@ class Transaction extends \yii\db\ActiveRecord
     }
     
     public function getResult() {
-        return $this->categorizedCounter . ' transactions categorized.';
+        return $this->result;
     }
 }

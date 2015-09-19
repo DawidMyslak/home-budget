@@ -10,11 +10,9 @@ use app\helpers\CategoriseHelper;
 
 class TransactionImport extends Transaction
 {
-    const BANK_OF_IRELAND = 'bankOfIreland';
-    const PERMANENT_TSB = 'permanentTsb';
-    
     private $importedCounter;
     private $categorizedCounter;
+    private $result;
     
     /**
      * @inheritdoc
@@ -25,14 +23,17 @@ class TransactionImport extends Transaction
         return Model::scenarios();
     }
     
-    private static function types()
-    {
+    public static function getTypes() {
         return [
-            'bankOfIreland' => [
+            1 => [
+                'id' => 1,
+                'name' => 'Bank of Ireland',
                 'dateFormat' => 'd/m/Y',
                 'fields' => ['date', 'description', 'money_out', 'money_in', 'balance']
             ],
-            'permanentTsb' => [
+            2 => [
+                'id' => 2,
+                'name' => 'Permanent TSB',
                 'dateFormat' => 'd-M-y',
                 'fields' => ['date', 'description', 'money_in', 'money_out', 'balance']
             ]
@@ -58,7 +59,8 @@ class TransactionImport extends Transaction
         $categoriseHelper->prepareKeywords();
         
         // get config for current file type
-        $type = self::types()[$type];
+        $types = self::getTypes();
+        $type = $types[$type];
         
         // skip first line in the file
         $skipHeader = true;
@@ -76,7 +78,9 @@ class TransactionImport extends Transaction
                     }
                     
                     // format date using config format
-                    $transaction->date = \DateTime::createFromFormat($type['dateFormat'], $transaction->date)->format('Y-m-d');
+                    if ($date = \DateTime::createFromFormat($type['dateFormat'], $transaction->date)) {
+                        $transaction->date = $date->format('Y-m-d');
+                    }
                     
                     // prepare transcation hash and check if already exists in hash array, if does then do not save this transaction
                     $hash = Transaction::prepareHash($transaction->date, $transaction->description, $transaction->money_in, $transaction->money_out);
@@ -105,9 +109,11 @@ class TransactionImport extends Transaction
             }
             fclose($handle);
         }
+        
+        $this->result = $this->importedCounter . ' transactions imported and ' . $this->categorizedCounter . ' categorized.';
     }
     
     public function getResult() {
-        return $this->importedCounter . ' transactions imported and ' . $this->categorizedCounter . ' categorized.';
+        return $this->result;
     }
 }
