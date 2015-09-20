@@ -132,7 +132,7 @@ class Statistic extends \yii\base\Object
     {
         $sql = 'SELECT c.id AS cid, s.id AS sid, IFNULL(c.name, "Uncategorized") AS cname, IFNULL(s.name, "Uncategorized") AS sname, SUM(t.money_out) AS sum
                 FROM subcategory s
-                RIGHT JOIN transaction t ON s.id=t.subcategory_id
+                LEFT JOIN transaction t ON s.id=t.subcategory_id
                 LEFT JOIN category c ON s.category_id=c.id
                 WHERE t.user_id=:user_id AND YEAR(t.date)=:year
                 GROUP BY s.id
