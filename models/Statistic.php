@@ -101,7 +101,7 @@ class Statistic extends \yii\base\Object
     
     private function prepareBalanceInMonths()
     {
-        $sql = 'SELECT DATE_FORMAT(date, "%m") AS date, SUM(money_in) - SUM(money_out) AS balance
+        $sql = 'SELECT DATE_FORMAT(date, "%m") AS date, IFNULL(SUM(money_in), 0) - IFNULL(SUM(money_out), 0) AS balance
                 FROM transaction
                 WHERE user_id=:user_id AND YEAR(date)=:year
                 GROUP BY DATE_FORMAT(date, "%m")
@@ -115,12 +115,14 @@ class Statistic extends \yii\base\Object
     
     private function prepareMoneyInCategories()
     {
-        $sql = 'SELECT c.id AS id, IFNULL(c.name, "Uncategorized") AS name, SUM(t.money_out) AS sum
+        $sql = 'SELECT name, sum, TRUNCATE(sum / total * 100, 2) AS percent FROM
+                (SELECT c.id AS id, IFNULL(c.name, "Uncategorized") AS name, SUM(t.money_out) AS sum,
+                (SELECT SUM(money_out) FROM transaction WHERE user_id=:user_id AND YEAR(date)=:year) AS total
                 FROM category c
                 RIGHT JOIN transaction t ON c.id=t.category_id
                 WHERE t.user_id=:user_id AND YEAR(t.date)=:year
                 GROUP BY c.id
-                ORDER BY c.id';
+                ORDER BY c.id) temp;';
                 
         return Yii::$app->db->createCommand($sql)
             ->bindValue(':user_id', $this->userId)
