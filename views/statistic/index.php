@@ -47,8 +47,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <ul class="list-group">
             <?php foreach ($statistic->moneyInCategories as $index => $item): ?>
                 <li class="list-group-item">
+                    <span class="percent" style="width: <?= $item['percent'] ?>%;"></span>
                     <span class="ct-desc ct-color-<?= $index ?>"></span><?= $item['name'] ?>
-                    <span class="badge">&euro;<?= $item['sum'] ?></span> (<?= $item['percent'] ?>%)
+                    <span class="badge">&euro;<?= $item['sum'] ?></span>
                 </li>
             <?php endforeach; ?>
             </ul>
