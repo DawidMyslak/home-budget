@@ -4,23 +4,27 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\User */
+/* @var $model app\models\forms\PasswordForm */
 /* @var $form yii\widgets\ActiveForm */
 
-$this->title = 'Change password';
+$this->title = 'Change Password';
 $this->params['breadcrumbs'][] = ['label' => 'Profile', 'url' => ['profile']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-form">
+<div class="user-password">
     
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'currentPassword')->passwordInput() ?>
+    
+    <?= $form->field($model, 'newPassword')->passwordInput() ?>
+    
+    <?= $form->field($model, 'confirmNewPassword')->passwordInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton('Change', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

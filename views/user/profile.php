@@ -12,10 +12,14 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-profile">
 
+    <?php if (Yii::$app->session->hasFlash('result')): ?>
+        <div class="alert alert-success" role="alert"><?= Yii::$app->session->getFlash('result') ?></div>
+    <?php endif; ?>
+
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Change password', ['password'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Change Password', ['password'], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= DetailView::widget([

@@ -5,7 +5,7 @@ namespace app\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use app\models\User;
-use app\models\UserSearch;
+use app\models\forms\PasswordForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -43,13 +43,14 @@ class UserController extends Controller
     
     public function actionPassword()
     {
-        $model = Yii::$app->user->identity;
-        $model->password = '';
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->password = Yii::$app->getSecurity()->generatePasswordHash($model->password);
+        $model = new PasswordForm();
+        
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $user = Yii::$app->user->identity;
+            $user->password = Yii::$app->getSecurity()->generatePasswordHash($model->newPassword);
             
-            if ($model->save()) {
+            if ($user->save()) {
+                Yii::$app->getSession()->setFlash('result', 'Password successfully changed.');
                 return $this->redirect(['profile']);
             }
         }
