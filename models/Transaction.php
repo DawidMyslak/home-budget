@@ -167,6 +167,10 @@ class Transaction extends \yii\db\ActiveRecord
     }
     
     public function getFormattedDate() {
-        return \DateTime::createFromFormat('Y-m-d H:i:s', $this->date)->format('Y-m-d');
+        if ($date = \DateTime::createFromFormat('Y-m-d H:i:s', $this->date)) {
+            return $date->format('Y-m-d');
+        }
+                    
+        return null;
     }
 }

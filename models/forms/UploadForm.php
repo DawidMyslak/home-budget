@@ -30,8 +30,8 @@ class UploadForm extends Model
             $this->path = '../uploads/' . Yii::$app->user->identity->id . '_' . $this->file->baseName . '_' . time() . '.' . $this->file->extension;
             $this->file->saveAs($this->path);
             return true;
-        } else {
-            return false;
         }
+        
+        return false;
     }
 }
