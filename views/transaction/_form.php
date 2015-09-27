@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Json;
+use kartik\date\DatePicker;
 use yii\widgets\ActiveForm;
 use app\models\Category;
 use app\models\Subcategory;
@@ -18,8 +19,16 @@ CategoryAsset::register($this);
 <div class="transaction-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'date')->textInput() ?>
+    
+    <?php $model->date = $model->formattedDate; ?>
+    <?= $form->field($model, 'date')->widget(DatePicker::classname(), [
+        'type' => DatePicker::TYPE_INPUT,
+        'pluginOptions' => [
+            'format' => 'yyyy-mm-dd',
+            'todayHighlight' => true,
+            'autoclose' => true,
+        ]
+    ]); ?>
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
