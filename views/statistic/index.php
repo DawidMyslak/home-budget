@@ -26,11 +26,11 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <div class="row">
         <div class="col-md-4">
-            Money In
+            Income
             <h2>&euro;<?= $statistic->moneyIn ?></h2>    
         </div>
         <div class="col-md-4">
-            Money Out
+            Expenses
             <h2>&euro;<?= $statistic->moneyOut ?></h2>    
         </div>
         <div class="col-md-4">
@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     
     <hr>
-    <h3>Money in categories</h3>
+    <h3>Expenses in categories</h3>
     
     <div class="row">
         <div class="col-md-6">
@@ -63,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <hr>
     <h3>Money in months</h3>
-    <span class="ct-desc ct-color-0"></span>Money In &nbsp;&nbsp;&nbsp; <span class="ct-desc ct-color-1"></span>Money Out
+    <span class="ct-desc ct-color-0"></span>Income &nbsp;&nbsp;&nbsp; <span class="ct-desc ct-color-1"></span>Expenses
     
     <div class="ct-chart-area ct-chart-line-area">
         <div class="ct-chart ct-chart-b ct-perfect-fourth"></div>
@@ -78,14 +78,14 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     
     <hr>
-    <h3>Money in subcategories</h3>
+    <h3>Expenses in subcategories</h3>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Category</th>
                 <th>Subcategory</th>
-                <th>Money</th>
+                <th>Expenses</th>
             </tr>
         </thead>
         <tbody>
