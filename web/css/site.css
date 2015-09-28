@@ -90,3 +90,12 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
+
+.summary {
+    font-size: 12px;
+    border-radius: 4px;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    border:1px solid rgb(221, 221, 221);
+    float: left;
+}

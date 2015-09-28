@@ -17,6 +17,8 @@
 	var chartA = new Chartist.Pie('.ct-chart-a', dataA, {
 		fullWidth: true,
 		height: 320,
+		donut: true,
+  		donutWidth: 40,
 		labelInterpolationFnc: function(value) {
 			return;
 		}
@@ -24,7 +26,7 @@
 	
 	chartA.on('draw', function(data) {
 		if (data.type === 'slice') {
-			var cssClass = 'ct-slice-pie-' + chartASliceIndex;
+			var cssClass = 'ct-slice-donut-' + chartASliceIndex;
 			data.element.addClass(cssClass);
 			$('.' + cssClass).attr('ct:label', dataA.labels[chartASliceIndex]);
 			chartASliceIndex++;
@@ -79,14 +81,14 @@
 		.find('.ct-tooltip-b')
 		.hide();
 	
-	chartA.on('mouseenter', '.ct-slice-pie', function() {
+	chartA.on('mouseenter', '.ct-slice-donut', function() {
 		var slicePie = $(this),
 			value = slicePie.attr('ct:value'),
 			label = slicePie.attr('ct:label');
 		tooltipA.html(label + '<br>' + format(value)).show();
 	});
 	
-	chartA.on('mouseleave', '.ct-slice-pie', function() {
+	chartA.on('mouseleave', '.ct-slice-donut', function() {
 		tooltipA.hide();
 	});
 	
