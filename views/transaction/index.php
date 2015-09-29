@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\grid\GridView;
-use app\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TransactionSearch */
@@ -45,10 +44,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'category_id',
                 'value' => 'category.name',
                 'label' => 'Category',
-                'filter' => ArrayHelper::map(Category::getAll(), 'id', 'name'), 
+            ],
+            [
+                'attribute' => 'subcategory_id',
+                'value' => 'subcategory.name',
+                'label' => 'Subcategory', 
             ],
             
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'headerOptions' => ['style' => 'width: 110px;']],
         ],
     ]); ?>
 

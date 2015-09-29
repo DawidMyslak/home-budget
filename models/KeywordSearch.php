@@ -44,6 +44,7 @@ class KeywordSearch extends Keyword
         $query = Keyword::find();
         
         $query->joinWith(['category']);
+        $query->joinWith(['subcategory']);
 
         // add conditions that should always apply here
 
@@ -63,6 +64,7 @@ class KeywordSearch extends Keyword
         $query->andFilterWhere([
             'keyword.user_id' => Yii::$app->user->identity->id,
             'keyword.category_id' => $this->category_id,
+            'keyword.subcategory_id' => $this->subcategory_id,
         ]);
 
         $query->andFilterWhere(['like', 'keyword.name', $this->name]);
