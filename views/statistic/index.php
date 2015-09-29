@@ -14,13 +14,15 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="statistic-index">
     
-    <h1>Statistics (<?= $statistic->year ?>)</h1>
+    <h1>Statistics</h1>
     
-    <p>
-        <?php foreach ($statistic->years as $item): ?>
+    <ul class="nav nav-pills">
+    <?php foreach ($statistic->years as $item): ?>
+        <li role="presentation" class="<?= $item['year'] == $statistic->year ? 'active' : '' ?>">
             <?= Html::a($item['year'], ['index', 'year' => $item['year']]) ?>
-        <?php endforeach; ?>
-    </p>
+        </li>
+    <?php endforeach; ?>
+    </ul>
     
     <hr>
     
@@ -39,7 +41,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     
-    <hr>
     <h3>Expenses in categories</h3>
     
     <div class="row">
@@ -61,7 +62,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     
-    <hr>
     <h3>Money in months</h3>
     <span class="ct-desc ct-color-0"></span>Income &nbsp;&nbsp;&nbsp; <span class="ct-desc ct-color-1"></span>Expenses
     
@@ -69,7 +69,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="ct-chart ct-chart-b ct-perfect-fourth"></div>
     </div>
     
-    <hr>
     <h3>Balance in months</h3>
     <span class="ct-desc ct-color-0"></span>Positive &nbsp;&nbsp;&nbsp; <span class="ct-desc ct-color-1"></span>Negative
     
@@ -77,7 +76,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="ct-chart ct-chart-c ct-perfect-fourth"></div>
     </div>
     
-    <hr>
     <h3>Expenses in subcategories</h3>
 
     <table class="table">

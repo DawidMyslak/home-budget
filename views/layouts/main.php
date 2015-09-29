@@ -45,11 +45,11 @@ AppAsset::register($this);
     }
     else {
         $items = [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'Statistics', 'url' => ['/statistic']],
-            ['label' => 'Keywords', 'url' => ['/keyword']],
-            ['label' => 'Transactions', 'url' => ['/transaction']],
-            ['label' => 'Profile', 'url' => ['/user/profile']],
+            ['label' => 'Home', 'url' => ['/site'], 'active' => 'site' == Yii::$app->controller->id],
+            ['label' => 'Statistics', 'url' => ['/statistic'], 'active' => 'statistic' == Yii::$app->controller->id],
+            ['label' => 'Keywords', 'url' => ['/keyword'], 'active' => 'keyword' == Yii::$app->controller->id],
+            ['label' => 'Transactions', 'url' => ['/transaction'], 'active' => 'transaction' == Yii::$app->controller->id],
+            ['label' => 'Profile', 'url' => ['/user/profile'], 'active' => 'user' == Yii::$app->controller->id],
             [
                 'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
                 'url' => ['/site/logout'],

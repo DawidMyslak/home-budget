@@ -2,6 +2,14 @@ h2 {
   margin-top: 5px;
 }
 
+.statistic-index .nav li {
+  font-size: 14px;
+}
+
+.statistic-index .nav li a {
+  padding: 5px 10px;
+}
+
 .list-group-item {
     position: relative;
     display: block;
