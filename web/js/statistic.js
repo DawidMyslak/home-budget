@@ -75,28 +75,21 @@
 	}
 	
 	var chartA = $('.ct-chart-a');
-	
-	var tooltipA = chartA
-		.append('<div class="ct-tooltip ct-tooltip-b"></div>')
-		.find('.ct-tooltip-b')
-		.hide();
+	var chartAInitValue = $('#chart-a-value').html();
+	var chartAInitLabel = $('#chart-a-label').html();
 	
 	chartA.on('mouseenter', '.ct-slice-donut', function() {
 		var slicePie = $(this),
 			value = slicePie.attr('ct:value'),
 			label = slicePie.attr('ct:label');
-		tooltipA.html(label + '<br>' + format(value)).show();
+		
+		$('#chart-a-value').html(format(value));
+		$('#chart-a-label').html(label);
 	});
 	
 	chartA.on('mouseleave', '.ct-slice-donut', function() {
-		tooltipA.hide();
-	});
-	
-	chartA.on('mousemove', function(event) {
-		tooltipA.css({
-			left: (event.offsetX || event.originalEvent.layerX) - tooltipA.width() / 2 - 10,
-			top: (event.offsetY || event.originalEvent.layerY) - tooltipA.height() - 40
-		});
+		$('#chart-a-value').html(chartAInitValue);
+		$('#chart-a-label').html(chartAInitLabel);
 	});
 	
 	var chartB = $('.ct-chart-b');

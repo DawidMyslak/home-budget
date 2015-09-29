@@ -39,12 +39,32 @@ h2 {
     margin-top: 10px;
 }
 
+.ct-chart-a-center {
+  top: 120px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+}
+
 .ct-label {
     font-size: 14px !important;
 }
 
 .ct-point {
     stroke-width: 14px;
+}
+
+.ct-point:hover {
+    stroke-width: 18px;
+}
+
+.ct-slice-donut:hover {
+  opacity: 0.8;
+}
+
+.ct-bar:hover {
+  opacity: 0.8;
 }
 
 .ct-perfect-fourth:before {

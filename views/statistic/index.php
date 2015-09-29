@@ -57,6 +57,10 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="col-md-6">
             <div class="ct-chart-area">
+                <div class="ct-chart-a-center">
+                    <h3 id="chart-a-value">&euro;<?= $statistic->moneyOut ?></h3>
+                    <span id="chart-a-label">Expenses</span>
+                </div>
                 <div class="ct-chart ct-chart-a ct-perfect-fourth"></div>
             </div>
         </div>
