@@ -29,7 +29,7 @@ use app\helpers\CategoriseHelper;
 class Transaction extends \yii\db\ActiveRecord
 {
     private $categorizedCounter; // number of categorized transactions
-    private $result;
+    protected $result;
     
     /**
      * @inheritdoc
@@ -89,8 +89,8 @@ class Transaction extends \yii\db\ActiveRecord
         return parent::beforeSave($insert);
     }
     
-    public static function prepareHash($date, $description, $moneyIn, $moneyOut) {
-        return md5($date . $description . $moneyIn . $moneyOut);
+    public function prepareHash() {
+        $this->hash = md5($this->date . $this->description . $this->money_in . $this->money_out);
     }
 
     /**

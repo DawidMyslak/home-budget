@@ -7,7 +7,8 @@ use app\assets\StatisticAsset;
 StatisticAsset::register($this);
 
 /* @var $this yii\web\View */
-/* @var $categories app\models\Category */
+/* @var $chart app\models\Chart */
+/* @var $statistic app\models\Statistic */
 
 $this->title = 'Statistics';
 $this->params['breadcrumbs'][] = $this->title;

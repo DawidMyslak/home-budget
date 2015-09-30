@@ -12,7 +12,6 @@ class TransactionImport extends Transaction
 {
     private $importedCounter;
     private $categorizedCounter;
-    private $result;
     
     /**
      * @inheritdoc
@@ -54,7 +53,7 @@ class TransactionImport extends Transaction
             $hashes[] = $transaction->hash;
         }
         
-        // categorise helper object
+        // prepare keywords
         $categoriseHelper = new CategoriseHelper();
         $categoriseHelper->prepareKeywords();
         
@@ -82,15 +81,14 @@ class TransactionImport extends Transaction
                         $transaction->date = $date->format('Y-m-d');
                     }
                     
-                    // prepare transcation hash and check if already exists in hash array, if does then do not save this transaction
-                    $hash = Transaction::prepareHash($transaction->date, $transaction->description, $transaction->money_in, $transaction->money_out);
-                    if (!in_array($hash, $hashes)) {
-                        $hashes[] = $hash;
-                        $transaction->hash = $hash;
+                    // prepare transcation hash and check if already exists in the hash array, if does then do not save this transaction
+                    $transaction->prepareHash();
+                    if (!in_array($transaction->hash, $hashes)) {
+                        $hashes[] = $transaction->hash;
                         
                         // categorise only expenses
                         if (!empty($transaction->money_out)) {
-                            // find keyword for description
+                            // find keyword for transaction description
                             $keyword = $categoriseHelper->search($transaction->description);
                             if ($keyword !== null) {
                                 $transaction->category_id = $keyword->category_id;
@@ -111,9 +109,5 @@ class TransactionImport extends Transaction
         }
         
         $this->result = $this->importedCounter . ' transactions imported and ' . $this->categorizedCounter . ' categorized.';
-    }
-    
-    public function getResult() {
-        return $this->result;
     }
 }
