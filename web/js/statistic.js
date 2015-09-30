@@ -6,25 +6,29 @@
  * @property dataC
  */
 
-(function() {	
-	// charts
+(function () {
+	function format(value) {
+		return ' &euro;' + Number(value).toFixed(2);
+	}
 	
+	/* chart A */
+
 	var chartASliceIndex = 0;
-	$(window).resize(function() {
+	$(window).resize(function () {
 		chartASliceIndex = 0;
 	});
-	
+
 	var chartA = new Chartist.Pie('.ct-chart-a', dataA, {
 		fullWidth: true,
 		height: 320,
 		donut: true,
-  		donutWidth: 40,
-		labelInterpolationFnc: function(value) {
+		donutWidth: 40,
+		labelInterpolationFnc: function (value) {
 			return;
 		}
 	});
-	
-	chartA.on('draw', function(data) {
+
+	chartA.on('draw', function (data) {
 		if (data.type === 'slice') {
 			var cssClass = 'ct-slice-donut-' + chartASliceIndex;
 			data.element.addClass(cssClass);
@@ -32,7 +36,27 @@
 			chartASliceIndex++;
 		}
 	});
+
+	var chartA = $('.ct-chart-a');
+	var chartAInitValue = $('#chart-a-value').html();
+	var chartAInitLabel = $('#chart-a-label').html();
+
+	chartA.on('mouseenter', '.ct-slice-donut', function () {
+		var slicePie = $(this),
+			value = slicePie.attr('ct:value'),
+			label = slicePie.attr('ct:label');
+
+		$('#chart-a-value').html(format(value));
+		$('#chart-a-label').html(label);
+	});
+
+	chartA.on('mouseleave', '.ct-slice-donut', function () {
+		$('#chart-a-value').html(chartAInitValue);
+		$('#chart-a-label').html(chartAInitLabel);
+	});
 	
+	/* chart B */
+
 	var chartB = new Chartist.Line('.ct-chart-b', dataB, {
 		fullWidth: true,
 		chartPadding: {
@@ -44,13 +68,40 @@
 			tension: 0
 		})
 	});
-	
-	chartB.on('draw', function(data) {
+
+	chartB.on('draw', function (data) {
 		if (data.type === 'grid' && data.index === 0) {
 			data.element.addClass('ct-axis-0');
 		}
 	});
+
+	var chartB = $('.ct-chart-b');
+
+	var tooltipB = chartB
+		.append('<div class="ct-tooltip ct-tooltip-b"></div>')
+		.find('.ct-tooltip-b')
+		.hide();
+
+	chartB.on('mouseenter', '.ct-point', function () {
+		var point = $(this),
+			value = point.attr('ct:value'),
+			seriesName = point.parent().attr('ct:series-name');
+		tooltipB.html(seriesName + '<br>' + format(value)).show();
+	});
+
+	chartB.on('mouseleave', '.ct-point', function () {
+		tooltipB.hide();
+	});
+
+	chartB.on('mousemove', function (event) {
+		tooltipB.css({
+			left: (event.offsetX || event.originalEvent.layerX) - tooltipB.width() / 2 - 10,
+			top: (event.offsetY || event.originalEvent.layerY) - tooltipB.height() - 40
+		});
+	});
 	
+	/* chart C */
+
 	var chartC = new Chartist.Bar('.ct-chart-c', dataC, {
 		fullWidth: true,
 		chartPadding: {
@@ -58,8 +109,8 @@
 		},
 		height: 320
 	});
-	
-	chartC.on('draw', function(data) {
+
+	chartC.on('draw', function (data) {
 		if (data.type === 'grid' && data.index === data.axis.ticks.indexOf(0)) {
 			data.element.addClass('ct-axis-0');
 		}
@@ -67,86 +118,37 @@
 			data.element.addClass('ct-bar-negative');
 		}
 	});
-	
-	// tooltips
-	
-	function format(value) {
-		return ' &euro;' + Number(value).toFixed(2);
-	}
-	
-	var chartA = $('.ct-chart-a');
-	var chartAInitValue = $('#chart-a-value').html();
-	var chartAInitLabel = $('#chart-a-label').html();
-	
-	chartA.on('mouseenter', '.ct-slice-donut', function() {
-		var slicePie = $(this),
-			value = slicePie.attr('ct:value'),
-			label = slicePie.attr('ct:label');
-		
-		$('#chart-a-value').html(format(value));
-		$('#chart-a-label').html(label);
-	});
-	
-	chartA.on('mouseleave', '.ct-slice-donut', function() {
-		$('#chart-a-value').html(chartAInitValue);
-		$('#chart-a-label').html(chartAInitLabel);
-	});
-	
-	var chartB = $('.ct-chart-b');
-	
-	var tooltipB = chartB
-		.append('<div class="ct-tooltip ct-tooltip-b"></div>')
-		.find('.ct-tooltip-b')
-		.hide();
-	
-	chartB.on('mouseenter', '.ct-point', function() {
-		var point = $(this),
-			value = point.attr('ct:value'),
-			seriesName = point.parent().attr('ct:series-name');
-		tooltipB.html(seriesName + '<br>' + format(value)).show();
-	});
-	
-	chartB.on('mouseleave', '.ct-point', function() {
-		tooltipB.hide();
-	});
-	
-	chartB.on('mousemove', function(event) {
-		tooltipB.css({
-			left: (event.offsetX || event.originalEvent.layerX) - tooltipB.width() / 2 - 10,
-			top: (event.offsetY || event.originalEvent.layerY) - tooltipB.height() - 40
-		});
-	});
-	
+
 	var chartC = $('.ct-chart-c');
-	
+
 	var tooltipC = chartC
 		.append('<div class="ct-tooltip ct-tooltip-c"></div>')
 		.find('.ct-tooltip-c')
 		.hide();
-	
-	chartC.on('mouseenter', '.ct-bar', function() {
+
+	chartC.on('mouseenter', '.ct-bar', function () {
 		var bar = $(this),
 			value = bar.attr('ct:value')
-			status = '';
-			
+		status = '';
+
 		if (value > 0) {
 			status = '+';
 		} else if (value < 0) {
 			status = '-';
 		}
 		value = Math.abs(value);
-		
+
 		tooltipC.html(status + ' ' + format(value)).show();
 	});
-	
-	chartC.on('mouseleave', '.ct-bar', function() {
+
+	chartC.on('mouseleave', '.ct-bar', function () {
 		tooltipC.hide();
 	});
-	
-	chartC.on('mousemove', function(event) {
+
+	chartC.on('mousemove', function (event) {
 		tooltipC.css({
 			left: (event.offsetX || event.originalEvent.layerX) - tooltipC.width() / 2 - 10,
 			top: (event.offsetY || event.originalEvent.layerY) - tooltipC.height() - 40
 		});
 	});
-}());
+} ());
