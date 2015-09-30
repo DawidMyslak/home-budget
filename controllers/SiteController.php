@@ -47,11 +47,19 @@ class SiteController extends Controller
         ];
     }
 
+    /**
+     * Displays home page.
+     * @return mixed
+     */
     public function actionIndex()
     {
         return $this->render('index');
     }
 
+    /**
+     * Displays login page.
+     * @return mixed
+     */
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
@@ -67,6 +75,10 @@ class SiteController extends Controller
         ]);
     }
 
+    /**
+     * Logouts currently logged in User.
+     * @return mixed
+     */
     public function actionLogout()
     {
         Yii::$app->user->logout();
@@ -74,6 +86,10 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
+    /**
+     * Displays contact form.
+     * @return mixed
+     */
     public function actionContact()
     {
         $model = new ContactForm();
@@ -87,6 +103,10 @@ class SiteController extends Controller
         ]);
     }
 
+    /**
+     * Displays about page.
+     * @return mixed
+     */
     public function actionAbout()
     {
         return $this->render('about');

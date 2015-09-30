@@ -24,7 +24,11 @@ class StatisticController extends Controller
             ],
         ];
     }
-
+    
+    /**
+     * Displays statistics dashboard.
+     * @return mixed
+     */
     public function actionIndex()
     {
         $year = Yii::$app->request->get('year', date('Y'));

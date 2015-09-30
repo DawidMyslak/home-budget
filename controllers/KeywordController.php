@@ -10,9 +10,6 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-/**
- * KeywordController implements the CRUD actions for Keyword model.
- */
 class KeywordController extends Controller
 {
     public function behaviors()

@@ -10,9 +10,6 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-/**
- * UserController implements the CRUD actions for User model.
- */
 class UserController extends Controller
 {
     public function behaviors()
@@ -31,7 +28,7 @@ class UserController extends Controller
     }
     
     /**
-     * Displays currently logged in User model.
+     * Displays profile page.
      * @return mixed
      */
     public function actionProfile()
@@ -41,6 +38,10 @@ class UserController extends Controller
         ]);
     }
     
+    /**
+     * Displays change password form.
+     * @return mixed
+     */
     public function actionPassword()
     {
         $model = new PasswordForm();

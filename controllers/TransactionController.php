@@ -13,9 +13,6 @@ use yii\filters\VerbFilter;
 use app\models\forms\UploadForm;
 use yii\web\UploadedFile;
 
-/**
- * TransactionController implements the CRUD actions for Transaction model.
- */
 class TransactionController extends Controller
 {
     public function behaviors()
