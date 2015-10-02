@@ -26,8 +26,8 @@ h2 {
     background: #f5f5f5;
 }
 
-.badge {
-    font-weight: normal;
+.value {
+    float: right;
 }
 
 /* charts */
