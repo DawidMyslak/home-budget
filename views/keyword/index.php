@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Subcategory', 
             ],
             
-            ['class' => 'yii\grid\ActionColumn', 'headerOptions' => ['style' => 'width: 110px;']],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{update} {delete}', 'headerOptions' => ['style' => 'width: 80px;']],
         ],
     ]); ?>
 

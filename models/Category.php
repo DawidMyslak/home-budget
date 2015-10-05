@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\Subcategory;
 
 /**
  * This is the model class for table "category".
@@ -50,6 +51,22 @@ class Category extends \yii\db\ActiveRecord
             'user_id' => 'User ID',
         ];
     }
+    
+    /**
+     * @inheritdoc
+     */
+    public function beforeSave($insert) {
+        $this->user_id = Yii::$app->user->identity->id;
+        return parent::beforeSave($insert);
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function beforeDelete() {
+        Subcategory::deleteAll(['category_id' => $this->id]);
+        return parent::beforeDelete();
+    }
 
     /**
      * @return \yii\db\ActiveQuery
@@ -83,13 +100,27 @@ class Category extends \yii\db\ActiveRecord
         return $this->hasMany(Transaction::className(), ['category_id' => 'id']);
     }
     
+    public static function findById($id)
+    {
+        return static::findOne(['id' => $id, 'user_id' => Yii::$app->user->identity->id]);
+    }
+    
     public static function getAll() {
-        return self::find()->all();
+        return self::find()
+            ->where(['user_id' => Yii::$app->user->identity->id])
+            ->orWhere(['user_id' => null])
+            ->all();
     }
     
     public static function getStructure() {
         return self::find()
-            ->with('subcategories')
+            ->where(['user_id' => Yii::$app->user->identity->id])
+            ->orWhere(['user_id' => null])
+            ->with(['subcategories' => function($query) {
+                $query
+                    ->where(['user_id' => Yii::$app->user->identity->id])
+                    ->orWhere(['user_id' => null]);
+            }])
             ->asArray()
             ->all();
     }

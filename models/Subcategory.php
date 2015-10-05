@@ -33,7 +33,7 @@ class Subcategory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name', 'category_id'], 'required'],
             [['user_id', 'category_id'], 'integer'],
             [['name'], 'string', 'max' => 64],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
@@ -51,7 +51,16 @@ class Subcategory extends \yii\db\ActiveRecord
             'name' => 'Name',
             'user_id' => 'User ID',
             'category_id' => 'Category ID',
+            'category.name' => 'Category',
         ];
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function beforeSave($insert) {
+        $this->user_id = Yii::$app->user->identity->id;
+        return parent::beforeSave($insert);
     }
 
     /**
@@ -86,7 +95,15 @@ class Subcategory extends \yii\db\ActiveRecord
         return $this->hasMany(Transaction::className(), ['subcategory_id' => 'id']);
     }
     
+    public static function findById($id)
+    {
+        return static::findOne(['id' => $id, 'user_id' => Yii::$app->user->identity->id]);
+    }
+    
     public static function getAll() {
-        return self::find()->all();
+        return self::find()
+            ->where(['user_id' => Yii::$app->user->identity->id])
+            ->orWhere(['user_id' => null])
+            ->all();
     }
 }

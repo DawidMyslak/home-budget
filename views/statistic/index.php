@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <li class="list-group-item">
                     <span class="percent" style="width: <?= $item['percent'] ?>%;"></span>
                     <span class="ct-desc ct-color-<?= $index ?>"></span><?= $item['name'] ?>
-                    <span class="value">&euro;<?= $item['sum'] ?></span>
+                    <span class="pull-right">&euro;<?= $item['sum'] ?></span>
                 </li>
             <?php endforeach; ?>
             </ul>
