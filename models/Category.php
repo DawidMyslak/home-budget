@@ -59,14 +59,6 @@ class Category extends \yii\db\ActiveRecord
         $this->user_id = Yii::$app->user->identity->id;
         return parent::beforeSave($insert);
     }
-    
-    /**
-     * @inheritdoc
-     */
-    public function beforeDelete() {
-        Subcategory::deleteAll(['category_id' => $this->id]);
-        return parent::beforeDelete();
-    }
 
     /**
      * @return \yii\db\ActiveQuery
