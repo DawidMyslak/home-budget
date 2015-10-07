@@ -3,7 +3,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Subcategory */
 $this->title = 'Create Subcategory';
-$this->params['breadcrumbs'][] = ['label' => 'Subcategories', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['/category/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="subcategory-create">

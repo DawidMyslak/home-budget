@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Subcategory */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Subcategories', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['/category/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="subcategory-view">

@@ -47,7 +47,7 @@ AppAsset::register($this);
         $items = [
             ['label' => 'Home', 'url' => ['/site'], 'active' => 'site' == Yii::$app->controller->id],
             ['label' => 'Statistics', 'url' => ['/statistic'], 'active' => 'statistic' == Yii::$app->controller->id],
-            ['label' => 'Categories', 'url' => ['/category'], 'active' => 'category' == Yii::$app->controller->id],
+            ['label' => 'Categories', 'url' => ['/category'], 'active' => ('category' == Yii::$app->controller->id || 'subcategory' == Yii::$app->controller->id)],
             ['label' => 'Keywords', 'url' => ['/keyword'], 'active' => 'keyword' == Yii::$app->controller->id],
             ['label' => 'Transactions', 'url' => ['/transaction'], 'active' => 'transaction' == Yii::$app->controller->id],
             ['label' => 'Profile', 'url' => ['/user/profile'], 'active' => 'user' == Yii::$app->controller->id],
