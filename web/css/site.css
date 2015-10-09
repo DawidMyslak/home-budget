@@ -100,11 +100,7 @@ a.desc:after {
     float: left;
 }
 
-.table tbody tr td {
-    vertical-align: middle;
-}
-
-.table tbody a {
+.grid-view tbody a, .category-index li a {
     padding-left: 5px;
     padding-right: 5px;
 }

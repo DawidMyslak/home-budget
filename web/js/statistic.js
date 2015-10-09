@@ -38,21 +38,21 @@
 	});
 
 	var chartA = $('.ct-chart-a');
-	var chartAInitValue = $('#chart-a-value').html();
-	var chartAInitLabel = $('#chart-a-label').html();
+	var chartAInitValue = $('.ct-chart-a-value').html();
+	var chartAInitLabel = $('.ct-chart-a-label').html();
 
 	chartA.on('mouseenter', '.ct-slice-donut', function () {
 		var slicePie = $(this),
 			value = slicePie.attr('ct:value'),
 			label = slicePie.attr('ct:label');
 
-		$('#chart-a-value').html(format(value));
-		$('#chart-a-label').html(label);
+		$('.ct-chart-a-value').html(format(value));
+		$('.ct-chart-a-label').html(label);
 	});
 
 	chartA.on('mouseleave', '.ct-slice-donut', function () {
-		$('#chart-a-value').html(chartAInitValue);
-		$('#chart-a-label').html(chartAInitLabel);
+		$('.ct-chart-a-value').html(chartAInitValue);
+		$('.ct-chart-a-label').html(chartAInitLabel);
 	});
 	
 	/* chart B */
