@@ -1,10 +1,14 @@
 /**
  * @property $
- * @property categories
  * @property model
+ * @property categories
  */
 
 (function () {
+	if (typeof $ === 'undefined') return;
+	if (typeof model === 'undefined') return;
+	if (typeof categories === 'undefined') return;
+
 	function prepareSubcategories() {
 		var categoryId = $('#' + model + '-category_id').val();
 		var subcategoryId = $('#' + model + '-subcategory_id').val();
@@ -35,4 +39,28 @@
 	$('#transaction-category_id').change(function () {
 		prepareSubcategories();
 	});
+} ());
+
+(function () {
+	if (typeof $ === 'undefined') return;
+
+	function getIcon(event) {
+		var temp = $('#' + event.target.id);
+		var temp2 = temp.prev()[0].id;
+		var temp3 = $('#' + temp2 + ' .menu-icon');
+		return temp3;
+	}
+
+	$('#accordion').on('show.bs.collapse', function (event) {
+		var icon = getIcon(event);
+		icon.removeClass('glyphicon-menu-right');
+		icon.addClass('glyphicon-menu-down');
+	});
+
+	$('#accordion').on('hide.bs.collapse', function (event) {
+		var icon = getIcon(event);
+		icon.removeClass('glyphicon-menu-down');
+		icon.addClass('glyphicon-menu-right');
+	});
+
 } ());

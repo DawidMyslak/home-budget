@@ -7,6 +7,12 @@
  */
 
 (function () {
+	if (typeof $ === 'undefined') return;
+	if (typeof Chartist === 'undefined') return;
+	if (typeof dataA === 'undefined') return;
+	if (typeof dataB === 'undefined') return;
+	if (typeof dataC === 'undefined') return;
+	
 	function format(value) {
 		return ' &euro;' + Number(value).toFixed(2);
 	}

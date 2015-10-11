@@ -77,6 +77,11 @@ a.desc:after {
     white-space: nowrap;
 }
 
+.grid-view tbody a {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 .hint-block {
     display: block;
     margin-top: 5px;
@@ -98,9 +103,4 @@ a.desc:after {
     margin-bottom: 5px;
     border: 1px solid #eee;
     float: left;
-}
-
-.grid-view tbody a, .category-index li a {
-    padding-left: 5px;
-    padding-right: 5px;
 }
