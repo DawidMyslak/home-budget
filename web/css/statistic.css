@@ -93,7 +93,7 @@ h2 {
     display: inline-block;
     min-width: 100px;
     padding: 10px;
-    background: #ddd;
+    background: #eee;
     text-align: center;
     pointer-events: none;
     z-index: 1;
@@ -108,7 +108,7 @@ h2 {
     height: 0;
     margin-left: -15px;
     border: 15px solid transparent;
-    border-top-color: #ddd;
+    border-top-color: #eee;
 }
 
 /*

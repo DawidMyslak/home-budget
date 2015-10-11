@@ -4,6 +4,14 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+.navbar-inverse .navbar-brand {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #ccc;
+}
+
 .wrap {
     min-height: 100%;
     height: auto;

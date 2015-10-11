@@ -109,8 +109,9 @@ class Keyword extends \yii\db\ActiveRecord
         $sql = 'SELECT description AS name, COUNT(description) AS count FROM transaction
                 WHERE user_id=:user_id AND category_id IS NULL AND subcategory_id IS NULL AND money_out IS NOT NULL
                 GROUP BY description
-                HAVING count >= 3
-                ORDER BY count DESC';
+                HAVING count >= 2
+                ORDER BY count DESC
+                LIMIT 10';
                 
         return Yii::$app->db->createCommand($sql)
             ->bindValue(':user_id', Yii::$app->user->identity->id)
