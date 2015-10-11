@@ -47,20 +47,18 @@
 	function getIcon(event) {
 		var temp = $('#' + event.target.id);
 		var temp2 = temp.prev()[0].id;
-		var temp3 = $('#' + temp2 + ' .menu-icon');
+		var temp3 = $('#' + temp2 + ' .caret');
 		return temp3;
 	}
 
 	$('#accordion').on('show.bs.collapse', function (event) {
 		var icon = getIcon(event);
-		icon.removeClass('glyphicon-menu-right');
-		icon.addClass('glyphicon-menu-down');
+		icon.removeClass('caret-rotated');
 	});
 
 	$('#accordion').on('hide.bs.collapse', function (event) {
 		var icon = getIcon(event);
-		icon.removeClass('glyphicon-menu-down');
-		icon.addClass('glyphicon-menu-right');
+		icon.addClass('caret-rotated');
 	});
 
 } ());

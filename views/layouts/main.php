@@ -27,7 +27,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Home Budget',
+        'brandLabel' => 'HomeBudget.ie',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -45,16 +45,51 @@ AppAsset::register($this);
     }
     else {
         $items = [
-            ['label' => 'Home', 'url' => ['/site'], 'active' => 'site' == Yii::$app->controller->id],
-            ['label' => 'Statistics', 'url' => ['/statistic'], 'active' => 'statistic' == Yii::$app->controller->id],
-            ['label' => 'Categories', 'url' => ['/category'], 'active' => ('category' == Yii::$app->controller->id || 'subcategory' == Yii::$app->controller->id)],
-            ['label' => 'Keywords', 'url' => ['/keyword'], 'active' => 'keyword' == Yii::$app->controller->id],
-            ['label' => 'Transactions', 'url' => ['/transaction'], 'active' => 'transaction' == Yii::$app->controller->id],
-            ['label' => 'Profile', 'url' => ['/user/profile'], 'active' => 'user' == Yii::$app->controller->id],
             [
-                'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                'url' => ['/site/logout'],
-                'linkOptions' => ['data-method' => 'post'],
+                'label' => 'Statistics',
+                'active' => 'statistic' == Yii::$app->controller->id,
+                'items' => [
+                    ['label' => 'Dashboard', 'url' => ['/statistic/index']],
+                    ['label' => 'Forecast', 'url' => '#'],
+                ],
+            ],
+            [
+                'label' => 'Categories',
+                'active' => 'category' == Yii::$app->controller->id,
+                'items' => [
+                    ['label' => 'Manage', 'url' => ['/category/index']],
+                ],
+            ],
+            [
+                'label' => 'Keywords',
+                'active' => 'keyword' == Yii::$app->controller->id,
+                'items' => [
+                    ['label' => 'Manage', 'url' => ['/keyword/index']],
+                    ['label' => 'Suggestions', 'url' => ['/keyword/suggestion']],
+                ],
+            ],
+            [
+                'label' => 'Transactions',
+                'active' => 'transaction' == Yii::$app->controller->id,
+                'items' => [
+                    ['label' => 'Manage', 'url' => ['/transaction/index']],
+                    ['label' => 'Import', 'url' => ['/transaction/import']],
+                    ['label' => 'Categorise', 'url' => ['/transaction/categorise']],
+                ],
+            ],
+            [
+                'label' => 'Account',
+                'active' => 'user' == Yii::$app->controller->id,
+                'items' => [
+                    ['label' => 'Profile', 'url' => ['/user/profile']],
+                    ['label' => 'Change Password', 'url' => ['/user/password']],
+                    '<li class="divider"></li>',
+                    [
+                        'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                        'url' => ['/site/logout'],
+                        'linkOptions' => ['data-method' => 'post'],
+                    ],
+                ],
             ],
         ];
     }

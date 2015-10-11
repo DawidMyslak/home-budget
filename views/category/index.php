@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php foreach ($categories as $index => $category): ?>
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="collapseListGroupHeading<?= $index ?>">
-                    <span class="glyphicon glyphicon-menu-right menu-icon"></span>
+                    <span class="caret caret-rotated"></span>
                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseListGroup<?= $index ?>">
                         <?= Html::encode($category['name']) ?>
                     </a>

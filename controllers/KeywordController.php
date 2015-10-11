@@ -47,6 +47,19 @@ class KeywordController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
+    
+    /**
+     * Lists all Keyword models.
+     * @return mixed
+     */
+    public function actionSuggestion()
+    {
+        $searchModel = new KeywordSearch();
+
+        return $this->render('suggestion', [
+            'searchModel' => $searchModel,
+        ]);
+    }
 
     /**
      * Displays a single Keyword model.
