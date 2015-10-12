@@ -1,7 +1,14 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300");
+
 html,
 body {
     height: 100%;
     font-family: 'Roboto', sans-serif;
+}
+
+.navbar-inverse {
+    background-color: #333;
+    border-color: #080808;
 }
 
 .navbar-inverse .navbar-brand {
