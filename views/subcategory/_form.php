@@ -19,7 +19,7 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, 'category_id')->dropDownList(
         ArrayHelper::map(Category::getAll(), 'id', 'name'),
         ['prompt' => '']
-    )->label('Category') ?>
+    )->label('Parent') ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

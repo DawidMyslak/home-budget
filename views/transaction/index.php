@@ -9,20 +9,18 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Transactions';
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['subtitle'] = 'Manage';
+$this->params['buttons'][] = ['label' => 'Create Transaction', 'url' => ['create']];
+
 ?>
+
 <div class="transaction-index">
 
     <?php if (Yii::$app->session->hasFlash('result')): ?>
         <div class="alert alert-success" role="alert"><?= Yii::$app->session->getFlash('result') ?></div>
     <?php endif; ?>
 
-    <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Create Transaction', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

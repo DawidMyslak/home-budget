@@ -8,16 +8,13 @@ CategoryAsset::register($this);
 /* @var $categories array */
 
 $this->title = 'Categories';
-$this->params['breadcrumbs'][] = $this->title;
-?>
-<div class="category-index">
+$this->params['subtitle'] = 'Manage';
+$this->params['buttons'][] = ['label' => 'Create Category', 'url' => ['create']];
+$this->params['buttons'][] = ['label' => 'Create Subcategory', 'url' => ['/subcategory/create']];
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    
-    <p>
-        <?= Html::a('Create Category', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Create Subcategory', ['/subcategory/create'], ['class' => 'btn btn-success']) ?>
-    </p>
+?>
+
+<div class="category-index">
 
     <div class="panel-group" role="tablist" id="accordion">
         <?php foreach ($categories as $index => $category): ?>

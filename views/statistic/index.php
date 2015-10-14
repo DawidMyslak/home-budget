@@ -11,11 +11,11 @@ StatisticAsset::register($this);
 /* @var $statistic app\models\Statistic */
 
 $this->title = 'Statistics';
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['subtitle'] = 'Dashboard';
+
 ?>
+
 <div class="statistic-index">
-    
-    <h1>Statistics</h1>
     
     <ul class="nav nav-pills">
     <?php foreach ($statistic->years as $item): ?>
@@ -28,15 +28,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <hr>
     
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-sm-4">
             Income
             <h2>&euro;<?= $statistic->moneyIn ?></h2>    
         </div>
-        <div class="col-md-4">
+        <div class="col-sm-4">
             Expenses
             <h2>&euro;<?= $statistic->moneyOut ?></h2>    
         </div>
-        <div class="col-md-4">
+        <div class="col-sm-4">
             Balance
             <h2><?= $statistic->status ?> &euro;<?= $statistic->balance ?></h2>    
         </div>
@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h3>Expenses in categories</h3>
     
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-sm-6">
             <ul class="list-group">
             <?php foreach ($statistic->moneyInCategories as $index => $item): ?>
                 <li class="list-group-item">
@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php endforeach; ?>
             </ul>
         </div>
-        <div class="col-md-6">
+        <div class="col-sm-6">
             <div class="ct-chart-area">
                 <div class="ct-chart-a-center">
                     <h3 class="ct-chart-a-value">&euro;<?= $statistic->moneyOut ?></h3>

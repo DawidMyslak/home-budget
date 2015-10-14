@@ -8,13 +8,12 @@ use app\models\TransactionImport;
 /* @var $this yii\web\View */
 /* @var $model app\models\forms\UploadForm */
 
-$this->title = 'Import Transactions';
-$this->params['breadcrumbs'][] = ['label' => 'Transactions', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
-?>
-<div class="transaction-import">
+$this->title = 'Transactions';
+$this->params['subtitle'] = 'Import';
 
-    <h1><?= Html::encode($this->title) ?></h1>
+?>
+
+<div class="transaction-import">
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
 

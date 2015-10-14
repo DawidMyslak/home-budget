@@ -5,14 +5,12 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Subcategory */
 
-$this->title = 'Update Subcategory: ' . ' ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['/category/index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
-?>
-<div class="subcategory-update">
+$this->title = 'Categories';
+$this->params['subtitle'] = 'Update Subcategory';
 
-    <h1><?= Html::encode($this->title) ?></h1>
+?>
+
+<div class="subcategory-update">
 
     <?= $this->render('_form', [
         'model' => $model,

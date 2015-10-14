@@ -7,13 +7,12 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\forms\PasswordForm */
 /* @var $form yii\widgets\ActiveForm */
 
-$this->title = 'Change Password';
-$this->params['breadcrumbs'][] = ['label' => 'Profile', 'url' => ['profile']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = 'Account';
+$this->params['subtitle'] = 'Change Password';
+
 ?>
+
 <div class="user-password">
-    
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?php $form = ActiveForm::begin(); ?>
 

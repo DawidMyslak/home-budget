@@ -100,11 +100,28 @@ AppAsset::register($this);
     ]);
     NavBar::end();
     ?>
+    
+    <?php if (isset($this->title) && isset($this->params['subtitle'])): ?>
+    <div class="module">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h1 class="title"><?= $this->title ?></h1>
+                    <span class="subtitle"><?= $this->params['subtitle'] ?></span>
+                </div>
+                <div class="col-sm-6 buttons">
+                <?php if (isset($this->params['buttons'])): ?>
+                    <?php foreach ($this->params['buttons'] as $button): ?>
+                        <?= Html::a($button['label'], $button['url'], ['class' => 'btn btn-success']) ?>
+                    <? endforeach; ?>
+                <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
 
     <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
         <?= $content ?>
     </div>
 </div>
