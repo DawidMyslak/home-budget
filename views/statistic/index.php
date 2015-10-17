@@ -110,26 +110,26 @@ $this->params['buttons'][] = ['label' => 'Forecast', 'url' => ['forecast']];
 
 <script>        
     var dataA = {
-        labels: <?= Json::encode($chart->moneyInCategoriesChart->labels) ?>,
-        series: <?= Json::encode($chart->moneyInCategoriesChart->series) ?>
+        labels: <?= Json::htmlEncode($chart->moneyInCategoriesChart->labels) ?>,
+        series: <?= Json::htmlEncode($chart->moneyInCategoriesChart->series) ?>
     };
     
     var dataB = {
-        labels: <?= Json::encode($chart->moneyInMonthsChart->labels) ?>,
+        labels: <?= Json::htmlEncode($chart->moneyInMonthsChart->labels) ?>,
         series: [
             {
                 name: 'Money In',
-                data: <?= Json::encode($chart->moneyInMonthsChart->series1) ?>
+                data: <?= Json::htmlEncode($chart->moneyInMonthsChart->series1) ?>
             },
             {
                 name: 'Money Out',
-                data: <?= Json::encode($chart->moneyInMonthsChart->series2) ?>
+                data: <?= Json::htmlEncode($chart->moneyInMonthsChart->series2) ?>
             }
         ]
     };
     
     var dataC = {
-        labels: <?= Json::encode($chart->balanceInMonthsChart->labels) ?>,
-        series: [<?= Json::encode($chart->balanceInMonthsChart->series) ?>]
+        labels: <?= Json::htmlEncode($chart->balanceInMonthsChart->labels) ?>,
+        series: [<?= Json::htmlEncode($chart->balanceInMonthsChart->series) ?>]
     };
 </script>

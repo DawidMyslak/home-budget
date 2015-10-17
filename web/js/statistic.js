@@ -53,7 +53,7 @@
 			label = slicePie.attr('ct:label');
 
 		$('.ct-chart-a-value').html(format(value));
-		$('.ct-chart-a-label').html(label);
+		$('.ct-chart-a-label').html($('<div>').text(label).html());
 	});
 
 	chartA.on('mouseleave', '.ct-slice-donut', function () {

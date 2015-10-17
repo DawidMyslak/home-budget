@@ -56,5 +56,5 @@ CategoryAsset::register($this);
 
 <script>
     var model = 'transaction';
-    var categories = <?= Json::encode(Category::getStructure()) ?>;
+    var categories = <?= Json::htmlEncode(Category::getStructure()) ?>;
 </script>

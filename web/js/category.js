@@ -20,7 +20,7 @@
 			if (category.id === categoryId) {
 				for (var j = 0, l = category.subcategories.length; j < l; j++) {
 					var subcategory = category.subcategories[j];
-					$('#' + model + '-subcategory_id').append('<option value="' + subcategory.id + '">' + subcategory.name + '</option>');
+					$('#' + model + '-subcategory_id').append('<option value="' + subcategory.id + '">' + $('<div>').text(subcategory.name).html() + '</option>');
 				}
 				$('#' + model + '-subcategory_id').val(subcategoryId);
 				break;

@@ -41,5 +41,5 @@ CategoryAsset::register($this);
 
 <script>
     var model = 'keyword';
-    var categories = <?= Json::encode(Category::getStructure()) ?>;
+    var categories = <?= Json::htmlEncode(Category::getStructure()) ?>;
 </script>
