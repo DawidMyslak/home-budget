@@ -11,8 +11,7 @@ body {
 }
 
 .navbar-inverse {
-    background-color: #333;
-    border-color: #080808;
+    background-color: #337ab7;
     border: none;
 }
 
@@ -21,7 +20,13 @@ body {
 }
 
 .navbar-inverse .navbar-nav > li > a {
-    color: #ccc;
+    color: #cbe9f2;
+}
+
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .open > a {
+    background-color: #205a8c !important;
 }
 
 .wrap {
@@ -32,7 +37,7 @@ body {
 }
 
 .module {
-    background-color: #fafafa;
+    background-color: #f5f5f5;
     padding: 50px 0 20px 0;
     margin-bottom: 20px;
 }

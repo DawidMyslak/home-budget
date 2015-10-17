@@ -45,38 +45,10 @@ AppAsset::register($this);
     }
     else {
         $items = [
-            [
-                'label' => 'Statistics',
-                'active' => 'statistic' == Yii::$app->controller->id,
-                'items' => [
-                    ['label' => 'Dashboard', 'url' => ['/statistic/index']],
-                    ['label' => 'Forecast', 'url' => '#'],
-                ],
-            ],
-            [
-                'label' => 'Categories',
-                'active' => 'category' == Yii::$app->controller->id,
-                'items' => [
-                    ['label' => 'Manage', 'url' => ['/category/index']],
-                ],
-            ],
-            [
-                'label' => 'Keywords',
-                'active' => 'keyword' == Yii::$app->controller->id,
-                'items' => [
-                    ['label' => 'Manage', 'url' => ['/keyword/index']],
-                    ['label' => 'Suggestions', 'url' => ['/keyword/suggestion']],
-                ],
-            ],
-            [
-                'label' => 'Transactions',
-                'active' => 'transaction' == Yii::$app->controller->id,
-                'items' => [
-                    ['label' => 'Manage', 'url' => ['/transaction/index']],
-                    ['label' => 'Import', 'url' => ['/transaction/import']],
-                    ['label' => 'Categorise', 'url' => ['/transaction/categorise']],
-                ],
-            ],
+            ['label' => 'Statistics', 'url' => ['/statistic'], 'active' => 'statistic' == Yii::$app->controller->id],
+            ['label' => 'Categories', 'url' => ['/category'], 'active' => ('category' == Yii::$app->controller->id || 'subcategory' == Yii::$app->controller->id)],
+            ['label' => 'Keywords', 'url' => ['/keyword'], 'active' => 'keyword' == Yii::$app->controller->id],
+            ['label' => 'Transactions', 'url' => ['/transaction'], 'active' => 'transaction' == Yii::$app->controller->id],
             [
                 'label' => 'Account',
                 'active' => 'user' == Yii::$app->controller->id,
