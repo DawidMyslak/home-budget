@@ -32,18 +32,6 @@ class CategoryController extends Controller
         ];
     }
     
-    /**		
-     * Displays a single Category model.		
-     * @param integer $id		
-     * @return mixed		
-     */		
-    public function actionView($id)		
-    {		
-        return $this->render('view', [		
-            'model' => $this->findModel($id),		
-        ]);		
-    }
-    
     /**
      * Displays a structure of all Category and Subcategory models.
      * @return mixed
@@ -67,6 +55,7 @@ class CategoryController extends Controller
         $model = new Category();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->getSession()->setFlash('result', 'Category created.');
             return $this->redirect(['index']);
         } else {
             return $this->render('create', [
@@ -86,6 +75,7 @@ class CategoryController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->getSession()->setFlash('result', 'Category updated.');
             return $this->redirect(['index']);
         } else {
             return $this->render('update', [
@@ -104,6 +94,7 @@ class CategoryController extends Controller
     {
         $this->findModel($id)->delete();
 
+        Yii::$app->getSession()->setFlash('result', 'Category deleted.');
         return $this->redirect(['index']);
     }
 

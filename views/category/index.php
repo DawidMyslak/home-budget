@@ -15,6 +15,10 @@ $this->params['buttons'][] = ['label' => 'Create Subcategory', 'url' => ['/subca
 ?>
 
 <div class="category-index">
+    
+    <?php if (Yii::$app->session->hasFlash('result')): ?>
+        <div class="alert alert-success" role="alert"><?= Yii::$app->session->getFlash('result') ?></div>
+    <?php endif; ?>
 
     <div class="panel-group" role="tablist" id="accordion">
         <?php foreach ($categories as $index => $category): ?>

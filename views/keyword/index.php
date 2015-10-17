@@ -16,6 +16,10 @@ $this->params['buttons'][] = ['label' => 'Suggestions', 'url' => ['suggestion']]
 ?>
 
 <div class="keyword-index">
+    
+    <?php if (Yii::$app->session->hasFlash('result')): ?>
+        <div class="alert alert-success" role="alert"><?= Yii::$app->session->getFlash('result') ?></div>
+    <?php endif; ?>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 

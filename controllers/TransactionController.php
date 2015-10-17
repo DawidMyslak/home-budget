@@ -52,18 +52,6 @@ class TransactionController extends Controller
     }
 
     /**
-     * Displays a single Transaction model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
      * Creates a new Transaction model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -73,7 +61,8 @@ class TransactionController extends Controller
         $model = new Transaction();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->getSession()->setFlash('result', 'Transaction created.');
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -92,7 +81,8 @@ class TransactionController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->getSession()->setFlash('result', 'Transaction updated.');
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -109,8 +99,9 @@ class TransactionController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        
+            Yii::$app->getSession()->setFlash('result', 'Transaction deleted.');
+            return $this->redirect(['index']);
     }
 
     /**

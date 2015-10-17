@@ -73,7 +73,8 @@ AppAsset::register($this);
     NavBar::end();
     ?>
     
-    <?php if (isset($this->title) && isset($this->params['subtitle'])): ?>
+    <?php if (isset($this->params['subtitle'])): ?>
+    
     <div class="module">
         <div class="container">
             <div class="row">
@@ -91,11 +92,17 @@ AppAsset::register($this);
             </div>
         </div>
     </div>
-    <?php endif; ?>
-
     <div class="container">
         <?= $content ?>
     </div>
+    
+    <?php else: ?>
+    
+    <div class="container content">
+        <?= $content ?>
+    </div>
+    
+    <?php endif; ?>
 </div>
 
 <footer class="footer">

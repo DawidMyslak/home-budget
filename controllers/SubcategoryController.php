@@ -36,18 +36,6 @@ class SubcategoryController extends Controller
     }
 
     /**
-     * Displays a single Subcategory model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
      * Creates a new Subcategory model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -57,7 +45,8 @@ class SubcategoryController extends Controller
         $model = new Subcategory();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['/category']);
+            Yii::$app->getSession()->setFlash('result', 'Subcategory created.');
+            return $this->redirect(['/category/index']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -76,7 +65,8 @@ class SubcategoryController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['/category']);
+            Yii::$app->getSession()->setFlash('result', 'Subcategory updated.');
+            return $this->redirect(['/category/index']);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -94,7 +84,8 @@ class SubcategoryController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['/category']);
+        Yii::$app->getSession()->setFlash('result', 'Subcategory deleted.');
+        return $this->redirect(['/category/index']);
     }
 
     /**

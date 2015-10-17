@@ -62,18 +62,6 @@ class KeywordController extends Controller
     }
 
     /**
-     * Displays a single Keyword model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
      * Creates a new Keyword model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -84,7 +72,8 @@ class KeywordController extends Controller
         $model->name = Yii::$app->request->get('name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->getSession()->setFlash('result', 'Keyword created.');
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -103,7 +92,8 @@ class KeywordController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->getSession()->setFlash('result', 'Keyword saved.');
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -121,6 +111,7 @@ class KeywordController extends Controller
     {
         $this->findModel($id)->delete();
 
+        Yii::$app->getSession()->setFlash('result', 'Keyword deleted.');
         return $this->redirect(['index']);
     }
 
