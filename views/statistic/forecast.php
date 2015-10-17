@@ -28,9 +28,9 @@ $this->params['subtitle'] = 'Forecast';
                     <?php $summary += $forecastInCategory; ?>
                 </li>
                 <?php endif; endforeach; ?>
-                <li class="list-group-item">
-                    <strong>Summary</strong>
-                    <span class="pull-right"><strong>&euro;<?= FormatHelper::number($summary) ?></strong></span>
+                <li class="list-group-item list-group-item-success">
+                    Summary
+                    <span class="pull-right">&euro;<?= FormatHelper::number($summary) ?></span>
                 </li>
             </ul>
         </div>

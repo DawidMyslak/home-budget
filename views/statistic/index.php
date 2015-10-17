@@ -47,7 +47,7 @@ $this->params['buttons'][] = ['label' => 'Forecast', 'url' => ['forecast']];
     <h3>Expenses in categories</h3>
     
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-7">
             <ul class="list-group">
             <?php foreach ($statistic->moneyInCategories as $index => $item): ?>
                 <li class="list-group-item">
@@ -58,7 +58,7 @@ $this->params['buttons'][] = ['label' => 'Forecast', 'url' => ['forecast']];
             <?php endforeach; ?>
             </ul>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-5">
             <div class="ct-chart-area">
                 <div class="ct-chart-a-center">
                     <h3 class="ct-chart-a-value">&euro;<?= FormatHelper::number($statistic->moneyOut) ?></h3>
