@@ -95,11 +95,17 @@ class Subcategory extends \yii\db\ActiveRecord
         return $this->hasMany(Transaction::className(), ['subcategory_id' => 'id']);
     }
     
+    /**
+     * @return Subcategory
+     */
     public static function findById($id)
     {
         return static::findOne(['id' => $id, 'user_id' => Yii::$app->user->identity->id]);
     }
     
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public static function getAll() {
         return self::find()
             ->where(['user_id' => Yii::$app->user->identity->id])

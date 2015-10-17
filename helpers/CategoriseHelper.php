@@ -10,6 +10,9 @@ class CategoriseHelper
     private $userKeywords;
     private $globalKeywords;
     
+    /**
+     * @return void
+     */
     public function prepareKeywords() {
         // find keywords for currently logged in user
         $this->userKeywords = Keyword::findAll(['user_id' => Yii::$app->user->identity->id]);
@@ -18,6 +21,9 @@ class CategoriseHelper
         $this->globalKeywords = Keyword::findAll(['user_id' => null]);
     }
     
+    /**
+     * @return boolean
+     */
     private static function match($description, $name) {
         // remove all white spaces and make it lowercase
         $description = strtolower(preg_replace('/\s+/', '', $description));
@@ -31,6 +37,9 @@ class CategoriseHelper
         return false;
     }
     
+    /**
+     * @return Keyword|null
+     */
     public function search($description) {
         // first, search in user keywords
         foreach ($this->userKeywords as $keyword) {

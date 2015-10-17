@@ -93,7 +93,7 @@ class Category extends \yii\db\ActiveRecord
     }
     
     /**
-     * @return User|null
+     * @return Category
      */
     public static function findById($id)
     {

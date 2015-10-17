@@ -125,6 +125,9 @@ class Transaction extends \yii\db\ActiveRecord
         return $this->hasOne(Keyword::className(), ['id' => 'keyword_id']);
     }
     
+    /**
+     * @return void
+     */
     public function categorise()
     {
         $this->categorizedCounter = 0;
@@ -157,15 +160,24 @@ class Transaction extends \yii\db\ActiveRecord
         $this->result = $this->categorizedCounter . ' transactions categorized.';
     }
     
+    /**
+     * @return Transaction
+     */
     public static function findById($id)
     {
         return static::findOne(['id' => $id, 'user_id' => Yii::$app->user->identity->id]);
     }
     
+    /**
+     * @return string
+     */
     public function getResult() {
         return $this->result;
     }
     
+    /**
+     * @return string
+     */
     public function getFormattedDate() {
         if ($date = \DateTime::createFromFormat('Y-m-d H:i:s', $this->date)) {
             return $date->format('Y-m-d');

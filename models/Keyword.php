@@ -100,7 +100,7 @@ class Keyword extends \yii\db\ActiveRecord
     }
     
     /**
-     * @return Keyword|null
+     * @return Keyword
      */
     public static function findById($id)
     {

@@ -22,6 +22,9 @@ class TransactionImport extends Transaction
         return Model::scenarios();
     }
     
+    /**
+     * @return array
+     */
     public static function getTypes() {
         return [
             1 => [
@@ -39,6 +42,9 @@ class TransactionImport extends Transaction
         ];
     }
     
+    /**
+     * @return void
+     */
     public function import($path, $type)
     {
         $this->importedCounter = 0;
