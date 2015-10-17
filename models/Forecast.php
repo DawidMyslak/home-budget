@@ -7,7 +7,7 @@ use Yii;
 class Forecast extends \yii\base\Object
 {   
     /**
-     * @return array
+     * @return string|null|boolean
      */
     public function getForecastInCategory($categoryId)
     {

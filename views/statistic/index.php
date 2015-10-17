@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\Json;
 use app\assets\StatisticAsset;
+use app\helpers\FormatHelper;
 
 StatisticAsset::register($this);
 
@@ -31,15 +32,15 @@ $this->params['buttons'][] = ['label' => 'Forecast', 'url' => ['forecast']];
     <div class="row">
         <div class="col-sm-4">
             Income
-            <h2>&euro;<?= $statistic->moneyIn ?></h2>    
+            <h2>&euro;<?= FormatHelper::number($statistic->moneyIn) ?></h2>    
         </div>
         <div class="col-sm-4">
             Expenses
-            <h2>&euro;<?= $statistic->moneyOut ?></h2>    
+            <h2>&euro;<?= FormatHelper::number($statistic->moneyOut) ?></h2>    
         </div>
         <div class="col-sm-4">
             Balance
-            <h2><?= $statistic->status ?> &euro;<?= $statistic->balance ?></h2>    
+            <h2><?= $statistic->status ?> &euro;<?= FormatHelper::number($statistic->balance) ?></h2>    
         </div>
     </div>
     
@@ -52,7 +53,7 @@ $this->params['buttons'][] = ['label' => 'Forecast', 'url' => ['forecast']];
                 <li class="list-group-item">
                     <span class="percent" style="width: <?= $item['percent'] ?>%;"></span>
                     <span class="ct-desc ct-color-<?= $index ?>"></span><?= Html::encode($item['name']) ?>
-                    <span class="pull-right">&euro;<?= $item['sum'] ?></span>
+                    <span class="pull-right">&euro;<?= FormatHelper::number($item['sum']) ?></span>
                 </li>
             <?php endforeach; ?>
             </ul>
@@ -60,7 +61,7 @@ $this->params['buttons'][] = ['label' => 'Forecast', 'url' => ['forecast']];
         <div class="col-sm-6">
             <div class="ct-chart-area">
                 <div class="ct-chart-a-center">
-                    <h3 class="ct-chart-a-value">&euro;<?= $statistic->moneyOut ?></h3>
+                    <h3 class="ct-chart-a-value">&euro;<?= FormatHelper::number($statistic->moneyOut) ?></h3>
                     <span class="ct-chart-a-label">Expenses</span>
                 </div>
                 <div class="ct-chart ct-chart-a ct-perfect-fourth"></div>
@@ -97,7 +98,7 @@ $this->params['buttons'][] = ['label' => 'Forecast', 'url' => ['forecast']];
             <tr>
                 <td><?= $previousCategory != $item['cname'] ? Html::encode($item['cname']) : '' ?></td>
                 <td><?= Html::encode($item['sname']) ?></td>
-                <td>&euro;<?= $item['sum'] ?></td>
+                <td>&euro;<?= FormatHelper::number($item['sum']) ?></td>
             </tr>
             <?php $previousCategory = $item['cname']; endforeach; ?>
         </tbody>

@@ -85,6 +85,9 @@ class Statistic extends \yii\base\Object
         return $this->status;
     }
     
+    /**
+     * @return array
+     */
     private function prepareMoneyInMonths()
     {
         $sql = 'SELECT DATE_FORMAT(date, "%m") AS date, SUM(money_out) AS sum_out, SUM(money_in) AS sum_in
@@ -99,6 +102,9 @@ class Statistic extends \yii\base\Object
             ->queryAll();
     }
     
+    /**
+     * @return array
+     */
     private function prepareBalanceInMonths()
     {
         $sql = 'SELECT DATE_FORMAT(date, "%m") AS date, IFNULL(SUM(money_in), 0) - IFNULL(SUM(money_out), 0) AS balance
@@ -113,6 +119,9 @@ class Statistic extends \yii\base\Object
             ->queryAll();
     }
     
+    /**
+     * @return array
+     */
     private function prepareMoneyInCategories()
     {
         $sql = 'SELECT name, sum, TRUNCATE(sum / total * 100, 2) AS percent FROM
@@ -130,6 +139,9 @@ class Statistic extends \yii\base\Object
             ->queryAll();
     }
     
+    /**
+     * @return array
+     */
     private function prepareMoneyInSubcategories()
     {
         $sql = 'SELECT c.id AS cid, s.id AS sid, IFNULL(c.name, "Uncategorized") AS cname, IFNULL(s.name, "Uncategorized") AS sname, SUM(t.money_out) AS sum
@@ -146,6 +158,9 @@ class Statistic extends \yii\base\Object
             ->queryAll();
     }
     
+    /**
+     * @return array
+     */
     private function prepareYears()
     {
         $sql = 'SELECT DISTINCT YEAR(date) AS year FROM transaction WHERE user_id = :user_id ORDER BY year;';
@@ -155,6 +170,9 @@ class Statistic extends \yii\base\Object
             ->queryAll();
     }
     
+    /**
+     * @return string|null|boolean
+     */
     private function prepareMoneyIn()
     {
         $sql = 'SELECT SUM(money_in) FROM transaction WHERE user_id = :user_id AND YEAR(date) = :year';
@@ -165,6 +183,9 @@ class Statistic extends \yii\base\Object
             ->queryScalar();
     }
     
+    /**
+     * @return string|null|boolean
+     */
     private function prepareMoneyOut()
     {
         $sql = 'SELECT SUM(money_out) FROM transaction WHERE user_id = :user_id AND YEAR(date) = :year';
