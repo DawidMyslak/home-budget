@@ -8,9 +8,6 @@ use yii\web\UploadedFile;
 
 class UploadForm extends Model
 {
-    /**
-     * @var UploadedFile
-     */
     public $file;
     public $path;
     public $type;
@@ -24,6 +21,9 @@ class UploadForm extends Model
         ];
     }
 
+    /**
+     * @return boolean whether the model passes validation
+     */
     public function upload()
     {
         if ($this->validate()) {

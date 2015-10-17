@@ -92,11 +92,17 @@ class Category extends \yii\db\ActiveRecord
         return $this->hasMany(Transaction::className(), ['category_id' => 'id']);
     }
     
+    /**
+     * @return User|null
+     */
     public static function findById($id)
     {
         return static::findOne(['id' => $id, 'user_id' => Yii::$app->user->identity->id]);
     }
     
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public static function getAll() {
         return self::find()
             ->where(['user_id' => Yii::$app->user->identity->id])
@@ -104,6 +110,9 @@ class Category extends \yii\db\ActiveRecord
             ->all();
     }
     
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public static function getStructure() {
         return self::find()
             ->where(['user_id' => Yii::$app->user->identity->id])

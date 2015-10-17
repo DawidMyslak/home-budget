@@ -7,6 +7,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use app\models\Statistic;
 use app\models\Chart;
+use app\models\Forecast;
 
 class StatisticController extends Controller
 {
@@ -42,6 +43,19 @@ class StatisticController extends Controller
         return $this->render('index', [
             'statistic' => $statistic,
             'chart' => $chart,
+        ]);
+    }
+    
+    /**
+     * Displays forecast.
+     * @return mixed
+     */
+    public function actionForecast()
+    {
+        $forecast = new Forecast();
+        
+        return $this->render('forecast', [
+            'forecast' => $forecast,
         ]);
     }
 }

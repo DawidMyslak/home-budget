@@ -12,6 +12,7 @@ StatisticAsset::register($this);
 
 $this->title = 'Statistics';
 $this->params['subtitle'] = 'Dashboard';
+$this->params['buttons'][] = ['label' => 'Forecast', 'url' => ['forecast']];
 
 ?>
 
@@ -50,7 +51,7 @@ $this->params['subtitle'] = 'Dashboard';
             <?php foreach ($statistic->moneyInCategories as $index => $item): ?>
                 <li class="list-group-item">
                     <span class="percent" style="width: <?= $item['percent'] ?>%;"></span>
-                    <span class="ct-desc ct-color-<?= $index ?>"></span><?= $item['name'] ?>
+                    <span class="ct-desc ct-color-<?= $index ?>"></span><?= Html::encode($item['name']) ?>
                     <span class="pull-right">&euro;<?= $item['sum'] ?></span>
                 </li>
             <?php endforeach; ?>
@@ -94,8 +95,8 @@ $this->params['subtitle'] = 'Dashboard';
         <tbody>
             <?php $previousCategory = ''; foreach ($statistic->moneyInSubcategories as $item): ?>
             <tr>
-                <td><?= $previousCategory != $item['cname'] ? $item['cname'] : '' ?></td>
-                <td><?= $item['sname'] ?></td>
+                <td><?= $previousCategory != $item['cname'] ? Html::encode($item['cname']) : '' ?></td>
+                <td><?= Html::encode($item['sname']) ?></td>
                 <td>&euro;<?= $item['sum'] ?></td>
             </tr>
             <?php $previousCategory = $item['cname']; endforeach; ?>

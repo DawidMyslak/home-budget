@@ -103,7 +103,7 @@ class Statistic extends \yii\base\Object
     {
         $sql = 'SELECT DATE_FORMAT(date, "%m") AS date, IFNULL(SUM(money_in), 0) - IFNULL(SUM(money_out), 0) AS balance
                 FROM transaction
-                WHERE user_id=:user_id AND YEAR(date)=:year
+                WHERE user_id = :user_id AND YEAR(date) = :year
                 GROUP BY DATE_FORMAT(date, "%m")
                 ORDER BY date';
                 
@@ -117,12 +117,12 @@ class Statistic extends \yii\base\Object
     {
         $sql = 'SELECT name, sum, TRUNCATE(sum / total * 100, 2) AS percent FROM
                 (SELECT c.id AS id, IFNULL(c.name, "Uncategorized") AS name, SUM(t.money_out) AS sum,
-                (SELECT SUM(money_out) FROM transaction WHERE user_id=:user_id AND YEAR(date)=:year) AS total
+                (SELECT SUM(money_out) FROM transaction WHERE user_id = :user_id AND YEAR(date) = :year) AS total
                 FROM category c
-                RIGHT JOIN transaction t ON c.id=t.category_id
-                WHERE t.user_id=:user_id AND YEAR(t.date)=:year
+                RIGHT JOIN transaction t ON c.id = t.category_id
+                WHERE t.user_id = :user_id AND YEAR(t.date) = :year
                 GROUP BY c.id
-                ORDER BY c.id) temp;';
+                ORDER BY c.id) AS temp;';
                 
         return Yii::$app->db->createCommand($sql)
             ->bindValue(':user_id', $this->userId)
@@ -134,9 +134,9 @@ class Statistic extends \yii\base\Object
     {
         $sql = 'SELECT c.id AS cid, s.id AS sid, IFNULL(c.name, "Uncategorized") AS cname, IFNULL(s.name, "Uncategorized") AS sname, SUM(t.money_out) AS sum
                 FROM subcategory s
-                LEFT JOIN transaction t ON s.id=t.subcategory_id
+                LEFT JOIN transaction t ON s.id = t.subcategory_id
                 LEFT JOIN category c ON s.category_id=c.id
-                WHERE t.user_id=:user_id AND YEAR(t.date)=:year
+                WHERE t.user_id = :user_id AND YEAR(t.date) = :year
                 GROUP BY s.id
                 ORDER BY c.id, s.id;';
                 
@@ -148,7 +148,7 @@ class Statistic extends \yii\base\Object
     
     private function prepareYears()
     {
-        $sql = 'SELECT DISTINCT YEAR(date) AS year FROM transaction WHERE user_id=:user_id ORDER BY year;';
+        $sql = 'SELECT DISTINCT YEAR(date) AS year FROM transaction WHERE user_id = :user_id ORDER BY year;';
         
         return Yii::$app->db->createCommand($sql)
             ->bindValue(':user_id', $this->userId)
@@ -157,7 +157,7 @@ class Statistic extends \yii\base\Object
     
     private function prepareMoneyIn()
     {
-        $sql = 'SELECT SUM(money_in) FROM transaction WHERE user_id=:user_id AND YEAR(date)=:year';
+        $sql = 'SELECT SUM(money_in) FROM transaction WHERE user_id = :user_id AND YEAR(date) = :year';
         
         return Yii::$app->db->createCommand($sql)
             ->bindValue(':user_id', $this->userId)
@@ -167,7 +167,7 @@ class Statistic extends \yii\base\Object
     
     private function prepareMoneyOut()
     {
-        $sql = 'SELECT SUM(money_out) FROM transaction WHERE user_id=:user_id AND YEAR(date)=:year';
+        $sql = 'SELECT SUM(money_out) FROM transaction WHERE user_id = :user_id AND YEAR(date) = :year';
         
         return Yii::$app->db->createCommand($sql)
             ->bindValue(':user_id', $this->userId)
