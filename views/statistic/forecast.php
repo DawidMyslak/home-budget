@@ -3,6 +3,9 @@
 use yii\helpers\Html;
 use app\models\Category;
 use app\helpers\FormatHelper;
+use app\assets\ForecastAsset;
+
+ForecastAsset::register($this);
 
 /* @var $this yii\web\View */
 /* @var $forecast app\models\Forecast */
@@ -19,18 +22,18 @@ $this->params['subtitle'] = 'Forecast';
     <div class="row">
         <div class="col-sm-12">
             <ul class="list-group">
-                <?php $summary = 0; foreach (Category::getAll() as $item):
-                $forecastInCategory = $forecast->getForecastInCategory($item['id']);
-                if ($forecastInCategory && in_array($item['id'], [2, 3, 4, 5, 6])): ?>
+                <?php foreach (Category::getAll() as $item): ?>
                 <li class="list-group-item">
-                    <?= Html::encode($item['name']) ?>
-                    <span class="pull-right">&euro;<?= FormatHelper::number($forecastInCategory) ?></span>
-                    <?php $summary += $forecastInCategory; ?>
+                    <label>
+                        <input type="checkbox" <?= in_array($item['id'], [2, 3, 4, 5, 6]) ? 'checked' : '' ?>>
+                        <?= Html::encode($item['name']) ?>
+                    </label>
+                    <span class="pull-right">&euro;<?= FormatHelper::number($forecast->getForecastInCategory($item['id'])) ?></span>
                 </li>
-                <?php endif; endforeach; ?>
+                <?php endforeach; ?>
                 <li class="list-group-item list-group-item-success">
-                    Summary
-                    <span class="pull-right">&euro;<?= FormatHelper::number($summary) ?></span>
+                    <strong>Summary</strong>
+                    <strong><span class="pull-right expenses"></span></strong>
                 </li>
             </ul>
         </div>

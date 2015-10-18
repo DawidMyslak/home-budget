@@ -7,9 +7,9 @@ use kartik\date\DatePicker;
 use yii\widgets\ActiveForm;
 use app\models\Category;
 use app\models\Subcategory;
-use app\assets\CategoryAsset;
+use app\assets\DropdownAsset;
 
-CategoryAsset::register($this);
+DropdownAsset::register($this);
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Transaction */

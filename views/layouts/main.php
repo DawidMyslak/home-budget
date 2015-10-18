@@ -107,7 +107,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; Home Budget <?= date('Y') ?></p>
+        <p class="pull-left">&copy; HomeBudget.ie <?= date('Y') ?></p>
     </div>
 </footer>
 
