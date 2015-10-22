@@ -1,5 +1,6 @@
 label {
     margin: 0;
+    font-weight: normal;
 }
 
 input[type=checkbox] {
