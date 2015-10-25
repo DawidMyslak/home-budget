@@ -9,6 +9,9 @@ class MoneyInCategoriesChart {
     public $labels;
     public $series;
     
+    /**
+     * @return void
+     */
     public function prepareData($statistic) {
         $this->labels = [];
         $this->series = [];
@@ -28,6 +31,9 @@ class MoneyInMonthsChart
     public $series1;
     public $series2;
     
+    /**
+     * @return void
+     */
     public function prepareData($statistic, $months) {
         $this->labels = [];
         $this->series1 = [];
@@ -57,6 +63,9 @@ class BalanceInMonthsChart
     public $labels;
     public $series;
     
+    /**
+     * @return void
+     */
     public function prepareData($statistic, $months) {
         $this->labels = [];
         $this->series = [];
@@ -83,6 +92,9 @@ class Chart extends \yii\base\Object
     public $moneyInMonthsChart;
     public $balanceInMonthsChart;
     
+    /**
+     * @return void
+     */
     public function prepareData($statistic) {
         $this->moneyInCategoriesChart = new MoneyInCategoriesChart();
         $this->moneyInCategoriesChart->prepareData($statistic);

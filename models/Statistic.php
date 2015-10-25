@@ -7,22 +7,26 @@ use Yii;
 class Statistic extends \yii\base\Object
 {
     private $userId;
-    private $year;
+    public $year;
     
-    private $moneyInMonths;
-    private $balanceInMonths;
-    private $moneyInCategories;
-    private $moneyInSubcategories;
-    private $years;
-    private $moneyIn;
-    private $moneyOut;
-    private $balance;
-    private $status;
+    public $moneyInMonths;
+    public $balanceInMonths;
+    public $moneyInCategories;
+    public $moneyInSubcategories;
+    public $years;
+    public $moneyIn;
+    public $moneyOut;
+    public $balance;
+    public $status;
     
+    /**
+     * @return void
+     */
     public function prepareResults($year) {
         $this->userId = Yii::$app->user->identity->id;
         $this->year = $year;
         
+        // prepare data
         $this->moneyInMonths = $this->prepareMoneyInMonths();
         $this->balanceInMonths = $this->prepareBalanceInMonths();
         $this->moneyInCategories = $this->prepareMoneyInCategories();
@@ -34,6 +38,7 @@ class Statistic extends \yii\base\Object
         $this->moneyIn = $this->moneyIn ? $this->moneyIn : 0;
         $this->moneyOut = $this->moneyOut ? $this->moneyOut : 0;
         
+        // calculate balance and status
         $this->balance = $this->moneyIn - $this->moneyOut;
         $this->status = '';
         if ($this->balance > 0) {
@@ -43,46 +48,6 @@ class Statistic extends \yii\base\Object
             $this->status = '-';
         }
         $this->balance = abs($this->balance);
-    }
-    
-    public function getYear() {
-        return $this->year;
-    }
-    
-    public function getMoneyInMonths() {
-        return $this->moneyInMonths;
-    }
-    
-    public function getBalanceInMonths() {
-        return $this->balanceInMonths;
-    }
-    
-    public function getMoneyInCategories() {
-        return $this->moneyInCategories;
-    }
-    
-    public function getMoneyInSubcategories() {
-        return $this->moneyInSubcategories;
-    }
-    
-    public function getYears() {
-        return $this->years;
-    }
-    
-    public function getMoneyIn() {
-        return $this->moneyIn;
-    }
-    
-    public function getMoneyOut() {
-        return $this->moneyOut;
-    }
-    
-    public function getBalance() {
-        return $this->balance;
-    }
-    
-    public function getStatus() {
-        return $this->status;
     }
     
     /**
