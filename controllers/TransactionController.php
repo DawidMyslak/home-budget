@@ -100,8 +100,8 @@ class TransactionController extends Controller
     {
         $this->findModel($id)->delete();
         
-            Yii::$app->getSession()->setFlash('result', 'Transaction deleted.');
-            return $this->redirect(['index']);
+        Yii::$app->getSession()->setFlash('result', 'Transaction deleted.');
+        return $this->redirect(['index']);
     }
 
     /**
@@ -118,20 +118,6 @@ class TransactionController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
-    }
-    
-    /**
-     * Categorise Transcation models.
-     * @return mixed
-     */
-    public function actionCategorise()
-    {
-        $model = new Transaction();
-        $model->categorise();
-        
-        Yii::$app->getSession()->setFlash('result', $model->getResult());
-        
-        return $this->redirect(['index']);
     }
     
     /**

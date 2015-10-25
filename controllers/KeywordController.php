@@ -6,6 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use app\models\Keyword;
 use app\models\KeywordSearch;
+use app\models\Transaction;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -72,7 +73,10 @@ class KeywordController extends Controller
         $model->name = Yii::$app->request->get('name');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->getSession()->setFlash('result', 'Keyword created.');
+            $transaction = new Transaction();
+            $transaction->categorise($model);
+            
+            Yii::$app->getSession()->setFlash('result', 'Keyword created, ' . $transaction->getResult());
             return $this->redirect(['index']);
         } else {
             return $this->render('create', [
@@ -92,7 +96,10 @@ class KeywordController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->getSession()->setFlash('result', 'Keyword saved.');
+            $transaction = new Transaction();
+            $transaction->categorise($model);
+            
+            Yii::$app->getSession()->setFlash('result', 'Keyword updated, ' . $transaction->getResult());
             return $this->redirect(['index']);
         } else {
             return $this->render('update', [

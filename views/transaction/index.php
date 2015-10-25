@@ -12,7 +12,6 @@ $this->title = 'Transactions';
 $this->params['subtitle'] = 'Manage';
 $this->params['buttons'][] = ['label' => 'Create', 'url' => ['create']];
 $this->params['buttons'][] = ['label' => 'Import', 'url' => ['import']];
-$this->params['buttons'][] = ['label' => 'Categorise', 'url' => ['categorise']];
 
 ?>
 

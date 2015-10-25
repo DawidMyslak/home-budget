@@ -100,13 +100,16 @@ class TransactionImport extends Transaction
                                 $transaction->category_id = $keyword->category_id;
                                 $transaction->subcategory_id = $keyword->subcategory_id;
                                 $transaction->keyword_id = $keyword->id;
-                                
-                                $this->categorizedCounter++; 
                             }
                         }
                         
-                        $this->importedCounter++;
-                        $transaction->save();
+                        if ($transaction->save()) {
+                            $this->importedCounter++;
+                            
+                            if ($transaction->category_id) {
+                                $this->categorizedCounter++;
+                            }
+                        }
                     }
                 }
                 $skipHeader = false;
@@ -114,6 +117,6 @@ class TransactionImport extends Transaction
             fclose($handle);
         }
         
-        $this->result = $this->importedCounter . ' transactions imported and ' . $this->categorizedCounter . ' categorized.';
+        $this->result = $this->importedCounter . ' transactions imported, ' . $this->categorizedCounter . ' categorized.';
     }
 }

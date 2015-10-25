@@ -24,7 +24,7 @@ class CategoriseHelper
     /**
      * @return boolean
      */
-    private static function match($description, $name) {
+    public static function match($description, $name) {
         // remove all white spaces and make it lowercase
         $description = strtolower(preg_replace('/\s+/', '', $description));
         $name = strtolower(preg_replace('/\s+/', '', $name));

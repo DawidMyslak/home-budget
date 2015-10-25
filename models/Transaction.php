@@ -128,7 +128,7 @@ class Transaction extends \yii\db\ActiveRecord
     /**
      * @return void
      */
-    public function categorise()
+    public function categorise($keyword)
     {
         $this->categorizedCounter = 0;
         
@@ -140,20 +140,16 @@ class Transaction extends \yii\db\ActiveRecord
             'money_in' => null,
         ]);
         
-        // categorise helper object
-        $categoriseHelper = new CategoriseHelper();
-        $categoriseHelper->prepareKeywords();
-        
+        // categorise by specified keyword
         foreach ($transactions as $transaction) {
-            // find keyword for description
-            $keyword = $categoriseHelper->search($transaction->description);
-            if ($keyword !== null) {
+            if (CategoriseHelper::match($transaction->description, $keyword->name)) {
                 $transaction->category_id = $keyword->category_id;
                 $transaction->subcategory_id = $keyword->subcategory_id;
                 $transaction->keyword_id = $keyword->id;
                 
-                $this->categorizedCounter++;
-                $transaction->save();
+                if ($transaction->save()) {
+                    $this->categorizedCounter++;
+                }
             }
         }
         
