@@ -24,17 +24,28 @@ class Statistic extends \yii\base\Object
      */
     public function prepareResults($year) {
         $this->userId = Yii::$app->user->identity->id;
+        
         $this->year = $year;
+        $this->years = $this->prepareYears();
+        
+        // validate selected year
+        $years = [];
+        foreach ($this->years as $year) {
+            $years[] = $year['year'];
+        }
+        if (!in_array($this->year, $years)) {
+            $this->year = date('Y');
+        }
         
         // prepare data
         $this->moneyInMonths = $this->prepareMoneyInMonths();
         $this->balanceInMonths = $this->prepareBalanceInMonths();
         $this->moneyInCategories = $this->prepareMoneyInCategories();
         $this->moneyInSubcategories = $this->prepareMoneyInSubcategories();
-        $this->years = $this->prepareYears();
+        
+        // prepare income and expenses
         $this->moneyIn = $this->prepareMoneyIn();
         $this->moneyOut = $this->prepareMoneyOut();
-        
         $this->moneyIn = $this->moneyIn ? $this->moneyIn : 0;
         $this->moneyOut = $this->moneyOut ? $this->moneyOut : 0;
         

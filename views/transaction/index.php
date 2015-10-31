@@ -2,7 +2,9 @@
 
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 use yii\grid\GridView;
+use app\models\TransactionSearch;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TransactionSearch */
@@ -20,11 +22,20 @@ $this->params['buttons'][] = ['label' => 'Import', 'url' => ['import']];
     <?php if (Yii::$app->session->hasFlash('result')): ?>
         <div class="alert alert-success" role="alert"><?= Yii::$app->session->getFlash('result') ?></div>
     <?php endif; ?>
+    
+    <?php $buttons = Html::a('Expenses',
+        urldecode(Url::toRoute(['index', 'display' => TransactionSearch::EXPENSES])),
+        ['class' => $searchModel->display === TransactionSearch::EXPENSES ? 'btn btn-info btn-sm' : 'btn btn-default btn-sm']) ?>
+    
+    <?php $buttons .= Html::a('Income',
+        urldecode(Url::toRoute(['index', 'display' => TransactionSearch::INCOME])),
+        ['class' => $searchModel->display === TransactionSearch::INCOME ? 'btn btn-info btn-sm' : 'btn btn-default btn-sm']) ?>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'layout' => "{summary}$buttons\n{items}\n{pager}",
         // 'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
@@ -35,8 +46,7 @@ $this->params['buttons'][] = ['label' => 'Import', 'url' => ['import']];
                 'label' => 'Date',
             ],
             'description',
-            'money_in',
-            'money_out',
+            $searchModel->display,
             [
                 'attribute' => 'category_id',
                 'value' => 'category.name',

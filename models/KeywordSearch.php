@@ -64,8 +64,8 @@ class KeywordSearch extends Keyword
         // grid filtering conditions
         $query->andFilterWhere([
             'keyword.user_id' => Yii::$app->user->identity->id,
-            'keyword.category_id' => $this->category_id,
-            'keyword.subcategory_id' => $this->subcategory_id,
+            //'keyword.category_id' => $this->category_id,
+            //'keyword.subcategory_id' => $this->subcategory_id,
         ]);
 
         $query->andFilterWhere(['like', 'keyword.name', $this->name]);

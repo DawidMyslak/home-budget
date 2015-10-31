@@ -12,6 +12,11 @@ use app\models\Transaction;
  */
 class TransactionSearch extends Transaction
 {
+    const EXPENSES = 'money_out';
+    const INCOME = 'money_in';
+    
+    public $display;
+    
     /**
      * @inheritdoc
      */
@@ -62,14 +67,31 @@ class TransactionSearch extends Transaction
             return $dataProvider;
         }
 
+        $views = [
+            self::EXPENSES,
+            self::INCOME
+        ];
+        
+        $this->display = self::EXPENSES;
+        if (isset($params['display']) && in_array($params['display'], $views)) {
+            $this->display = $params['display'];
+        }
+        
+        if ($this->display === self::EXPENSES) {
+            $query->where(['<>', 'transaction.money_out', null]);
+            $query->where(['transaction.money_in' => null]);
+        }
+        else if ($this->display === self::INCOME) {
+            $query->where(['<>', 'transaction.money_in', null]);
+            $query->where(['transaction.money_out' => null]);
+        }
+
         // grid filtering conditions
         $query->andFilterWhere([
-            'transaction.date' => $this->date,
-            'transaction.money_in' => $this->money_in,
-            'transaction.money_out' => $this->money_out,
             'transaction.user_id' => Yii::$app->user->identity->id,
-            'transaction.category_id' => $this->category_id,
-            'transaction.subcategory_id' => $this->subcategory_id,
+            //'transaction.date' => $this->date,
+            //'transaction.category_id' => $this->category_id,
+            //'transaction.subcategory_id' => $this->subcategory_id,
         ]);
 
         $query->andFilterWhere(['like', 'transaction.description', $this->description]);
