@@ -4,16 +4,19 @@ namespace app\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
-use app\models\Transaction;
-use app\models\TransactionSearch;
-use app\models\TransactionImport;
+use app\models\Import;
+use app\models\ImportSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\TransactionImport;
 use app\models\forms\UploadForm;
 use yii\web\UploadedFile;
 
-class TransactionController extends Controller
+/**
+ * ImportController implements the CRUD actions for Import model.
+ */
+class ImportController extends Controller
 {
     public function behaviors()
     {
@@ -37,12 +40,12 @@ class TransactionController extends Controller
     }
 
     /**
-     * Lists all Transaction models.
+     * Lists all Import models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TransactionSearch();
+        $searchModel = new ImportSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -52,17 +55,26 @@ class TransactionController extends Controller
     }
 
     /**
-     * Creates a new Transaction model.
+     * Creates a new Import model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Transaction();
+        $model = new Import();
 
-        if ($model->load(Yii::$app->request->post()) && $model->prepareHash() && $model->save()) {
-            Yii::$app->getSession()->setFlash('result', 'Transaction created.');
-            return $this->redirect(['index']);
+        if (Yii::$app->request->isPost) {
+            $model->load(Yii::$app->request->post());
+            $model->file = UploadedFile::getInstance($model, 'file');
+            
+            if ($model->upload() && $model->save()) {
+                $transaction = new TransactionImport();
+                $transaction->import($model);
+                
+                Yii::$app->getSession()->setFlash('result', $transaction->getResult());
+            }
+            
+            return $this->redirect(['/transaction/index']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -71,27 +83,7 @@ class TransactionController extends Controller
     }
 
     /**
-     * Updates an existing Transaction model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->prepareHash() && $model->save()) {
-            Yii::$app->getSession()->setFlash('result', 'Transaction updated.');
-            return $this->redirect(['index']);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    /**
-     * Deletes an existing Transaction model.
+     * Deletes an existing Import model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -99,21 +91,20 @@ class TransactionController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-        
-        Yii::$app->getSession()->setFlash('result', 'Transaction deleted.');
+
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Transaction model based on its primary key value.
+     * Finds the Import model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Transaction the loaded model
+     * @return Import the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Transaction::findById($id)) !== null) {
+        if (($model = Import::findById($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

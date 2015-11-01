@@ -23,30 +23,13 @@ class TransactionImport extends Transaction
     }
     
     /**
-     * @return array
-     */
-    public static function getTypes() {
-        return [
-            1 => [
-                'id' => 1,
-                'name' => 'Bank of Ireland',
-                'dateFormat' => 'd/m/Y',
-                'fields' => ['date', 'description', 'money_out', 'money_in', 'balance']
-            ],
-            2 => [
-                'id' => 2,
-                'name' => 'Permanent TSB',
-                'dateFormat' => 'd-M-y',
-                'fields' => ['date', 'description', 'money_in', 'money_out', 'balance']
-            ]
-        ];
-    }
-    
-    /**
      * @return void
      */
-    public function import($path, $type)
+    public function import($import)
     {
+        $path = $import->path;
+        $bank = $import->bank;
+        
         $this->importedCounter = 0;
         $this->categorizedCounter = 0;        
         
@@ -63,10 +46,6 @@ class TransactionImport extends Transaction
         $categoriseHelper = new CategoriseHelper();
         $categoriseHelper->prepareKeywords();
         
-        // get config for current file type
-        $types = self::getTypes();
-        $type = $types[$type];
-        
         // skip first line in the file
         $skipHeader = true;
         
@@ -75,21 +54,21 @@ class TransactionImport extends Transaction
                 if (!$skipHeader) {
                     // create an empty transaction object
                     $transaction = new Transaction();
+                    $transaction->import_id = $import->id;
                     
                     // populate object fields using config order
-                    $fields = $type['fields'];
+                    $fields = explode(',', $bank->file_fields);
                     for ($i = 0; $i < count($fields); $i++) {
                         $transaction[$fields[$i]] = $data[$i];
                     }
                     
                     // format date using config format
-                    if ($date = \DateTime::createFromFormat($type['dateFormat'], $transaction->date)) {
+                    if ($date = \DateTime::createFromFormat($bank->file_date_format, $transaction->date)) {
                         $transaction->date = $date->format('Y-m-d');
                     }
                     
                     // prepare transcation hash and check if already exists in the hash array, if does then do not save this transaction
-                    $transaction->prepareHash();
-                    if (!in_array($transaction->hash, $hashes)) {
+                    if ($transaction->prepareHash() && !in_array($transaction->hash, $hashes)) {
                         $hashes[] = $transaction->hash;
                         
                         // categorise only expenses

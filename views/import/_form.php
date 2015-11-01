@@ -3,24 +3,22 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
-use app\models\TransactionImport;
+use app\models\Bank;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\forms\UploadForm */
-
-$this->title = 'Transactions';
-$this->params['subtitle'] = 'Import';
+/* @var $model app\models\Import */
+/* @var $form yii\widgets\ActiveForm */
 
 ?>
 
-<div class="transaction-import">
+<div class="import-form">
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
 
     <?= $form->field($model, 'file')->fileInput() ?>
-    
-    <?= $form->field($model, 'type')->dropDownList(
-        ArrayHelper::map(TransactionImport::getTypes(), 'id', 'name'),
+
+    <?= $form->field($model, 'bank_id')->dropDownList(
+        ArrayHelper::map(Bank::getAll(), 'id', 'name'),
         ['prompt' => '']
     ) ?>
 
@@ -28,6 +26,6 @@ $this->params['subtitle'] = 'Import';
         <?= Html::submitButton('Import', ['class' => 'btn btn-success']) ?>
     </div>
 
-    <?php ActiveForm::end() ?>
+    <?php ActiveForm::end(); ?>
 
 </div>

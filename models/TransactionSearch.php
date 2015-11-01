@@ -89,12 +89,7 @@ class TransactionSearch extends Transaction
         // grid filtering conditions
         $query->andFilterWhere([
             'transaction.user_id' => Yii::$app->user->identity->id,
-            //'transaction.date' => $this->date,
-            //'transaction.category_id' => $this->category_id,
-            //'transaction.subcategory_id' => $this->subcategory_id,
         ]);
-
-        $query->andFilterWhere(['like', 'transaction.description', $this->description]);
 
         return $dataProvider;
     }

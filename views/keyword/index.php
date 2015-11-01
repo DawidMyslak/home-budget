@@ -21,8 +21,6 @@ $this->params['buttons'][] = ['label' => 'Suggestions', 'url' => ['suggestion']]
         <div class="alert alert-success" role="alert"><?= Yii::$app->session->getFlash('result') ?></div>
     <?php endif; ?>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         // 'filterModel' => $searchModel,

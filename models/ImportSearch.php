@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Keyword;
+use app\models\Import;
 
 /**
- * KeywordSearch represents the model behind the search form about `app\models\Keyword`.
+ * ImportSearch represents the model behind the search form about `app\models\Import`.
  */
-class KeywordSearch extends Keyword
+class ImportSearch extends Import
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class KeywordSearch extends Keyword
     public function rules()
     {
         return [
-            [['id', 'user_id', 'category_id', 'subcategory_id'], 'integer'],
-            [['name'], 'safe'],
+            [['id', 'user_id', 'bank_id'], 'integer'],
+            [['file_original_name', 'file_name', 'date'], 'safe'],
         ];
     }
 
@@ -41,16 +41,13 @@ class KeywordSearch extends Keyword
      */
     public function search($params)
     {
-        $query = Keyword::find();
-        
-        $query->joinWith(['category']);
-        $query->joinWith(['subcategory']);
+        $query = Import::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort'=> ['defaultOrder' => ['id' => SORT_DESC]],
+            'sort'=> ['defaultOrder' => ['date' => SORT_DESC]],
         ]);
 
         $this->load($params);
@@ -63,7 +60,7 @@ class KeywordSearch extends Keyword
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'keyword.user_id' => Yii::$app->user->identity->id,
+            'user_id' => Yii::$app->user->identity->id,
         ]);
 
         return $dataProvider;
