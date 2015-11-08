@@ -85,14 +85,14 @@ AppAsset::register($this);
                 <div class="col-sm-6 buttons">
                 <?php if (isset($this->params['buttons'])): ?>
                     <?php foreach ($this->params['buttons'] as $button): ?>
-                        <?= Html::a($button['label'], $button['url'], ['class' => 'btn btn-success']) ?>
+                        <?= Html::a($button['label'], $button['url'], ['class' => 'btn btn-default']) ?>
                     <? endforeach; ?>
                 <?php endif; ?>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container test">
         <?= $content ?>
     </div>
     
