@@ -63,13 +63,6 @@ html, body {
     padding: 70px 15px 20px;
 }
 
-.test {
-    padding: 20px;
-    margin-bottom: 20px;
-    background-color: #fff;
-    border-radius: 4px;
-}
-
 .module {
     background-color: #1d8dfb;
     min-height: 120px;
@@ -91,6 +84,24 @@ html, body {
     text-align: left;
 }
 
+.btn-success {
+    border: none;
+}
+
+.module .btn-default {
+    color: #fff;
+    background-color: transparent;
+    border: 1px solid #fff;
+    margin: 0 5px 0 0;
+}
+
+.module .btn-default:hover, 
+.module .btn-default:focus {
+    background-color: #0471db;
+    border: 1px solid #fff;
+    color: #fff;
+}
+
 @media (min-width: 768px) {
     .navbar-nav > li > a {
         padding-top: 20px;
@@ -105,17 +116,6 @@ html, body {
     .module .btn-default {
         margin: 0 0 0 5px;
     }
-}
-
-.btn-success {
-    border: none;
-}
-
-.module .btn-default {
-    color: #fff;
-    background-color: transparent;
-    border: 1px solid #fff;
-    margin: 0 5px 0 0;
 }
 
 .footer {
@@ -205,6 +205,7 @@ a.desc:after {
     padding: 5px 10px;
     line-height: 1.5;
     margin-right: 5px;
+    margin-bottom: 5px;
     border: 1px solid #ccc;
     float: left;
 }

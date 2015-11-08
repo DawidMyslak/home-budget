@@ -123,7 +123,7 @@ AppAsset::register($this);
             </div>
         </div>
     </div>
-    <div class="container test">
+    <div class="container">
         <?= $content ?>
     </div>
     

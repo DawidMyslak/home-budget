@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Keyword */
 
 $this->title = 'Keywords';
-$this->params['subtitle'] = 'Update Keyword';
+$this->params['subtitle'] = 'Update';
 ?>
 
 <div class="keyword-update">

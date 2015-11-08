@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Transaction */
 
 $this->title = 'Transactions';
-$this->params['subtitle'] = 'Update Transaction';
+$this->params['subtitle'] = 'Update';
 ?>
 
 <div class="transaction-update">

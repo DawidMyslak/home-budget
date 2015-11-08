@@ -17,28 +17,40 @@ $this->params['subtitle'] = 'Dashboard';
 
 <div class="statistic-index">
     
-    <ul class="nav nav-pills">
-    <?php foreach ($statistic->years as $item): ?>
-        <li role="presentation" class="<?= $item['year'] == $statistic->year ? 'active' : '' ?>">
-            <?= Html::a($item['year'], ['index', 'year' => $item['year']]) ?>
-        </li>
-    <?php endforeach; ?>
-    </ul>
-    
-    <hr>
-    
     <div class="row">
-        <div class="col-sm-4">
-            Income
-            <h2>&euro;<?= FormatHelper::number($statistic->moneyIn) ?></h2>    
+        <div class="col-sm-3">
+            <div class="box">
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+                    Change <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <?php foreach ($statistic->years as $item): ?>
+                        <li><?= Html::a($item['year'], ['index', 'year' => $item['year']]) ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+                Year
+                <h2><?= $statistic->year ?></h2>
+            </div>
         </div>
-        <div class="col-sm-4">
-            Expenses
-            <h2>&euro;<?= FormatHelper::number($statistic->moneyOut) ?></h2>    
+        <div class="col-sm-3">
+            <div class="box">
+                Income
+                <h2>&euro;<?= FormatHelper::number($statistic->moneyIn) ?></h2>
+            </div>
         </div>
-        <div class="col-sm-4">
-            Balance
-            <h2><?= $statistic->status ?> &euro;<?= FormatHelper::number($statistic->balance) ?></h2>    
+        <div class="col-sm-3">
+            <div class="box">
+                Expenses
+                <h2>&euro;<?= FormatHelper::number($statistic->moneyOut) ?></h2>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="box">
+                Balance
+                <h2><?= $statistic->status ?> &euro;<?= FormatHelper::number($statistic->balance) ?></h2>
+            </div>
         </div>
     </div>
     
@@ -49,7 +61,7 @@ $this->params['subtitle'] = 'Dashboard';
             <ul class="list-group">
             <?php foreach ($statistic->moneyInCategories as $index => $item): ?>
                 <li class="list-group-item">
-                    <span class="percent" style="width: <?= $item['percent'] ?>%;"></span>
+                    <span class="percent" style="width: <?= 100 - $item['percent'] ?>%;"></span>
                     <span class="ct-desc ct-color-<?= $index ?>"></span><?= Html::encode($item['name']) ?>
                     <span class="pull-right">&euro;<?= FormatHelper::number($item['sum']) ?></span>
                 </li>

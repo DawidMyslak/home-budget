@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Transaction */
 
 $this->title = 'Transactions';
-$this->params['subtitle'] = 'Create Transaction';
+$this->params['subtitle'] = 'Create';
 ?>
 
 <div class="transaction-create">

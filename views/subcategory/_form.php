@@ -14,12 +14,12 @@ use yii\helpers\ArrayHelper;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-    
     <?= $form->field($model, 'category_id')->dropDownList(
         ArrayHelper::map(Category::getAll(), 'id', 'name'),
         ['prompt' => '']
     )->label('Parent Category') ?>
+
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => 'btn btn-success']) ?>

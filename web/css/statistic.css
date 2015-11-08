@@ -1,5 +1,18 @@
-h2 {
+.box {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 10px 10px 5px 20px;
+    margin-bottom: 5px;
+}
+
+.box h2 {
     margin-top: 5px;
+}
+
+@media (min-width: 768px) {
+    .box {
+        margin-bottom: 0;
+    }
 }
 
 .statistic-index .nav li {
@@ -23,7 +36,7 @@ h2 {
     left: 0;
     z-index: -1;
     display: block;
-    background-color: #fafafa;
+    background-color: #fff;
 }
 
 /* charts */
@@ -36,10 +49,9 @@ h2 {
 .ct-chart-line-area, .ct-chart-bar-area  {
     height: 350px;
     margin-top: 10px;
-    background-color: #fafafa;
+    background-color: #fff;
     border-radius: 4px;
-    border: 1px solid #ddd;
-    padding-top: 20px;
+    padding: 20px 0 0 10px;
 }
 
 .ct-chart-a-center {
