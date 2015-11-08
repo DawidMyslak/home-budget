@@ -13,7 +13,6 @@ StatisticAsset::register($this);
 
 $this->title = 'Statistics';
 $this->params['subtitle'] = 'Dashboard';
-
 ?>
 
 <div class="statistic-index">

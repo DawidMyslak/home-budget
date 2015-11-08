@@ -7,7 +7,6 @@ use yii\helpers\Html;
 
 $this->title = 'Keywords';
 $this->params['subtitle'] = 'Create Keyword';
-
 ?>
 
 <div class="keyword-create">

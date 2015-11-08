@@ -9,7 +9,6 @@ use yii\grid\GridView;
 
 $this->title = 'Transactions';
 $this->params['subtitle'] = 'Import History';
-
 ?>
 
 <div class="import-index">

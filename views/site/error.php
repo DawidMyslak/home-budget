@@ -9,7 +9,6 @@ use yii\helpers\Html;
 
 $this->title = 'Error';
 $this->params['subtitle'] = $name;
-
 ?>
 
 <div class="site-error">

@@ -9,9 +9,6 @@ CategoryAsset::register($this);
 
 $this->title = 'Categories';
 $this->params['subtitle'] = 'Manage';
-$this->params['buttons'][] = ['label' => 'Create Category', 'url' => ['create']];
-$this->params['buttons'][] = ['label' => 'Create Subcategory', 'url' => ['/subcategory/create']];
-
 ?>
 
 <div class="category-index">

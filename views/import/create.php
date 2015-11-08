@@ -8,7 +8,6 @@ use yii\helpers\Html;
 
 $this->title = 'Transactions';
 $this->params['subtitle'] = 'Import';
-
 ?>
 
 <div class="import-create">

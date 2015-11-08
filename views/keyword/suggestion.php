@@ -10,8 +10,8 @@ use yii\grid\GridView;
 
 $this->title = 'Keywords';
 $this->params['subtitle'] = 'Suggestions';
-
 ?>
+
 <div class="keyword-suggestion">
     
     <ul class="list-group">

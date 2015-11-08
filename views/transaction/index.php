@@ -12,10 +12,6 @@ use app\models\TransactionSearch;
 
 $this->title = 'Transactions';
 $this->params['subtitle'] = 'Manage';
-$this->params['buttons'][] = ['label' => 'Create', 'url' => ['create']];
-$this->params['buttons'][] = ['label' => 'Import', 'url' => ['/import/create']];
-$this->params['buttons'][] = ['label' => 'Import History', 'url' => ['/import/index']];
-
 ?>
 
 <div class="transaction-index">

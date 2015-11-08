@@ -7,7 +7,6 @@ use yii\helpers\Html;
 
 $this->title = 'Categories';
 $this->params['subtitle'] = 'Update Subcategory';
-
 ?>
 
 <div class="subcategory-update">

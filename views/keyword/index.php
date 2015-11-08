@@ -10,9 +10,6 @@ use yii\grid\GridView;
 
 $this->title = 'Keywords';
 $this->params['subtitle'] = 'Manage';
-$this->params['buttons'][] = ['label' => 'Create', 'url' => ['create']];
-$this->params['buttons'][] = ['label' => 'Suggestions', 'url' => ['suggestion']];
-
 ?>
 
 <div class="keyword-index">

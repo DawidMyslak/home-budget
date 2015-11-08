@@ -7,8 +7,8 @@ use yii\helpers\Html;
 
 $this->title = 'Categories';
 $this->params['subtitle'] = 'Update Category';
-
 ?>
+
 <div class="category-update">
 
     <?= $this->render('_form', [

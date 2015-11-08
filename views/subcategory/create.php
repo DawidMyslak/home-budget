@@ -5,7 +5,6 @@ use yii\helpers\Html;
 
 $this->title = 'Categories';
 $this->params['subtitle'] = 'Create Subcategory';
-
 ?>
 
 <div class="subcategory-create">

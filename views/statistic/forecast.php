@@ -12,7 +12,6 @@ ForecastAsset::register($this);
 
 $this->title = 'Statistics';
 $this->params['subtitle'] = 'Forecast';
-
 ?>
 
 <div class="statistic-forecast">
