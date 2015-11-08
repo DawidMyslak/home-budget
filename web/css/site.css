@@ -65,7 +65,9 @@ html, body {
 
 .test {
     padding: 20px;
+    margin-bottom: 20px;
     background-color: #fff;
+    border-radius: 4px;
 }
 
 .module {
@@ -99,6 +101,10 @@ html, body {
         padding-top: 42px;
         text-align: right;
     }
+    
+    .module .btn-default {
+        margin: 0 0 0 5px;
+    }
 }
 
 .btn-success {
@@ -109,12 +115,14 @@ html, body {
     color: #fff;
     background-color: transparent;
     border: 1px solid #fff;
+    margin: 0 5px 0 0;
 }
 
 .footer {
     height: 60px;
-    background-color: #fafafa;
+    background-color: #283748;
     padding-top: 20px;
+    color: #fff;
 }
 
 .jumbotron {

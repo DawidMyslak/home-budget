@@ -20,6 +20,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -34,6 +35,14 @@ AppAsset::register($this);
         ],
     ]);
     
+    $controller = Yii::$app->controller->id;
+    if ($controller === 'subcategory') {
+        $controller = 'category';
+    }
+    else if ($controller === 'import') {
+        $controller = 'transaction';
+    }
+    
     $items = [];
     if (Yii::$app->user->isGuest) {
         $items = [
@@ -45,26 +54,45 @@ AppAsset::register($this);
     }
     else {
         $items = [
-            ['label' => 'Statistics', 'url' => ['/statistic'], 'active' => 'statistic' == Yii::$app->controller->id],
-            ['label' => 'Categories', 'url' => ['/category'], 'active' => ('category' == Yii::$app->controller->id || 'subcategory' == Yii::$app->controller->id)],
-            ['label' => 'Keywords', 'url' => ['/keyword'], 'active' => 'keyword' == Yii::$app->controller->id],
-            ['label' => 'Transactions', 'url' => ['/transaction'], 'active' => ('transaction' == Yii::$app->controller->id || 'import' == Yii::$app->controller->id)],
-            [
-                'label' => 'Account',
-                'active' => 'user' == Yii::$app->controller->id,
-                'items' => [
-                    ['label' => 'Profile', 'url' => ['/user/profile']],
-                    ['label' => 'Change Password', 'url' => ['/user/password']],
-                    '<li class="divider"></li>',
-                    [
-                        'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                        'url' => ['/site/logout'],
-                        'linkOptions' => ['data-method' => 'post'],
-                    ],
-                ],
-            ],
+            ['label' => 'Statistics', 'url' => ['/statistic'], 'active' => 'statistic' === $controller],
+            ['label' => 'Categories', 'url' => ['/category'], 'active' => 'category' === $controller],
+            ['label' => 'Keywords', 'url' => ['/keyword'], 'active' => 'keyword' === $controller],
+            ['label' => 'Transactions', 'url' => ['/transaction'], 'active' => 'transaction' === $controller],
+            ['label' => 'Account', 'url' => ['/user/profile'], 'active' => 'user' === $controller],
         ];
     }
+    
+    $subitems = [
+        'statistic' => [
+            ['label' => 'Dashboard', 'url' => ['/statistic/index']],
+            ['label' => 'Forecast', 'url' => ['/statistic/forecast']],
+        ],
+        'category' => [
+            ['label' => 'Manage', 'url' => ['/category/index']],
+            ['label' => 'Create Category', 'url' => ['/category/create']],
+            ['label' => 'Create Subcategory', 'url' => ['/subcategory/create']],
+        ],
+        'keyword' => [
+            ['label' => 'Manage', 'url' => ['/keyword/index']],
+            ['label' => 'Create', 'url' => ['/keyword/create']],
+            ['label' => 'Suggestions', 'url' => ['/keyword/suggestion']],
+        ],
+        'transaction' => [
+            ['label' => 'Manage', 'url' => ['/transaction/index']],
+            ['label' => 'Create', 'url' => ['/transaction/create']],
+            ['label' => 'Import', 'url' => ['/import/create']],
+            ['label' => 'Import History', 'url' => ['/import/index']],
+        ],
+        'user' => [
+            ['label' => 'Profile', 'url' => ['/user/profile']],
+            ['label' => 'Change Password', 'url' => ['/user/password']],
+            [
+                'label' => 'Logout',
+                'url' => ['/site/logout'],
+                'linkOptions' => ['data-method' => 'post'],
+            ],
+        ]
+    ];
     
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
@@ -78,16 +106,20 @@ AppAsset::register($this);
     <div class="module">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <h1 class="title"><?= $this->title ?></h1>
                     <span class="subtitle"><?= $this->params['subtitle'] ?></span>
                 </div>
-                <div class="col-sm-6 buttons">
-                <?php if (isset($this->params['buttons'])): ?>
-                    <?php foreach ($this->params['buttons'] as $button): ?>
-                        <?= Html::a($button['label'], $button['url'], ['class' => 'btn btn-default']) ?>
-                    <? endforeach; ?>
-                <?php endif; ?>
+                <div class="col-sm-8 buttons">
+                <?php
+                if (isset($subitems[$controller])) {
+                    foreach ($subitems[$controller] as $item) {
+                        $options = isset($item['linkOptions']) ? $item['linkOptions'] : [];
+                        $options['class'] = 'btn btn-default';
+                        echo Html::a($item['label'], $item['url'], $options);
+                    }
+                }
+                ?>
                 </div>
             </div>
         </div>

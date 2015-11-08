@@ -11,9 +11,8 @@ StatisticAsset::register($this);
 /* @var $chart app\models\Chart */
 /* @var $statistic app\models\Statistic */
 
-$this->title = 'Statistics';
+$this->title = '<i class="fa fa-bar-chart"></i> Statistics';
 $this->params['subtitle'] = 'Dashboard';
-$this->params['buttons'][] = ['label' => 'Forecast', 'url' => ['forecast']];
 
 ?>
 
