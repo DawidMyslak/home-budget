@@ -5,16 +5,21 @@
 $this->title = 'My Yii Application';
 ?>
 
-<div class="site-index">
-
-    <div class="jumbotron">
-        <h1>Control Your Money</h1>
-
-        <p class="lead">Your income and expenses in one place.</p>
-
-        <p><a class="btn btn-lg btn-success" href="">Sign Up</a></p>
+<div class="start">
+    <div class="container">
+    
+        <div class="jumbotron">
+            <h1>Control Your Money</h1>
+    
+            <p class="lead">Your income and expenses in one place.</p>
+    
+            <p><a class="btn btn-lg btn-success" href="">Sign Up</a></p>
+        </div>
+        
     </div>
+</div>
 
+<div class="container">
     <div class="body-content">
 
         <div class="row">
@@ -47,6 +52,8 @@ $this->title = 'My Yii Application';
                 <p><a class="btn btn-default" href="">More &raquo;</a></p>
             </div>
         </div>
+        
+        <br><br>
 
     </div>
 </div>

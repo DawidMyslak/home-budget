@@ -22,11 +22,11 @@ $this->params['subtitle'] = 'Manage';
     
     <?php $buttons = Html::a('Expenses',
         urldecode(Url::toRoute(['index', 'display' => TransactionSearch::EXPENSES])),
-        ['class' => $searchModel->display === TransactionSearch::EXPENSES ? 'btn btn-info btn-sm' : 'btn btn-default btn-sm']) ?>
+        ['class' => $searchModel->display === TransactionSearch::EXPENSES ? 'btn btn-success btn-sm' : 'btn btn-default btn-sm']) ?>
     
     <?php $buttons .= Html::a('Income',
         urldecode(Url::toRoute(['index', 'display' => TransactionSearch::INCOME])),
-        ['class' => $searchModel->display === TransactionSearch::INCOME ? 'btn btn-info btn-sm' : 'btn btn-default btn-sm']) ?>
+        ['class' => $searchModel->display === TransactionSearch::INCOME ? 'btn btn-success btn-sm' : 'btn btn-default btn-sm']) ?>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 

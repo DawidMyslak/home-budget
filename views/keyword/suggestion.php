@@ -14,6 +14,8 @@ $this->params['subtitle'] = 'Suggestions';
 
 <div class="keyword-suggestion">
     
+    <h3>Popular descriptions in your transactions</h3>
+    
     <ul class="list-group">
     <?php foreach ($searchModel->possibleKeywords as $keyword): ?>
         <li class="list-group-item">

@@ -30,25 +30,25 @@ $this->params['subtitle'] = 'Dashboard';
                         <?php endforeach; ?>
                     </ul>
                 </div>
-                Year
+                <span>Year</span>
                 <h2><?= $statistic->year ?></h2>
             </div>
         </div>
         <div class="col-sm-3">
             <div class="box">
-                Income
+                <span>Income</span>
                 <h2>&euro;<?= FormatHelper::number($statistic->moneyIn) ?></h2>
             </div>
         </div>
         <div class="col-sm-3">
             <div class="box">
-                Expenses
+                <span>Expenses</span>
                 <h2>&euro;<?= FormatHelper::number($statistic->moneyOut) ?></h2>
             </div>
         </div>
         <div class="col-sm-3">
             <div class="box">
-                Balance
+                <span>Balance</span>
                 <h2><?= $statistic->status ?> &euro;<?= FormatHelper::number($statistic->balance) ?></h2>
             </div>
         </div>
@@ -61,7 +61,6 @@ $this->params['subtitle'] = 'Dashboard';
             <ul class="list-group">
             <?php foreach ($statistic->moneyInCategories as $index => $item): ?>
                 <li class="list-group-item">
-                    <span class="percent" style="width: <?= 100 - $item['percent'] ?>%;"></span>
                     <span class="ct-desc ct-color-<?= $index ?>"></span><?= Html::encode($item['name']) ?>
                     <span class="pull-right">&euro;<?= FormatHelper::number($item['sum']) ?></span>
                 </li>

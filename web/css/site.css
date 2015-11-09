@@ -59,14 +59,19 @@ html, body {
     padding: 0 0 60px;
 }
 
-.content {
-    padding: 70px 15px 20px;
+.start {
+    color: #fff;
+    background-color: #1d8dfb;
+    min-height: 440px;
+    padding-top: 80px;
+    margin-bottom: 20px;
 }
 
 .module {
     background-color: #1d8dfb;
-    min-height: 120px;
-    margin: 60px 0 20px 0;
+    min-height: 160px;
+    padding: 60px 0 30px 0;
+    margin-bottom: 20px;
 }
 
 .module .title {
@@ -80,17 +85,13 @@ html, body {
 }
 
 .module .buttons {
-    padding: 10px 15px 30px 15px;
+    padding: 10px 15px 10px 15px;
     text-align: left;
-}
-
-.btn-success {
-    border: none;
 }
 
 .module .btn-default {
     color: #fff;
-    background-color: transparent;
+    background-color: #1d8dfb;
     border: 1px solid #fff;
     margin: 0 5px 0 0;
 }
@@ -205,11 +206,34 @@ a.desc:after {
     padding: 5px 10px;
     line-height: 1.5;
     margin-right: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     float: left;
 }
 
 .grid-view .btn {
     margin-right: 5px;
+}
+
+.grid-view .btn-default {
+    background-color: #e9eff4;
+}
+
+.grid-view .btn-default:hover, 
+.grid-view .btn-default:focus {
+    background-color: #c7d6e3;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #fcfcfc;
+}
+
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+    background-color: #1d8dfb;
+    border-color: #1d8dfb;
 }
