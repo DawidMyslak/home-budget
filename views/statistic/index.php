@@ -54,7 +54,7 @@ $this->params['subtitle'] = 'Dashboard';
         </div>
     </div>
     
-    <h3>Expenses in categories</h3>
+    <h3 class="list-title">Expenses in categories</h3>
     
     <div class="row">
         <div class="col-sm-7">
@@ -79,14 +79,14 @@ $this->params['subtitle'] = 'Dashboard';
         </div>
     </div>
     
-    <h3>Money in months</h3>
+    <h3 class="chart-title">Money in months</h3>
     <span class="ct-desc ct-color-0"></span>Income &nbsp;&nbsp;&nbsp; <span class="ct-desc ct-color-1"></span>Expenses
     
     <div class="ct-chart-area ct-chart-line-area">
         <div class="ct-chart ct-chart-b ct-perfect-fourth"></div>
     </div>
     
-    <h3>Balance in months</h3>
+    <h3 class="chart-title">Balance in months</h3>
     <span class="ct-desc ct-color-0"></span>Positive &nbsp;&nbsp;&nbsp; <span class="ct-desc ct-color-1"></span>Negative
     
     <div class="ct-chart-area ct-chart-bar-area">
@@ -128,11 +128,11 @@ $this->params['subtitle'] = 'Dashboard';
         labels: <?= Json::htmlEncode($chart->moneyInMonthsChart->labels) ?>,
         series: [
             {
-                name: 'Money In',
+                name: 'Income',
                 data: <?= Json::htmlEncode($chart->moneyInMonthsChart->series1) ?>
             },
             {
-                name: 'Money Out',
+                name: 'Expenses',
                 data: <?= Json::htmlEncode($chart->moneyInMonthsChart->series2) ?>
             }
         ]

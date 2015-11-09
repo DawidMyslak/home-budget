@@ -23,6 +23,18 @@
     padding: 5px 10px;
 }
 
+.list-group {
+    margin-bottom: 10px;
+}
+
+.chart-title {
+    margin-bottom: 0;
+}
+
+.list-title {
+    margin-top: 30px;
+}
+
 .list-group-item {
     position: relative;
     display: block;
@@ -49,6 +61,7 @@
 .ct-chart-line-area, .ct-chart-bar-area  {
     height: 350px;
     margin-top: 10px;
+    margin-bottom: 30px;
     background-color: #fff;
     border-radius: 4px;
     padding: 20px 0 0 10px;
