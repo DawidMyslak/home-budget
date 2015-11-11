@@ -35,7 +35,7 @@ class Subcategory extends \yii\db\ActiveRecord
         return [
             [['name', 'category_id'], 'required'],
             [['user_id', 'category_id'], 'integer'],
-            [['name'], 'string', 'max' => 64],
+            [['name'], 'string', 'max' => 64, 'min' => '3'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
         ];
@@ -50,7 +50,7 @@ class Subcategory extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'user_id' => 'User ID',
-            'category_id' => 'Category ID',
+            'category_id' => 'Parent Category',
             'category.name' => 'Category',
         ];
     }

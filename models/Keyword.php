@@ -36,7 +36,7 @@ class Keyword extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['user_id', 'category_id', 'subcategory_id'], 'integer'],
-            [['name'], 'string', 'max' => 64],
+            [['name'], 'string', 'max' => 64, 'min' => '3'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['subcategory_id'], 'exist', 'skipOnError' => true, 'targetClass' => Subcategory::className(), 'targetAttribute' => ['subcategory_id' => 'id']],

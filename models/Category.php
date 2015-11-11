@@ -35,7 +35,7 @@ class Category extends \yii\db\ActiveRecord
         return [
             [['name'], 'required'],
             [['user_id'], 'integer'],
-            [['name'], 'string', 'max' => 64],
+            [['name'], 'string', 'max' => 64, 'min' => '3'],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }

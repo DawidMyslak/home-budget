@@ -51,7 +51,7 @@ class Transaction extends \yii\db\ActiveRecord
             [['description'], 'required'],
             [['money_in', 'money_out', 'balance'], 'number'],
             [['user_id', 'import_id', 'category_id', 'subcategory_id', 'keyword_id'], 'integer'],
-            [['description'], 'string', 'max' => 128],
+            [['description'], 'string', 'max' => 128, 'min' => '3'],
             [['hash'], 'string', 'max' => 32],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['import_id'], 'exist', 'skipOnError' => true, 'targetClass' => Import::className(), 'targetAttribute' => ['import_id' => 'id']], 

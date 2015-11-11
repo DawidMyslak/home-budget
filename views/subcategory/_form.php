@@ -17,7 +17,7 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, 'category_id')->dropDownList(
         ArrayHelper::map(Category::getAll(), 'id', 'name'),
         ['prompt' => '']
-    )->label('Parent Category') ?>
+    ) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
