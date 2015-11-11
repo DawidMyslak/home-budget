@@ -30,6 +30,8 @@ $this->params['subtitle'] = 'Manage';
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
+    <div class="table-responsive">
+    
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'layout' => "{summary}$buttons\n{items}\n{pager}",
@@ -58,5 +60,7 @@ $this->params['subtitle'] = 'Manage';
             ['class' => 'yii\grid\ActionColumn', 'template' => '{update} {delete}', 'headerOptions' => ['style' => 'width: 80px;']],
         ],
     ]); ?>
+    
+    </div>
 
 </div>

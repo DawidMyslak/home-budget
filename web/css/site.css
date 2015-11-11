@@ -89,18 +89,24 @@ html, body {
     text-align: left;
 }
 
-.module .btn-default {
+.module .btn-default,
+.start .btn-default {
     color: #fff;
     background-color: #1d8dfb;
     border: 1px solid #fff;
-    margin: 0 5px 0 0;
 }
 
 .module .btn-default:hover, 
-.module .btn-default:focus {
+.module .btn-default:focus,
+.start .btn-default:hover, 
+.start .btn-default:focus {
     background-color: #0471db;
     border: 1px solid #fff;
     color: #fff;
+}
+
+.module .btn-default {
+    margin: 0 5px 0 0;
 }
 
 @media (min-width: 768px) {
@@ -226,6 +232,10 @@ a.desc:after {
 
 .table-striped > tbody > tr:nth-of-type(odd) {
     background-color: #fcfcfc;
+}
+
+.table-responsive {
+    border: none;
 }
 
 .pagination > .active > a,

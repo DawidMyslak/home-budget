@@ -18,6 +18,8 @@ $this->params['subtitle'] = 'Manage';
         <div class="alert alert-success" role="alert"><?= Yii::$app->session->getFlash('result') ?></div>
     <?php endif; ?>
 
+    <div class="table-responsive">
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         // 'filterModel' => $searchModel,
@@ -39,5 +41,7 @@ $this->params['subtitle'] = 'Manage';
             ['class' => 'yii\grid\ActionColumn', 'template' => '{update} {delete}', 'headerOptions' => ['style' => 'width: 80px;']],
         ],
     ]); ?>
+    
+    </div>
 
 </div>

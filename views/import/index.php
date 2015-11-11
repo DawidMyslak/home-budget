@@ -13,6 +13,8 @@ $this->params['subtitle'] = 'Import History';
 
 <div class="import-index">
 
+    <div class="table-responsive">
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
@@ -31,5 +33,7 @@ $this->params['subtitle'] = 'Import History';
             ['class' => 'yii\grid\ActionColumn', 'template' => '{delete}', 'headerOptions' => ['style' => 'width: 40px;']],
         ],
     ]); ?>
+    
+    </div>
 
 </div>
