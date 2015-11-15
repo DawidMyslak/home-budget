@@ -113,13 +113,13 @@ class Keyword extends \yii\db\ActiveRecord
     public function getPossibleKeywords()
     {
         $sql = 'SELECT description AS name, COUNT(description) AS count FROM (
-                    (SELECT description, user_id, category_id, subcategory_id, money_out FROM transaction)
+                    (SELECT description, user_id, category_id, subcategory_id, money_out FROM transaction WHERE user_id=:user_id)
                     UNION ALL
                     (SELECT SUBSTR(description, 10) AS description, user_id, category_id, subcategory_id, money_out
                     FROM
                         (SELECT *
                         FROM transaction
-                        WHERE description REGEXP "^POS[0-9]{2}[a-z]{3}.*$") temp)
+                        WHERE description REGEXP "^POS[0-9]{2}[a-z]{3}.*$" AND user_id=:user_id) temp)
                 ) temp2
                 WHERE user_id=:user_id AND category_id IS NULL AND subcategory_id IS NULL AND money_out IS NOT NULL
                 GROUP BY description

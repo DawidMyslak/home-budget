@@ -57,7 +57,25 @@ $this->params['subtitle'] = 'Manage';
                 'label' => 'Subcategory', 
             ],
             
-            ['class' => 'yii\grid\ActionColumn', 'template' => '{update} {delete}', 'headerOptions' => ['style' => 'width: 80px;']],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{update} {delete}',
+                'headerOptions' => ['style' => 'width: 80px;'],
+                'buttons' => [
+                    'update' => function ($url, $model) {
+                        return Html::a('<i class="fa fa-pencil fa-lg" data-toggle="tooltip" data-placement="top" title="Update"></i>', $url, [
+                            'title' => Yii::t('yii', 'Update'),
+                        ]);
+                    },
+                    'delete' => function ($url, $model) {
+                        return Html::a('<i class="fa fa-trash fa-lg" data-toggle="tooltip" data-placement="top" title="Delete"></i>', $url, [
+                            'title' => Yii::t('yii', 'Delete'),
+                            'data-confirm' => Yii::t('yii', 'Are you sure to delete this item?'),
+                            'data-method' => 'post',
+                        ]);
+                    }
+                ],
+            ],
         ],
     ]); ?>
     

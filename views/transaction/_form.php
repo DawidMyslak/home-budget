@@ -20,7 +20,6 @@ DropdownAsset::register($this);
 
     <?php $form = ActiveForm::begin(); ?>
     
-    <?php $model->date = $model->formattedDate; ?>
     <?= $form->field($model, 'date')->widget(DatePicker::classname(), [
         'type' => DatePicker::TYPE_INPUT,
         'pluginOptions' => [

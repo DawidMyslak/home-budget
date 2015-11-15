@@ -22,7 +22,7 @@ $this->params['subtitle'] = 'Dashboard';
             <div class="box">
                 <div class="btn-group pull-right">
                     <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
-                    Change <span class="caret"></span>
+                    <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
                         <?php foreach ($statistic->years as $item): ?>

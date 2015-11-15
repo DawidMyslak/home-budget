@@ -59,12 +59,17 @@ class TransactionImport extends Transaction
                     // populate object fields using config order
                     $fields = explode(',', $bank->file_fields);
                     for ($i = 0; $i < count($fields); $i++) {
-                        $transaction[$fields[$i]] = $data[$i];
+                        if (isset($data[$i])) {
+                            $transaction[$fields[$i]] = $data[$i];
+                        }
                     }
                     
                     // format date using config format
                     if ($date = \DateTime::createFromFormat($bank->file_date_format, $transaction->date)) {
                         $transaction->date = $date->format('Y-m-d');
+                    }
+                    else {
+                        $transaction->date = null;
                     }
                     
                     // prepare transcation hash and check if already exists in the hash array, if does then do not save this transaction

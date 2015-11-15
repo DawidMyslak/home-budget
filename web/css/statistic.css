@@ -10,7 +10,7 @@
 }
 
 .box > span {
-    color: #666;
+    color: #888;
 }
 
 @media (min-width: 768px) {
@@ -42,6 +42,7 @@
 .list-group-item {
     background: none;
 }
+
 
 /* charts */
 
@@ -139,7 +140,10 @@
     border-top-color: #ddd;
 }
 
+
 /*
+
+colors
 
 #60bd68 (green)
 #5da5da (blue)

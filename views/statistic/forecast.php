@@ -16,7 +16,7 @@ $this->params['subtitle'] = 'Forecast';
 
 <div class="statistic-forecast">
     
-    <h3>Estimated expenses in current month</h3>
+    <h3 class="list-title">Estimated expenses in current month</h3>
     
     <div class="row">
         <div class="col-sm-12">

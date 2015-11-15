@@ -29,6 +29,11 @@
 	}
 
 	$(document).ready(function () {
+		var date = $('#transaction-date').val();
+		if (date) {
+			$('#transaction-date').val(date.replace(' 00:00:00', ''));
+		}
+
 		prepareSubcategories();
 	});
 

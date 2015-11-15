@@ -30,7 +30,20 @@ $this->params['subtitle'] = 'Import History';
                 'label' => 'Bank',
             ],
             
-            ['class' => 'yii\grid\ActionColumn', 'template' => '{delete}', 'headerOptions' => ['style' => 'width: 40px;']],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{delete}',
+                'headerOptions' => ['style' => 'width: 40px;'],
+                'buttons' => [
+                    'delete' => function ($url, $model) {
+                        return Html::a('<i class="fa fa-trash fa-lg" data-toggle="tooltip" data-placement="top" title="Delete"></i>', $url, [
+                            'title' => Yii::t('yii', 'Delete'),
+                            'data-confirm' => Yii::t('yii', 'Are you sure to delete this item?'),
+                            'data-method' => 'post',
+                        ]);
+                    }
+                ],
+            ],
         ],
     ]); ?>
     

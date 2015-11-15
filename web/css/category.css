@@ -3,12 +3,16 @@
     padding-right: 5px;
 }
 
-.caret.caret-rotated {
-    border-left: 4px dashed;
-    border-top: 4px solid transparent;
-    border-bottom: 4px solid transparent;
+.panel-heading > .fa {
+    margin-right: 5px;
+    color: #1d8dfb;
 }
 
 .panel-default > .panel-heading {
     background-color: #fcfcfc;
+}
+
+.panel-heading {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
 }
