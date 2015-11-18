@@ -147,12 +147,13 @@ colors
 
 #60bd68 (green)
 #5da5da (blue)
-#f15854 (red)
-#decf3f (yellow)
+#faa43a (orange)
 #f17cb0 (pink)
 #b276b2 (purple)
-#666666 (gray)
 #b2912f (brown)
+#f15854 (red)
+#666666 (gray)
+#decf3f (yellow)
 
 */
 
@@ -195,95 +196,111 @@ colors
 /* color 2/c */
 
 .ct-color-2 {
-    background-color: #f15854;
+    background-color: #faa43a;
 }
 
 .ct-series-c .ct-line,
 .ct-series-c .ct-point,
 .ct-series-c .ct-bar {
-    stroke: #f15854;
+    stroke: #faa43a;
 }
 
 .ct-series-c .ct-slice-donut {
-    stroke: #f15854;
+    stroke: #faa43a;
 }
 
 /* color 3/d */
 
 .ct-color-3 {
-    background-color: #decf3f;
+    background-color: #f17cb0;
 }
 
 .ct-series-d .ct-line,
 .ct-series-d .ct-point,
 .ct-series-d .ct-bar {
-    stroke: #decf3f;
+    stroke: #f17cb0;
 }
 
 .ct-series-d .ct-slice-donut {
-    stroke: #decf3f;
+    stroke: #f17cb0;
 }
 
 /* color 4/e */
 
 .ct-color-4 {
-    background-color: #f17cb0;
+    background-color: #b276b2;
 }
 
 .ct-series-e .ct-line,
 .ct-series-e .ct-point,
 .ct-series-e .ct-bar {
-    stroke: #f17cb0;
+    stroke: #b276b2;
 }
 
 .ct-series-e .ct-slice-donut {
-    stroke: #f17cb0;
+    stroke: #b276b2;
 }
 
 /* color 5/f */
 
 .ct-color-5 {
-    background-color: #b276b2;
+    background-color: #b2912f;
 }
 
 .ct-series-f .ct-line,
 .ct-series-f .ct-point,
 .ct-series-f .ct-bar {
-    stroke: #b276b2;
+    stroke: #b2912f;
 }
 
 .ct-series-f .ct-slice-donut {
-    stroke: #b276b2;
+    stroke: #b2912f;
 }
 
 /* color 6/g */
 
 .ct-color-6 {
-    background-color: #666666;
+    background-color: #f15854;
 }
 
 .ct-series-g .ct-line,
 .ct-series-g .ct-point,
 .ct-series-g .ct-bar {
-    stroke: #666666;
+    stroke: #f15854;
 }
 
 .ct-series-g .ct-slice-donut {
-    stroke: #666666;
+    stroke: #f15854;
 }
 
 /* color 7/h */
 
 .ct-color-7 {
-    background-color: #b2912f;
+    background-color: #666666;
 }
 
 .ct-series-h .ct-line,
 .ct-series-h .ct-point,
 .ct-series-h .ct-bar {
-    stroke: #b2912f;
+    stroke: #666666;
 }
 
 .ct-series-h .ct-slice-donut {
-    stroke: #b2912f;
+    stroke: #666666;
+}
+
+/* color 8/i */
+
+.ct-color-8 {
+    background-color: #decf3f;
+}
+
+.ct-series-i .ct-line,
+.ct-series-i .ct-point,
+.ct-series-i .ct-bar {
+    stroke: #decf3f;
+}
+
+.ct-series-i .ct-slice-donut {
+    stroke: #decf3f;
 }

@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'HomeBudget.ie';
 ?>
 
 <div class="home">
@@ -23,7 +23,7 @@ $this->title = 'My Yii Application';
     <div class="row">
         
         <div class="col-sm-4 tile">
-            <i class="fa fa-bank fa-5x"></i>
+            <i class="fa fa-file-text fa-5x"></i>
             
             <h2>Import</h2>
             
