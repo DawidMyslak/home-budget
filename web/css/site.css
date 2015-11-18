@@ -221,6 +221,13 @@ a:focus {
 
 .btn-success {
     border: none;
+}
+
+.btn-success.btn {
+    padding: 7px 13px;
+}
+
+.btn-success.btn-sm {
     padding: 6px 11px;
 }
 
