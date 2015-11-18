@@ -37,12 +37,10 @@ class PasswordForm extends Model
      */
     public function validatePassword($attribute, $params)
     {
-        if (!$this->hasErrors()) {
-            $user = Yii::$app->user->identity;
+        $user = Yii::$app->user->identity;
 
-            if (!$user->validatePassword($this->currentPassword)) {
-                $this->addError($attribute, 'Incorrect password.');
-            }
+        if (!$user->validatePassword($this->currentPassword)) {
+            $this->addError($attribute, 'Incorrect password.');
         }
     }
 }

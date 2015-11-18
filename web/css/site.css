@@ -219,6 +219,11 @@ a:focus {
     border: none;
 }
 
+.btn-success {
+    border: none;
+    padding: 6px 11px;
+}
+
 .wrap {
     min-height: 100%;
     height: auto;

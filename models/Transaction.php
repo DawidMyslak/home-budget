@@ -53,7 +53,8 @@ class Transaction extends \yii\db\ActiveRecord
             [['user_id', 'import_id', 'category_id', 'subcategory_id', 'keyword_id'], 'integer'],
             [['description'], 'string', 'max' => 128, 'min' => '3'],
             [['hash'], 'string', 'max' => 32],
-            ['money_out', 'validateMoneyOut'],
+            ['money_in', 'validateMoneyIn', 'skipOnEmpty' => false],
+            ['money_out', 'validateMoneyOut', 'skipOnEmpty' => false],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['import_id'], 'exist', 'skipOnError' => true, 'targetClass' => Import::className(), 'targetAttribute' => ['import_id' => 'id']], 
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
@@ -200,14 +201,22 @@ class Transaction extends \yii\db\ActiveRecord
     }
     
     /*
+    * Validates Money In
+     */
+    public function validateMoneyIn($attribute, $params)
+    {
+        if (empty($this->money_in) && empty($this->money_out)) {
+            $this->addError($attribute, 'Money In (or Money Out) cannot be blank.');
+        }
+    }
+    
+    /*
     * Validates Money Out
      */
     public function validateMoneyOut($attribute, $params)
     {
-        if (!$this->hasErrors()) {
-            if (!empty($this->money_in)) {
-                $this->addError($attribute, 'Money Out should be empty.');
-            }
+        if (!empty($this->money_in) && !empty($this->money_out)) {
+            $this->addError($attribute, 'Money Out (or Money In) should be empty.');
         }
     }
 }
