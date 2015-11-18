@@ -60,7 +60,7 @@ $this->params['subtitle'] = 'Dashboard';
         <div class="col-sm-7">
             <ul class="list-group">
             <?php foreach ($statistic->moneyInCategories as $index => $item): ?>
-                <li class="list-group-item">
+                <li class="list-group-item transparent-item">
                     <span class="ct-desc ct-color-<?= $index ?>"></span><?= Html::encode($item['name']) ?>
                     <span class="pull-right">&euro;<?= FormatHelper::number($item['sum']) ?></span>
                 </li>

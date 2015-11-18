@@ -15,7 +15,7 @@ $this->params['subtitle'] = 'Manage';
 <div class="keyword-index">
     
     <?php if (Yii::$app->session->hasFlash('result')): ?>
-        <div class="alert alert-success" role="alert"><?= Yii::$app->session->getFlash('result') ?></div>
+        <div class="alert alert-success" role="alert"><i class="fa fa-info-circle"></i><?= Yii::$app->session->getFlash('result') ?></div>
     <?php endif; ?>
 
     <div class="table-responsive">
@@ -51,7 +51,7 @@ $this->params['subtitle'] = 'Manage';
                     'delete' => function ($url, $model) {
                         return Html::a('<i class="fa fa-trash fa-lg" data-toggle="tooltip" data-placement="top" title="Delete"></i>', $url, [
                             'title' => Yii::t('yii', 'Delete'),
-                            'data-confirm' => Yii::t('yii', 'Are you sure to delete this item?'),
+                            'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
                             'data-method' => 'post',
                         ]);
                     }

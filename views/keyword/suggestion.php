@@ -18,7 +18,7 @@ $this->params['subtitle'] = 'Suggestions';
     
     <ul class="list-group">
     <?php foreach ($searchModel->possibleKeywords as $keyword): ?>
-        <li class="list-group-item">
+        <li class="list-group-item transparent-item">
             <?= Html::a(Html::encode($keyword['name']), ['create', 'name' => $keyword['name']]) ?>
             <span class="pull-right">(in <strong><?= $keyword['count'] ?></strong> transactions)</span>
         </li>

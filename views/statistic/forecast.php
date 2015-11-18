@@ -22,7 +22,7 @@ $this->params['subtitle'] = 'Forecast';
         <div class="col-sm-12">
             <ul class="list-group">
                 <?php foreach (Category::getAll() as $item): ?>
-                <li class="list-group-item">
+                <li class="list-group-item transparent-item">
                     <label>
                         <input type="checkbox" <?= in_array($item['id'], [2, 3, 4, 5, 6]) ? 'checked' : '' ?>>
                         <?= Html::encode($item['name']) ?>
@@ -31,8 +31,8 @@ $this->params['subtitle'] = 'Forecast';
                 </li>
                 <?php endforeach; ?>
                 <li class="list-group-item list-group-item-success">
-                    <strong>Summary</strong>
-                    <strong><span class="pull-right expenses"></span></strong>
+                    Total
+                    <span class="pull-right expenses"></span>
                 </li>
             </ul>
         </div>

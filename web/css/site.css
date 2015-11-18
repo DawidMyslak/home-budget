@@ -204,6 +204,21 @@ a.desc:after,
 
 /* others */
 
+a {
+    color: #1d8dfb;
+}
+
+a:hover,
+a:focus {
+    color: #0471db;
+}
+
+.alert-success {
+    color: #333;
+    background-color: #fff;
+    border: none;
+}
+
 .wrap {
     min-height: 100%;
     height: auto;
@@ -234,6 +249,15 @@ a.desc:after,
     margin: 0 0 15px 0;
 }
 
+.transparent-item {
+    background: none;
+}
+
+.list-group-item-success {
+    color: #fff;
+    background-color: #1d8dfb;
+}
+
 .footer {
     height: 60px;
     background-color: #283748;
@@ -254,6 +278,15 @@ a.desc:after,
 .fa-pencil,
 .fa-trash {
     color: #1d8dfb;
+}
+
+.fa-pencil:hover,
+.fa-trash:hover {
+    color: #0471db;
+}
+
+.alert .fa {
+    margin-right: 5px;
 }
 
 .list-title {

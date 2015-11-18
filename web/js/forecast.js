@@ -9,7 +9,7 @@
 		return '&euro;' + Number(value).toFixed(2);
 	}
 
-	function summarize() {
+	function total() {
 		var expenses = 0;
 
 		$('input[type=checkbox]').each(function () {
@@ -22,10 +22,10 @@
 	}
 
 	$(document).ready(function () {
-		summarize();
+		total();
 	});
 
 	$('input[type=checkbox]').change(function () {
-		summarize();
+		total();
 	});
 } ());
