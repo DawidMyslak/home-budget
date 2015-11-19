@@ -36,7 +36,7 @@ $this->params['subtitle'] = 'Dashboard';
         </div>
         <div class="col-sm-3">
             <div class="box">
-                <span>Income</span>
+                <span>Incomes</span>
                 <h2>&euro;<?= FormatHelper::number($statistic->moneyIn) ?></h2>
             </div>
         </div>
@@ -79,7 +79,7 @@ $this->params['subtitle'] = 'Dashboard';
     </div>
     
     <h3 class="chart-title">Money in months</h3>
-    <span class="ct-desc ct-color-0"></span>Income &nbsp;&nbsp;&nbsp; <span class="ct-desc ct-color-1"></span>Expenses
+    <span class="ct-desc ct-color-0"></span>Incomes &nbsp;&nbsp;&nbsp; <span class="ct-desc ct-color-1"></span>Expenses
     
     <div class="ct-chart-area ct-chart-line-area">
         <div class="ct-chart ct-chart-b ct-perfect-fourth"></div>
@@ -127,7 +127,7 @@ $this->params['subtitle'] = 'Dashboard';
         labels: <?= Json::htmlEncode($chart->moneyInMonthsChart->labels) ?>,
         series: [
             {
-                name: 'Income',
+                name: 'Incomes',
                 data: <?= Json::htmlEncode($chart->moneyInMonthsChart->series1) ?>
             },
             {

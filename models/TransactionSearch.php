@@ -13,7 +13,7 @@ use app\models\Transaction;
 class TransactionSearch extends Transaction
 {
     const EXPENSES = 'money_out';
-    const INCOME = 'money_in';
+    const INCOMES = 'money_in';
     
     public $display;
     
@@ -69,7 +69,7 @@ class TransactionSearch extends Transaction
 
         $views = [
             self::EXPENSES,
-            self::INCOME
+            self::INCOMES
         ];
         
         $this->display = self::EXPENSES;
@@ -81,7 +81,7 @@ class TransactionSearch extends Transaction
             $query->where(['<>', 'transaction.money_out', null]);
             $query->where(['transaction.money_in' => null]);
         }
-        else if ($this->display === self::INCOME) {
+        else if ($this->display === self::INCOMES) {
             $query->where(['<>', 'transaction.money_in', null]);
             $query->where(['transaction.money_out' => null]);
         }

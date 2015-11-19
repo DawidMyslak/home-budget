@@ -43,7 +43,7 @@ class Statistic extends \yii\base\Object
         $this->moneyInCategories = $this->prepareMoneyInCategories();
         $this->moneyInSubcategories = $this->prepareMoneyInSubcategories();
         
-        // prepare income and expenses
+        // prepare incomes and expenses
         $this->moneyIn = $this->prepareMoneyIn();
         $this->moneyOut = $this->prepareMoneyOut();
         $this->moneyIn = $this->moneyIn ? $this->moneyIn : 0;
