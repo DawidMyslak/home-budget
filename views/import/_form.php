@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
+use kartik\file\FileInput;
 use app\models\Bank;
 
 /* @var $this yii\web\View */
@@ -13,8 +14,21 @@ use app\models\Bank;
 <div class="import-form">
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
-
-    <?= $form->field($model, 'file')->fileInput() ?>
+    
+    <?= $form->field($model, 'file')->widget(FileInput::classname(), [
+        'options' => [
+            'accept' => 'text/csv',
+        ],
+        'pluginOptions' => [
+            'showRemove' => false,
+            'showUpload' => false,
+            'showPreview' => false,
+            'showCaption' => true,
+            'browseClass' => 'btn btn-success btn-block',
+            'browseIcon' => '<i class="fa fa-folder-open"></i> ',
+            'browseLabel' => 'Browse...',
+        ],
+    ]) ?>
 
     <?= $form->field($model, 'bank_id')->dropDownList(
         ArrayHelper::map(Bank::getAll(), 'id', 'name'),

@@ -42,10 +42,18 @@ class Import extends \yii\db\ActiveRecord
             [['date'], 'safe'],
             [['user_id', 'bank_id'], 'integer'],
             [['file_original_name', 'file_name'], 'string', 'max' => 256],
-            [['file'], 'file', 'skipOnEmpty' => false, /*'extensions' => 'csv'*/],
+            [['file'], 'file', 'skipOnEmpty' => false],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['bank_id'], 'exist', 'skipOnError' => true, 'targetClass' => Bank::className(), 'targetAttribute' => ['bank_id' => 'id']],
         ];
+    }
+    
+    /**
+     * @return array
+     */
+    private function extensions()
+    {
+        return ['csv'];
     }
     
     /**
@@ -108,6 +116,10 @@ class Import extends \yii\db\ActiveRecord
      */
     public function upload()
     {
+        if (!in_array($this->file->extension, $this->extensions())) {
+            return false;
+        }
+        
         $this->file_original_name = $this->file->baseName . '.' . $this->file->extension;
         $this->file_name = Yii::$app->user->identity->id . '_' . $this->file->baseName . '_' . time() . '.' . $this->file->extension;
         
