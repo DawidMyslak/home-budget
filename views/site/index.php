@@ -2,6 +2,10 @@
 
 /* @var $this yii\web\View */
 
+use app\assets\StartAsset;
+
+StartAsset::register($this);
+
 $this->title = 'HomeBudget.ie';
 ?>
 
@@ -9,11 +13,11 @@ $this->title = 'HomeBudget.ie';
     <div class="container">
     
         <div class="jumbotron">
-            <h1>HomeBudget.ie</h1>
+            <h1 class="animated pulse">HomeBudget.ie</h1>
     
-            <p class="lead">Your incomes and expenses in one place</p>
+            <p class="lead animated zoomIn">Your incomes and expenses in one place</p>
     
-            <p><a class="btn btn-lg btn-default" href="">Sign Up</a></p>
+            <p><a class="btn btn-lg btn-default animated flipInX" href="">Sign Up</a></p>
         </div>
         
     </div>
@@ -52,6 +56,13 @@ $this->title = 'HomeBudget.ie';
         <div class="row">
             
             <div class="col-sm-4 tile">
+                <i class="fa fa-users fa-5x"></i>
+                
+                <h2>Share</h2>
+    
+                <p>Share your data with family and friends.</p>
+            </div>
+            <div class="col-sm-4 tile">
                 <i class="fa fa-mobile fa-3x"></i>
                 <i class="fa fa-tablet fa-5x"></i>
                 
@@ -60,18 +71,11 @@ $this->title = 'HomeBudget.ie';
                 <p>Access on laptop, tablet or smartphone.</p>
             </div>
             <div class="col-sm-4 tile">
-                <i class="fa fa-users fa-5x"></i>
+                <i class="fa fa-check-square-o fa-5x"></i>
                 
-                <h2>Share</h2>
+                <h2>Free</h2>
     
-                <p>Share your data with family and friends.</p>
-            </div>
-            <div class="col-sm-4 tile">
-                <i class="fa fa-shield fa-5x"></i>
-                
-                <h2>Secure</h2>
-    
-                <p>Modern and protected web application.</p>
+                <p>Enjoy HomeBudget.ie for free!</p>
             </div>
             
         </div>

@@ -1,0 +1,57 @@
+.home {
+    color: #fff;
+    min-height: 450px;
+    padding-top: 120px;
+    background: url('../images/background.jpg') no-repeat bottom center fixed;
+    background-size: cover;
+}
+
+.lead {
+    color: #ddd;
+    font-size: 16px;
+}
+
+@media (min-width: 768px) {
+    .home {
+        min-height: 550px;
+    }
+    
+    .lead {
+        font-size: 22px;
+    }
+}
+
+.btn-default {
+    color: #fff;
+    background-color: transparent;
+    border: 1px solid #fff;
+    margin-top: 40px;
+}
+
+.btn-default:hover,
+.btn-default:focus {
+    background-color: rgba(0,0,0,0.2);
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+.tile {
+    margin: 80px 0;
+    text-align: center;
+}
+
+.tile .fa {
+    color: #1d8dfb;
+}
+
+.tile h2 {
+    margin-bottom: 5px;
+}
+
+.tile p {
+    color: #888;
+}
+
+.white-section {
+    background-color: #fff;
+}
