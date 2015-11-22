@@ -116,7 +116,7 @@ class Import extends \yii\db\ActiveRecord
      */
     public function upload()
     {
-        if (!in_array($this->file->extension, $this->extensions())) {
+        if (!in_array(strtolower($this->file->extension), $this->extensions())) {
             return false;
         }
         

@@ -139,7 +139,7 @@ class Statistic extends \yii\base\Object
      */
     private function prepareYears()
     {
-        $sql = 'SELECT DISTINCT YEAR(date) AS year FROM transaction WHERE user_id = :user_id ORDER BY year;';
+        $sql = 'SELECT DISTINCT YEAR(date) AS year FROM transaction WHERE YEAR(date) IS NOT NULL AND user_id = :user_id ORDER BY year;';
         
         return Yii::$app->db->createCommand($sql)
             ->bindValue(':user_id', $this->userId)

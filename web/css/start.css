@@ -28,8 +28,8 @@
     margin-top: 40px;
 }
 
-.btn-default:hover,
-.btn-default:focus {
+.home .btn-default:hover,
+.home .btn-default:focus {
     background-color: rgba(0,0,0,0.2);
     border: 1px solid #fff;
     color: #fff;
