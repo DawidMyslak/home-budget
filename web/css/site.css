@@ -82,7 +82,7 @@ html, body {
 }
 
 .module .buttons {
-    padding: 10px 15px 10px 15px;
+    padding: 0 15px 10px 15px;
     text-align: left;
 }
 
@@ -100,7 +100,7 @@ html, body {
 }
 
 .module .btn-default {
-    margin: 0 5px 0 0;
+    margin: 5px 5px 0 0;
 }
 
 @media (min-width: 768px) {
@@ -307,4 +307,9 @@ a:focus {
 
 .empty {
     color: #aaa;
+}
+
+.datepicker .active {
+    background-color: #1d8dfb !important;
+    border-color: #1d8dfb !important;
 }

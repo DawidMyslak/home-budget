@@ -13,7 +13,7 @@
     color: #888;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 991px) {
     .box {
         margin-bottom: 0;
     }

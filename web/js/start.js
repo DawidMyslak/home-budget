@@ -29,11 +29,11 @@
 (function () {
 	if (typeof $ === 'undefined') return;
 
-	$('.tile').inViewport(function (px) {
+	$('.tile .fa').inViewport(function (px) {
 		var self = $(this);
 		if (px) {
 			setTimeout(function () {
-				self.addClass('animated pulse');
+				self.addClass('animated tada');
 			}, 1000);
 		}
 	});

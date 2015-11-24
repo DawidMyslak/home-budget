@@ -18,7 +18,7 @@ $this->params['subtitle'] = 'Dashboard';
 <div class="statistic-index">
     
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-md-3">
             <div class="box">
                 <div class="btn-group pull-right">
                     <button type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
@@ -34,19 +34,19 @@ $this->params['subtitle'] = 'Dashboard';
                 <h2><?= $statistic->year ?></h2>
             </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-md-3">
             <div class="box">
                 <span>Incomes</span>
                 <h2>&euro;<?= FormatHelper::number($statistic->moneyIn) ?></h2>
             </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-md-3">
             <div class="box">
                 <span>Expenses</span>
                 <h2>&euro;<?= FormatHelper::number($statistic->moneyOut) ?></h2>
             </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-md-3">
             <div class="box">
                 <span>Balance</span>
                 <h2><?= $statistic->status ?> &euro;<?= FormatHelper::number($statistic->balance) ?></h2>

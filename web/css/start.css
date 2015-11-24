@@ -2,21 +2,22 @@
     color: #fff;
     min-height: 450px;
     padding-top: 120px;
-    background: url('../images/background.jpg') no-repeat bottom center fixed;
-    background-size: cover;
+    background: url('../images/background.jpg') no-repeat top center fixed;
+    background-size: normal;
 }
 
-.lead {
-    color: #ddd;
+.home .lead {
+    color: #eee;
     font-size: 16px;
 }
 
 @media (min-width: 768px) {
     .home {
         min-height: 550px;
+        background-size: cover;
     }
     
-    .lead {
+    .home .lead {
         font-size: 22px;
     }
 }

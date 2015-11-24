@@ -34,6 +34,9 @@ class Statistic extends \yii\base\Object
             $years[] = $year['year'];
         }
         if (!in_array($this->year, $years)) {
+            $this->year = max($years);
+        }
+        if (!$this->year) {
             $this->year = date('Y');
         }
         
