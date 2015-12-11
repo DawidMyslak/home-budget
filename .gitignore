@@ -30,3 +30,6 @@ phpunit.phar
 
 # samples
 /samples
+
+#notes
+notes.txt

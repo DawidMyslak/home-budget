@@ -33,7 +33,7 @@ class Statistic extends \yii\base\Object
         foreach ($this->years as $year) {
             $years[] = $year['year'];
         }
-        if (!in_array($this->year, $years)) {
+        if (!in_array($this->year, $years) && $years) {
             $this->year = max($years);
         }
         if (!$this->year) {
