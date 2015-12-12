@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\Security;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "user".
@@ -13,7 +15,7 @@ use Yii;
  * @property string $auth_key
  * @property string $access_token
  */
-class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
+class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
     /**
      * @inheritdoc
@@ -112,6 +114,16 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     }
     
     /**
+     * Generates password hash from password
+     *
+     * @param string $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = Security::generatePasswordHash($password);
+    }
+    
+    /**
      * @return \yii\db\ActiveQuery
      */
     public function getCategories()
@@ -141,5 +153,21 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function getTransactions()
     {
         return $this->hasMany(Transaction::className(), ['user_id' => 'id']);
+    }
+    
+    /**
+     * Generates "remember me" authentication key
+     */
+    public function generateAuthKey()
+    {
+        $this->auth_key = Security::generateRandomKey();
+    }
+
+    /**
+     * Generates access token
+     */
+    public function generateAccessToken()
+    {
+        $this->access_token = Security::generateRandomKey();
     }
 }

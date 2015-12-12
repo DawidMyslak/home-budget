@@ -22,13 +22,10 @@ $this->params['subtitle'] = 'Share Your Thoughts';
 
     <?php else: ?>
 
-        <p>
-            If you have business inquiries or other questions, please fill out the following form to contact us.
-            Thank you.
-        </p>
+        <p>If you have business inquiries or other questions, please fill out the following form to contact us.</p>
 
         <div class="row">
-            <div class="col-lg-5">
+            <div class="col-sm-5">
 
                 <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
@@ -41,7 +38,7 @@ $this->params['subtitle'] = 'Share Your Thoughts';
                     <?= $form->field($model, 'body')->textArea(['rows' => 6]) ?>
 
                     <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-                        'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+                        'template' => '<div class="row"><div class="col-md-4">{image}</div><div class="col-md-8">{input}</div></div>',
                     ]) ?>
 
                     <div class="form-group">

@@ -16,6 +16,7 @@ $this->params['subtitle'] = 'Suggestions';
     
     <h3 class="list-title">Popular descriptions in your transactions</h3>
     
+    <?php if ($searchModel->possibleKeywords): ?>
     <ul class="list-group">
     <?php foreach ($searchModel->possibleKeywords as $keyword): ?>
         <li class="list-group-item transparent-item">
@@ -24,5 +25,8 @@ $this->params['subtitle'] = 'Suggestions';
         </li>
     <?php endforeach; ?>
     </ul>
+    <?php else: ?>
+    <div class="alert alert-warning alert-chart" role="alert">No data found.</div>
+    <?php endif; ?>
 
 </div>

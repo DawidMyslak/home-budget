@@ -56,6 +56,7 @@ $this->params['subtitle'] = 'Dashboard';
     
     <h3 class="list-title">Expenses in categories</h3>
     
+    <?php if ($statistic->isDataAvailable()): ?>
     <div class="row">
         <div class="col-sm-7">
             <ul class="list-group">
@@ -77,23 +78,35 @@ $this->params['subtitle'] = 'Dashboard';
             </div>
         </div>
     </div>
+    <?php else: ?>
+    <div class="alert alert-warning" role="alert">No data found.</div>
+    <?php endif; ?>
     
     <h3 class="chart-title">Money in months</h3>
     <span class="ct-desc ct-color-0"></span>Incomes &nbsp;&nbsp;&nbsp; <span class="ct-desc ct-color-1"></span>Expenses
     
+    <?php if ($statistic->isDataAvailable()): ?>
     <div class="ct-chart-area ct-chart-line-area">
         <div class="ct-chart ct-chart-b ct-perfect-fourth"></div>
     </div>
+    <?php else: ?>
+    <div class="alert alert-warning alert-chart" role="alert">No data found.</div>
+    <?php endif; ?>
     
     <h3 class="chart-title">Balance in months</h3>
     <span class="ct-desc ct-color-0"></span>Positive &nbsp;&nbsp;&nbsp; <span class="ct-desc ct-color-1"></span>Negative
     
+    <?php if ($statistic->isDataAvailable()): ?>
     <div class="ct-chart-area ct-chart-bar-area">
         <div class="ct-chart ct-chart-c ct-perfect-fourth"></div>
     </div>
+    <?php else: ?>
+    <div class="alert alert-warning alert-chart" role="alert">No data found.</div>
+    <?php endif; ?>
     
     <h3>Expenses in subcategories</h3>
 
+    <?php if ($statistic->isDataAvailable()): ?>
     <table class="table">
         <thead>
             <tr>
@@ -112,11 +125,15 @@ $this->params['subtitle'] = 'Dashboard';
             <?php $previousCategory = $item['cname']; endforeach; ?>
         </tbody>
     </table>
+    <?php else: ?>
+    <div class="alert alert-warning" role="alert">No data found.</div>
+    <?php endif; ?>
 
 </div>
 
 <!-- charts data -->
 
+<?php if ($statistic->isDataAvailable()): ?>
 <script>        
     var dataA = {
         labels: <?= Json::htmlEncode($chart->moneyInCategoriesChart->labels) ?>,
@@ -142,3 +159,4 @@ $this->params['subtitle'] = 'Dashboard';
         series: [<?= Json::htmlEncode($chart->balanceInMonthsChart->series) ?>]
     };
 </script>
+<?php endif; ?>

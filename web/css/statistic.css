@@ -13,7 +13,7 @@
     color: #888;
 }
 
-@media (min-width: 991px) {
+@media (min-width: 992px) {
     .box {
         margin-bottom: 0;
     }
@@ -37,6 +37,10 @@
 
 .list-title {
     margin-top: 30px;
+}
+
+.alert-chart {
+    margin-top: 10px;
 }
 
 
@@ -150,6 +154,7 @@ colors
 6 #f15854 (red)
 7 #666666 (gray)
 8 #decf3f (yellow)
+9 #ffffff (white)
 
 */
 
@@ -299,4 +304,20 @@ colors
 
 .ct-series-i .ct-slice-donut {
     stroke: #decf3f;
+}
+
+/* color 9/j */
+
+.ct-color-9 {
+    background-color: #ffffff;
+}
+
+.ct-series-j .ct-line,
+.ct-series-j .ct-point,
+.ct-series-j .ct-bar {
+    stroke: #ffffff;
+}
+
+.ct-series-j .ct-slice-donut {
+    stroke: #ffffff;
 }

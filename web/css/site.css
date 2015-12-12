@@ -82,7 +82,6 @@ html, body {
 }
 
 .module .buttons {
-    padding: 0 15px 10px 15px;
     text-align: left;
 }
 
@@ -218,6 +217,12 @@ a:focus {
     border: none;
 }
 
+.alert-warning {
+    color: #aaa;
+    background-color: #fff;
+    border: none;
+}
+
 .btn-success {
     border: none;
 }
@@ -312,4 +317,16 @@ a:focus {
 .datepicker .active {
     background-color: #1d8dfb !important;
     border-color: #1d8dfb !important;
+}
+
+#contactform-verifycode-image {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+@media (min-width: 992px) {
+    #contactform-verifycode-image {
+        margin-bottom: 0;
+    }
 }

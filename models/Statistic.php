@@ -33,11 +33,8 @@ class Statistic extends \yii\base\Object
         foreach ($this->years as $year) {
             $years[] = $year['year'];
         }
-        if (!in_array($this->year, $years) && $years) {
+        if (!in_array($this->year, $years)) {
             $this->year = max($years);
-        }
-        if (!$this->year) {
-            $this->year = date('Y');
         }
         
         // prepare data
@@ -144,9 +141,15 @@ class Statistic extends \yii\base\Object
     {
         $sql = 'SELECT DISTINCT YEAR(date) AS year FROM transaction WHERE YEAR(date) IS NOT NULL AND user_id = :user_id ORDER BY year;';
         
-        return Yii::$app->db->createCommand($sql)
+        $years = Yii::$app->db->createCommand($sql)
             ->bindValue(':user_id', $this->userId)
             ->queryAll();
+        
+        if (!$years) {
+            $years[] = ['year' => date('Y')];
+        }
+        
+        return $years;
     }
     
     /**
@@ -173,5 +176,13 @@ class Statistic extends \yii\base\Object
             ->bindValue(':user_id', $this->userId)
             ->bindValue(':year', $this->year)
             ->queryScalar();
+    }
+    
+    /**
+     * @return boolean
+     */
+    public function isDataAvailable()
+    {
+        return ($this->moneyIn > 0 || $this->moneyOut > 0);
     }
 }
