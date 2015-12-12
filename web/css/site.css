@@ -211,7 +211,7 @@ a:focus {
     color: #0471db;
 }
 
-.alert-success {
+.alert-success, .alert-warning, .alert-danger {
     color: #333;
     background-color: #fff;
     border: none;
@@ -219,8 +219,6 @@ a:focus {
 
 .alert-warning {
     color: #aaa;
-    background-color: #fff;
-    border: none;
 }
 
 .btn-success {
@@ -289,6 +287,26 @@ a:focus {
 .jumbotron .btn {
     font-size: 21px;
     padding: 14px 24px;
+}
+
+.welcome {
+    margin-top: 0;
+}
+
+.username {
+    margin-top: 0;
+    color: #999;
+}
+
+.usericon {
+    color: #1d8dfb;
+    margin-bottom: 15px;
+}
+
+@media (min-width: 768px) {
+    .usericon {
+        margin-bottom: 0;
+    }
 }
 
 .fa-pencil,

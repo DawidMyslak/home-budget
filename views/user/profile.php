@@ -2,7 +2,6 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
@@ -16,12 +15,15 @@ $this->params['subtitle'] = 'Profile';
     <?php if (Yii::$app->session->hasFlash('result')): ?>
         <div class="alert alert-success" role="alert"><?= Yii::$app->session->getFlash('result') ?></div>
     <?php endif; ?>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'username',
-        ],
-    ]) ?>
+    
+    <div class="row">
+        <div class="col-sm-1">
+            <i class="fa fa-user fa-5x usericon"></i> 
+        </div>
+        <div class="col-sm-11">
+            <h2 class="welcome">Welcome</h1>
+            <h3 class="username"><?= Html::encode($model->username) ?></h3>
+        </div>
+    </div>
 
 </div>

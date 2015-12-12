@@ -3,7 +3,6 @@
 namespace app\models;
 
 use Yii;
-use yii\helpers\Security;
 use yii\web\IdentityInterface;
 
 /**
@@ -34,6 +33,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['username', 'password', 'auth_key', 'access_token'], 'required'],
             [['username', 'auth_key', 'access_token'], 'string', 'max' => 128],
             [['password'], 'string', 'max' => 256],
+            ['username', 'email'],
         ];
     }
 
@@ -120,7 +120,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function setPassword($password)
     {
-        $this->password = Security::generatePasswordHash($password);
+        $this->password = Yii::$app->getSecurity()->generatePasswordHash($password);
     }
     
     /**
@@ -160,7 +160,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function generateAuthKey()
     {
-        $this->auth_key = Security::generateRandomKey();
+        $this->auth_key = Yii::$app->getSecurity()->generateRandomKey();
     }
 
     /**
@@ -168,6 +168,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function generateAccessToken()
     {
-        $this->access_token = Security::generateRandomKey();
+        $this->access_token = Yii::$app->getSecurity()->generateRandomKey();
     }
 }
