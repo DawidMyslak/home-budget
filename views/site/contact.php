@@ -9,7 +9,7 @@ use yii\bootstrap\ActiveForm;
 use yii\captcha\Captcha;
 
 $this->title = 'Contact';
-$this->params['subtitle'] = '';
+$this->params['subtitle'] = 'Share Your Thoughts';
 ?>
 
 <div class="site-contact">

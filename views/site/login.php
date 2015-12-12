@@ -8,7 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 $this->title = 'Login';
-$this->params['subtitle'] = '';
+$this->params['subtitle'] = 'Sign In';
 ?>
 
 <div class="site-login">
@@ -39,8 +39,4 @@ $this->params['subtitle'] = '';
         </div>
 
     <?php ActiveForm::end(); ?>
-
-    <div class="col-lg-offset-1" style="color:#999;">
-        You may login with <strong>admin/admin</strong>.
-    </div>
 </div>
