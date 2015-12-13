@@ -338,14 +338,16 @@ a:focus {
     border-color: #1d8dfb !important;
 }
 
-#contactform-verifycode-image {
+#contactform-verifycode-image,
+#registerform-verifycode-image {
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-bottom: 5px;
 }
 
 @media (min-width: 992px) {
-    #contactform-verifycode-image {
+    #contactform-verifycode-image,
+    #registerform-verifycode-image {
         margin-bottom: 0;
     }
 }
