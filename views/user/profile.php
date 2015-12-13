@@ -22,7 +22,7 @@ $this->params['subtitle'] = 'Profile';
         </div>
         <div class="col-sm-11">
             <h2 class="welcome">Welcome</h1>
-            <h3 class="username"><?= Html::encode($model->username) ?></h3>
+            <h4 class="username"><?= Html::encode($model->username) ?></h4>
         </div>
     </div>
 

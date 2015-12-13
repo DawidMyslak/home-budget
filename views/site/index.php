@@ -2,6 +2,7 @@
 
 /* @var $this yii\web\View */
 
+use yii\helpers\Html;
 use app\assets\StartAsset;
 
 StartAsset::register($this);
@@ -16,8 +17,8 @@ $this->title = 'HomeBudget.ie';
             <h1 class="animated pulse">HomeBudget.ie</h1>
     
             <p class="lead animated zoomIn">Your incomes and expenses in one place</p>
-    
-            <p><a class="btn btn-lg btn-default animated flipInX" href="">Sign Up</a></p>
+            
+            <?= Html::a('Sign Up', ['register'], ['class' => 'btn btn-lg btn-default animated flipInX']) ?>
         </div>
         
     </div>

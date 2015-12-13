@@ -44,7 +44,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             'id' => 'ID',
-            'username' => 'Username',
+            'username' => 'E-mail',
             'password' => 'Password',
             'auth_key' => 'Authentication Key',
             'access_token' => 'Access Token',
@@ -160,7 +160,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function generateAuthKey()
     {
-        $this->auth_key = Yii::$app->getSecurity()->generateRandomKey();
+        $this->auth_key = Yii::$app->getSecurity()->generateRandomString();
     }
 
     /**
@@ -168,6 +168,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function generateAccessToken()
     {
-        $this->access_token = Yii::$app->getSecurity()->generateRandomKey();
+        $this->access_token = Yii::$app->getSecurity()->generateRandomString();
     }
 }

@@ -32,6 +32,16 @@ class LoginForm extends Model
             ['password', 'validatePassword'],
         ];
     }
+    
+    /**
+     * @return array customized attribute labels
+     */
+    public function attributeLabels()
+    {
+        return [
+            'username' => 'E-mail',
+        ];
+    }
 
     /**
      * Validates the password.

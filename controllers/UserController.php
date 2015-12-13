@@ -48,7 +48,7 @@ class UserController extends Controller
         
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $user = Yii::$app->user->identity;
-            $user->password = Yii::$app->getSecurity()->generatePasswordHash($model->newPassword);
+            $user->setPassword($model->newPassword);
             
             if ($user->save()) {
                 Yii::$app->getSession()->setFlash('result', 'Password successfully changed.');

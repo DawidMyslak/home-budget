@@ -23,7 +23,7 @@ class PasswordForm extends Model
         return [
             [['currentPassword', 'newPassword', 'confirmNewPassword'], 'required'],
             ['currentPassword', 'validatePassword'],
-            ['newPassword', 'string', 'min' => 4, 'max' => '32'],
+            ['newPassword', 'string', 'min' => 4, 'max' => 32],
             ['confirmNewPassword', 'compare', 'compareAttribute' => 'newPassword', 'message' => 'Password does not match.']
         ];
     }
