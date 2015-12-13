@@ -58,6 +58,13 @@ class RegisterForm extends Model
             $user->generateAccessToken();
             
             if ($user->save()) {
+                Yii::$app->mailer->compose()
+                    ->setTo($user->username)
+                    ->setFrom([Yii::$app->params['adminEmail'] => 'HomeBudget.ie'])
+                    ->setSubject('Welcome to HomeBudget.ie')
+                    ->setTextBody('Thank you for signing up with HomeBudget.ie. This is only confirmation message, please do not reply.')
+                    ->send();
+                
                 return Yii::$app->user->login($user, 0);
             }
             
