@@ -100,14 +100,15 @@ class Statistic extends \yii\base\Object
      */
     private function prepareMoneyInCategories()
     {
-        $sql = 'SELECT name, sum, TRUNCATE(sum / total * 100, 2) AS percent FROM
+        $sql = 'SELECT name, sum FROM
                 (SELECT c.id AS id, IFNULL(c.name, "Uncategorized") AS name, SUM(t.money_out) AS sum,
                 (SELECT SUM(money_out) FROM transaction WHERE user_id = :user_id AND YEAR(date) = :year) AS total
                 FROM category c
                 RIGHT JOIN transaction t ON c.id = t.category_id
                 WHERE t.user_id = :user_id AND YEAR(t.date) = :year
                 GROUP BY c.id
-                ORDER BY c.id) AS temp;';
+                ORDER BY c.id) AS temp
+                WHERE sum > 0;';
                 
         return Yii::$app->db->createCommand($sql)
             ->bindValue(':user_id', $this->userId)

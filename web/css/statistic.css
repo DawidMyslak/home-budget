@@ -154,7 +154,10 @@ colors
 6 #f15854 (red)
 7 #666666 (gray)
 8 #decf3f (yellow)
-9 #ffffff (white)
+9 #3c9043 (green darker)
+10 #2670a6 (blue darker)
+11 #c77005 (orange darker)
+12 #b8145d (ping darker)
 
 */
 
@@ -309,15 +312,63 @@ colors
 /* color 9/j */
 
 .ct-color-9 {
-    background-color: #ffffff;
+    background-color: #3c9043;
 }
 
 .ct-series-j .ct-line,
 .ct-series-j .ct-point,
 .ct-series-j .ct-bar {
-    stroke: #ffffff;
+    stroke: #3c9043;
 }
 
 .ct-series-j .ct-slice-donut {
-    stroke: #ffffff;
+    stroke: #3c9043;
+}
+
+/* color 10/k */
+
+.ct-color-10 {
+    background-color: #2670a6;
+}
+
+.ct-series-k .ct-line,
+.ct-series-k .ct-point,
+.ct-series-k .ct-bar {
+    stroke: #2670a6;
+}
+
+.ct-series-k .ct-slice-donut {
+    stroke: #2670a6;
+}
+
+/* color 11/l */
+
+.ct-color-11 {
+    background-color: #c77005;
+}
+
+.ct-series-l .ct-line,
+.ct-series-l .ct-point,
+.ct-series-l .ct-bar {
+    stroke: #c77005;
+}
+
+.ct-series-l .ct-slice-donut {
+    stroke: #c77005;
+}
+
+/* color 12/m */
+
+.ct-color-12 {
+    background-color: #b8145d;
+}
+
+.ct-series-m .ct-line,
+.ct-series-m .ct-point,
+.ct-series-m .ct-bar {
+    stroke: #b8145d;
+}
+
+.ct-series-m .ct-slice-donut {
+    stroke: #b8145d;
 }
