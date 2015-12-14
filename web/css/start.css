@@ -36,6 +36,11 @@
     color: #fff;
 }
 
+.btn-sign-up {
+    background-color: rgba(255,255,255,0.2);
+    margin-right: 20px;
+}
+
 .tile {
     margin: 80px 0;
     text-align: center;

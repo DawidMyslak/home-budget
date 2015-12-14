@@ -4,6 +4,7 @@
 
 use yii\helpers\Html;
 use app\assets\StartAsset;
+use yii\helpers\Url;
 
 StartAsset::register($this);
 
@@ -18,7 +19,8 @@ $this->title = 'HomeBudget.ie';
     
             <p class="lead animated zoomIn">Your incomes and expenses in one place</p>
             
-            <?= Html::a('Sign Up', ['register'], ['class' => 'btn btn-lg btn-default animated flipInX']) ?>
+            <?= Html::a('Sign Up', ['register'], ['class' => 'btn btn-lg btn-default btn-sign-up animated flipInX']) ?>
+            <?= Html::a('Try Demo', urldecode(Url::toRoute(['login', 'mode' => 'demo'])), ['class' => 'btn btn-lg btn-default animated flipInX']) ?>
         </div>
         
     </div>
