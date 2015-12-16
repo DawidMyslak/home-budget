@@ -15,8 +15,8 @@ class LoginForm extends Model
     public $password;
     public $rememberMe = true;
 
+    public $isDemo = false;
     private $_user = false;
-
 
     /**
      * @return array the validation rules.
@@ -85,5 +85,17 @@ class LoginForm extends Model
         }
 
         return $this->_user;
+    }
+    
+    /**
+     * Inits demo mode
+     *
+     * @return void
+     */
+    public function initDemo() {
+        $this->username = 'demo@example.com';
+        $this->password = 'DEmo12!@';
+            
+        $this->isDemo = true;
     }
 }

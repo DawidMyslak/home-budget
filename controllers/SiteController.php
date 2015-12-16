@@ -75,11 +75,10 @@ class SiteController extends Controller
         
         $mode = Yii::$app->request->get('mode');
         if ($mode === 'demo') {
-            $model->username = 'demo@example.com';
-            $model->password = 'demo1234';
+            $model->initDemo();
         }
         
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+        if (($model->load(Yii::$app->request->post()) || $model->isDemo) && $model->login()) {
             Yii::$app->getSession()->setFlash('result', 'Logged in successfully.');
             return $this->goBack();
         }
