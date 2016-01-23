@@ -94,7 +94,7 @@ class LoginForm extends Model
      */
     public function initDemo() {
         $this->username = 'demo@example.com';
-        $this->password = 'DEmo12!@';
+        $this->password = 'DEmo12!@'; // super secret ;-)
             
         $this->isDemo = true;
     }

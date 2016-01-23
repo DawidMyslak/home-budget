@@ -16,7 +16,7 @@ $this->params['subtitle'] = 'Share Your Thoughts';
 
     <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
 
-        <div class="alert alert-success">
+        <div class="alert alert-info">
             Thank you for contacting us. We will respond to you as soon as possible.
         </div>
 

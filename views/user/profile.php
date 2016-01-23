@@ -13,7 +13,7 @@ $this->params['subtitle'] = 'Profile';
 <div class="user-profile">
 
     <?php if (Yii::$app->session->hasFlash('result')): ?>
-        <div class="alert alert-success" role="alert"><?= Yii::$app->session->getFlash('result') ?></div>
+        <div class="alert alert-info" role="alert"><?= Yii::$app->session->getFlash('result') ?></div>
     <?php endif; ?>
     
     <div class="row">

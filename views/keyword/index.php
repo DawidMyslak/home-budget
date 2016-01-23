@@ -15,7 +15,7 @@ $this->params['subtitle'] = 'Manage';
 <div class="keyword-index">
     
     <?php if (Yii::$app->session->hasFlash('result')): ?>
-        <div class="alert alert-success" role="alert"><i class="fa fa-info-circle"></i><?= Yii::$app->session->getFlash('result') ?></div>
+        <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i><?= Yii::$app->session->getFlash('result') ?></div>
     <?php endif; ?>
 
     <div class="table-responsive">

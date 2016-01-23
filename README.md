@@ -1,1 +1,3 @@
-HomeBudget.ie
+#Home Budget
+
+Source code for HomeBudget.ie

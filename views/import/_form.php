@@ -13,6 +13,10 @@ use app\models\Bank;
 
 <div class="import-form">
 
+    <div class="alert alert-info" role="alert">
+        <i class="fa fa-info-circle"></i>You can generate CSV file with transactions history in your on-line banking service.
+    </div>
+
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
     
     <?= $form->field($model, 'file')->widget(FileInput::classname(), [

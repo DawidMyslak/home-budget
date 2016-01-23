@@ -14,7 +14,7 @@ $this->params['subtitle'] = 'Manage';
 <div class="category-index">
     
     <?php if (Yii::$app->session->hasFlash('result')): ?>
-        <div class="alert alert-success" role="alert"><i class="fa fa-info-circle"></i><?= Yii::$app->session->getFlash('result') ?></div>
+        <div class="alert alert-info" role="alert"><i class="fa fa-info-circle"></i><?= Yii::$app->session->getFlash('result') ?></div>
     <?php endif; ?>
 
     <div class="panel-group" role="tablist" id="accordion">

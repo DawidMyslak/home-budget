@@ -211,7 +211,7 @@ a:focus {
     color: #0471db;
 }
 
-.alert-success, .alert-warning, .alert-danger {
+.alert-info, .alert-warning, .alert-danger {
     color: #333;
     background-color: #fff;
     border: none;
